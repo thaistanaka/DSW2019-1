@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context path="/Ingressos"/>
+<Context path="/Ingressos">
+<ResourceLink global="jdbc/Ingressos" name="jdbc/IngressosLocal" type="javax.sql.DataSource"/>
+</Context>
