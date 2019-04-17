@@ -25,6 +25,9 @@ public class Teatro {
         this.cidade = cidade;
     }
 
+    public Teatro() {
+    }
+
     public String getEmail() {
         return email;
     }
