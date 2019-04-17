@@ -24,7 +24,9 @@ public class Site { //do trabalho
         this.telefone = telefone;
         this.nome = nome;
 }
-
+    
+    public Site(){
+    }
     public String getEmail() {
         return email;
     }

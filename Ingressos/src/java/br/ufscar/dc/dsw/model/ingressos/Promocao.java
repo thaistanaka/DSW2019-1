@@ -27,6 +27,9 @@ public class Promocao {
         this.hora = hora;
     }
 
+    public Promocao() {
+    }
+
     public int getId() {
         return id;
     }
