@@ -55,11 +55,11 @@ public class PromocaoDAO extends GenericDAO{
 
             statement = conn.prepareStatement(sql);
             statement.setInt(1, promocao.getId());
-            statement.setString(3, promocao.getEndereco());
-            statement.setInt(4, promocao.getCnpj());
-            statement.setFloat(5, promocao.getPreco());
-            statement.setString(3, promocao.getDia());
-            statement.setString(3, promocao.getHora());            
+            statement.setString(2, promocao.getEndereco());
+            statement.setInt(3, promocao.getCnpj());
+            statement.setFloat(4, promocao.getPreco());
+            statement.setString(5, promocao.getDia());
+            statement.setString(6, promocao.getHora());            
             statement.executeUpdate();
 
             statement.close();
@@ -126,7 +126,7 @@ public class PromocaoDAO extends GenericDAO{
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-
+            
             statement.setString(2, promocao.getEndereco());
             statement.setInt(1, promocao.getId());
             statement.setInt(3, promocao.getCnpj());
