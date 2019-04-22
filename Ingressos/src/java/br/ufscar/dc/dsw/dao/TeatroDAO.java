@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeatroDAO {
+public class TeatroDAO extends GenericDAO{
     
     
     private final static String LISTAR_TEATROS_SQL = "select"
