@@ -9,9 +9,9 @@
     <center>
         <h1>Gerenciamento dos teatros</h1>
         <h2>
-            <a href="cadastro">Adicione Novo Teatro</a>
+            <a href="cadastro1">Adicione Novo Teatro</a>
             &nbsp;&nbsp;&nbsp;
-            <a href="lista">Lista de Teatros</a>
+            <a href="lista1">Lista de Teatros</a>
 
         </h2>
     </center>
@@ -33,9 +33,9 @@
                     <td><c:out value="${teatro.nome}" /></td>
                     <td><c:out value="${teatro.cidade}" /></td>
                     <td>
-                        <a href="edicao?id=<c:out value='${teatro.cnpj}' />">Editar</a>
+                        <a href="edicao1?id=<c:out value='${teatro.cnpj}' />">Editar</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="remocao?id=<c:out value='${teatro.cnpj}' />" 
+                        <a href="remocao1?id=<c:out value='${teatro.cnpj}' />" 
                            onclick="return confirm('Você tem certeza?');">
                             Remover
                         </a>                    	
