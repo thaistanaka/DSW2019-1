@@ -5,19 +5,14 @@
  */
 package br.ufscar.dc.dsw.servlet;
 
-import br.ufscar.dc.dsw.bean.AutoCompleteBean;
+import br.ufscar.dc.dsw.dao.TeatroDAO;
 import br.ufscar.dc.dsw.model.ingressos.Teatro;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,25 +20,23 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Lap
  */
-@WebServlet(urlPatterns = {"/buscaPorCidade"})
-public class CidadeServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/VerTeatrosServlet"})
+public class VerTeatrosServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, SQLException {
-        
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
+            throws ServletException, IOException {
 
-        String cidade = request.getParameter("term");
+        List<Teatro> todosTeatros;
+        try {
+            TeatroDAO teatroDAO = new TeatroDAO();
+                todosTeatros = teatroDAO.listarTodosTeatros();
 
-        Gson gsonBuilder = new GsonBuilder().create();
-        List<String> teatros = new ArrayList<>();
-        for (Teatro teatro : new AutoCompleteBean().getTeatrosPorCidade(cidade)) {
-            teatros.add(teatro.toString());
+            request.setAttribute("listaTeatros", todosTeatros);
+            request.getRequestDispatcher("listaTeatros.jsp").forward(request, response);
+        } catch (IOException | SQLException | ServletException e) {
+            e.printStackTrace();
+            request.setAttribute("mensagem", e.getLocalizedMessage());
         }
-
-        System.out.println(gsonBuilder.toJson(teatros));
-        response.getWriter().write(gsonBuilder.toJson(teatros));
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -58,11 +51,7 @@ public class CidadeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(CidadeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -76,11 +65,7 @@ public class CidadeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(CidadeServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

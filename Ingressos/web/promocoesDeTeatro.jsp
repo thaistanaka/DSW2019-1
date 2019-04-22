@@ -5,11 +5,11 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
             $(function () {
-                $("#cidade").autocomplete({
+                $("#teatro").autocomplete({
                     select: function (event, ui) {
                         alert("Selecionado: " + ui.item.value);
                     },
-                    source: "buscaPorNome",
+                    source: "buscaPorTeatro",
                     minLength: 2
                 });
             });
@@ -17,7 +17,7 @@
         <title>Promoções</title>
     </head>
     <div class="ui-widget">
-        <label for="teatro">Nome</label>
+        <label for="teatro">Cnpj</label>
         <input id="cnpj" name="teatro" placeholder="Nome do teatro" on>
     </div>
     <br/>
