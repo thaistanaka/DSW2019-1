@@ -15,6 +15,7 @@
         <h1>Ingressos!</h1>
         <hr>
         <p>Escolha o que deseja fazer:</p>
+        <a href="loginAdmin.jsp">Acessar como admin</a><br/>
         <a href="teatrosPorCidade.jsp">Todos os teatros por cidade</a><br/>
         <a href="VerTeatrosServlet">Todos os teatros</a><br/>
         <a href="promocoesDeTeatro.jsp">Todas as promoções de um teatro</a><br/>
