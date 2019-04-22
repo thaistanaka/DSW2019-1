@@ -154,7 +154,8 @@ public class TeatroDAO extends GenericDAO{
         }
         return teatro;
     }
-    
+   
+   
     public List<Teatro> listarTodosTeatros() throws SQLException {
         List<Teatro> ret = new ArrayList<>();
 

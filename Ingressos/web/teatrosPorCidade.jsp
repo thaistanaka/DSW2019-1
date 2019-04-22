@@ -10,7 +10,7 @@
                     select: function (event, ui) {
                         alert("Selecionado: " + ui.item.value);
                     },
-                    source: "buscaPorNome",
+                    source: "buscaPorCidade",
                     minLength: 2
                 });
             });

@@ -24,12 +24,12 @@ import java.util.List;
 public class PromocaoDAO extends GenericDAO{
     
     private final static String LISTAR_PROMOCOES_DE_UM_SITE_SQL = "select"
-            + " a.endereco, a.preco, a.dia, a.hora,"
+            + " a.nome, a.endereco, a.preco, a.dia, a.hora,"
             + " u.email, u.nome, u.telefone"
             + " from Promocao a inner join Site u on a.endereco = u.endereco";
     
     private final static String LISTAR_PROMOCOES_DE_UM_TEATRO_SQL = "select"
-            + " a.endereco, a.preco, a.dia, a.hora,"
+            + " a.nome, a.endereco, a.preco, a.dia, a.hora,"
             + " u.cidade, u.email, u.nome"
             + " from Promocao a inner join Teatro u on a.cnpj = u.cnpj";
     
@@ -47,7 +47,7 @@ public class PromocaoDAO extends GenericDAO{
 
     public void insert(Promocao promocao) {
 
-        String sql = "INSERT INTO Promocao (id, endereco, cnpj, preco, dia, hora) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Promocao (id, endereco, cnpj, nome, preco, dia, hora) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             Connection conn = this.getConnection();
@@ -57,9 +57,10 @@ public class PromocaoDAO extends GenericDAO{
             statement.setInt(1, promocao.getId());
             statement.setString(2, promocao.getEndereco());
             statement.setInt(3, promocao.getCnpj());
-            statement.setFloat(4, promocao.getPreco());
-            statement.setString(5, promocao.getDia());
-            statement.setString(6, promocao.getHora());            
+            statement.setString(4, promocao.getNome());
+            statement.setFloat(5, promocao.getPreco());
+            statement.setString(6, promocao.getDia());
+            statement.setString(7, promocao.getHora());            
             statement.executeUpdate();
 
             statement.close();
@@ -85,11 +86,12 @@ public class PromocaoDAO extends GenericDAO{
                 String dia = resultSet.getString("dia");
                 String hora = resultSet.getString("hora");
                 String endereco = resultSet.getString("endereco");
+                String nome = resultSet.getString("nome");
                 float preco = resultSet.getFloat("preco");
                 int cnpj = resultSet.getInt("cnpj");
                 int id = resultSet.getInt("id");
 
-                Promocao promocao = new Promocao(id, endereco, cnpj, preco, dia, hora);
+                Promocao promocao = new Promocao(id, endereco, cnpj, nome, preco, dia, hora);
                 listaPromocoes.add(promocao);
             }
 
@@ -120,7 +122,7 @@ public class PromocaoDAO extends GenericDAO{
     }
 
     public void update(Promocao promocao) {
-        String sql = "UPDATE Promocao SET id = ?, endereco = ?, cnpj = ?, preco = ?, dia = ?, hora = ?";
+        String sql = "UPDATE Promocao SET id = ?, endereco = ?, cnpj = ?, nome = ?, preco = ?, dia = ?, hora = ?";
         sql += " WHERE id = ?";
 
         try {
@@ -130,9 +132,10 @@ public class PromocaoDAO extends GenericDAO{
             statement.setString(2, promocao.getEndereco());
             statement.setInt(1, promocao.getId());
             statement.setInt(3, promocao.getCnpj());
-            statement.setFloat(4, promocao.getPreco());
-            statement.setString(5, promocao.getDia());
-            statement.setString(6, promocao.getHora());
+            statement.setString(4, promocao.getNome());
+            statement.setFloat(5, promocao.getPreco());
+            statement.setString(6, promocao.getDia());
+            statement.setString(7, promocao.getHora());
             statement.executeUpdate();
 
             statement.close();
@@ -155,10 +158,11 @@ public class PromocaoDAO extends GenericDAO{
             if (resultSet.next()) {
                 String endereco = resultSet.getString("endereco");
                 int cnpj = resultSet.getInt("cnpj");
+                String nome = resultSet.getString("nome");
                 float preco = resultSet.getFloat("preco");
                 String dia = resultSet.getString("dia");
                 String hora = resultSet.getString("hora");
-                promocao = new Promocao(id, endereco, cnpj, preco, dia, hora);
+                promocao = new Promocao(id, endereco, cnpj, nome, preco, dia, hora);
             }
 
             resultSet.close();
@@ -189,6 +193,7 @@ public class PromocaoDAO extends GenericDAO{
                 promocao.setId(rs.getInt("id"));
                 promocao.setEndereco(rs.getString("endereco"));
                 promocao.setCnpj(rs.getInt("cnpj"));
+                promocao.setNome(rs.getString("nome"));
                 promocao.setPreco(rs.getFloat("preco"));
                 promocao.setDia(rs.getString("dia"));
                 promocao.setHora(rs.getString("hora"));
@@ -219,6 +224,7 @@ public class PromocaoDAO extends GenericDAO{
                 promocao.setId(rs.getInt("id"));
                 promocao.setEndereco(rs.getString("endereco"));
                 promocao.setCnpj(rs.getInt("cnpj"));
+                promocao.setNome(rs.getString("nome"));
                 promocao.setPreco(rs.getFloat("preco"));
                 promocao.setDia(rs.getString("dia"));
                 promocao.setHora(rs.getString("hora"));
