@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 22/04/2019, 08:38:20
-    Author     : Lap
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,6 +10,8 @@
         <hr>
         <p>Escolha o que deseja fazer:</p>
         <a href="loginAdmin.jsp">Acessar como admin</a><br/>
+        <a href="loginTeatro.jsp">Acessar como teatro</a><br/>
+        <a href="loginSite.jsp">Acessar como site</a><br/>
         <a href="teatrosPorCidade.jsp">Todos os teatros por cidade</a><br/>
         <a href="VerTeatrosServlet">Todos os teatros</a><br/>
         <a href="promocoesDeTeatro.jsp">Todas as promoções de um teatro</a><br/>

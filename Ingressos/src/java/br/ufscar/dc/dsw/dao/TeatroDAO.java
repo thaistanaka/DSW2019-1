@@ -128,20 +128,20 @@ public class TeatroDAO extends GenericDAO{
         }
     }
 
-    public Teatro get(int cnpj) {
+    public Teatro get(String nome) {
         Teatro teatro = null;
-        String sql = "SELECT * FROM Teatro WHERE cnpj = ?";
+        String sql = "SELECT * FROM Teatro WHERE nome = ?";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             
-            statement.setInt(1, cnpj);
+            statement.setString(1, nome);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 String email = resultSet.getString("email");
                 int senha  = resultSet.getInt("senha");
-                String nome = resultSet.getString("nome");
+                int cnpj  = resultSet.getInt("cnpj");
                 String cidade = resultSet.getString("cidade");
                 teatro = new Teatro(email, senha, cnpj, nome, cidade);
             }
