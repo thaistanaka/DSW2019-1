@@ -9,9 +9,9 @@
     <center>
         <h1>Gerenciamento de Livros</h1>
         <h2>
-            <a href="cadastro2">Adicione Novo Site</a>
+            <a href="cadastro">Adicione Novo Site</a>
             &nbsp;&nbsp;&nbsp;
-            <a href="lista2">Lista de Sites</a>
+            <a href="lista">Lista de Sites</a>
 
         </h2>
     </center>
@@ -33,9 +33,9 @@
                     <td><c:out value="${site.nome}" /></td>
                     <td><c:out value="${site.telefone}" /></td>
                     <td>
-                        <a href="edicao2?id=<c:out value='${site.endereco}' />">Editar</a>
+                        <a href="edicao?id=<c:out value='${site.endereco}' />">Editar</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="remocao2?id=<c:out value='${site.endereco}' />" 
+                        <a href="remocao?id=<c:out value='${site.endereco}' />" 
                            onclick="return confirm('Você tem certeza?');">
                             Remover
                         </a>                    	
