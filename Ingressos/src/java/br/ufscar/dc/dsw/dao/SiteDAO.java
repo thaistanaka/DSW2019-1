@@ -28,7 +28,6 @@ public class SiteDAO extends GenericDAO{
         }
     }
 
-    @Override
     protected Connection getConnection() throws SQLException {
         return DriverManager.getConnection("jdbc:derby://localhost:1527/Ingressos", "root", "root");
     }
@@ -38,19 +37,19 @@ public class SiteDAO extends GenericDAO{
         String sql = "INSERT INTO Site (email, nome, endereco, senha, telefone) VALUES (?, ?, ?, ?, ?)";
 
         try {
-            try (Connection conn = this.getConnection()) {
-                PreparedStatement statement = conn.prepareStatement(sql);
-                
-                statement = conn.prepareStatement(sql);
-                statement.setString(1, site.getEmail());
-                statement.setString(2, site.getNome());
-                statement.setString(3, site.getEndereco());
-                statement.setInt(4, site.getSenha());
-                statement.setInt(5, site.getTelefone());
-                statement.executeUpdate();
-                
-                statement.close();
-            }
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);;
+
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, site.getEmail());
+            statement.setString(2, site.getNome());
+            statement.setString(3, site.getEndereco());
+            statement.setInt(4, site.getSenha());
+            statement.setInt(5, site.getTelefone());
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -64,24 +63,24 @@ public class SiteDAO extends GenericDAO{
         String sql = "SELECT * FROM Site";
 
         try {
-            try (Connection conn = this.getConnection()) {
-                Statement statement = conn.createStatement();
-                
-                ResultSet resultSet = statement.executeQuery(sql);
-                while (resultSet.next()) {
-                    String email = resultSet.getString("email");
-                    String nome = resultSet.getString("nome");
-                    String endereco = resultSet.getString("endereco");
-                    int senha = resultSet.getInt("senha");
-                    int telefone = resultSet.getInt("telefone");
-                    
-                    Site site = new Site(email, senha, nome, endereco, telefone);
-                    listaSites.add(site);
-                }
-                
-                resultSet.close();
-                statement.close();
+            Connection conn = this.getConnection();
+            Statement statement = conn.createStatement();
+
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                String email = resultSet.getString("email");
+                String nome = resultSet.getString("nome");
+                String endereco = resultSet.getString("endereco");
+                int senha = resultSet.getInt("senha");
+                int telefone = resultSet.getInt("telefone");
+
+                Site site = new Site(email, nome, endereco, senha, telefone);
+                listaSites.add(site);
             }
+
+            resultSet.close();
+            statement.close();
+            conn.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -92,12 +91,14 @@ public class SiteDAO extends GenericDAO{
         String sql = "DELETE FROM Site where endereco = ?";
 
         try {
-            try (Connection conn = this.getConnection(); PreparedStatement statement = conn.prepareStatement(sql)) {
-                
-                statement.setString(1, site.getEndereco());
-                statement.executeUpdate();
-                
-            }
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setString(1, site.getEndereco());
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -108,18 +109,18 @@ public class SiteDAO extends GenericDAO{
         sql += " WHERE endereco = ?";
 
         try {
-            try (Connection conn = this.getConnection()) {
-                PreparedStatement statement = conn.prepareStatement(sql);
-                
-                statement.setString(1, site.getEmail());
-                statement.setString(2, site.getNome());
-                statement.setString(3, site.getEndereco());
-                statement.setInt(4, site.getSenha());
-                statement.setInt(5, site.getTelefone());
-                statement.executeUpdate();
-                
-                statement.close();
-            }
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            statement.setString(1, site.getEmail());
+            statement.setString(2, site.getNome());
+            statement.setString(3, site.getEndereco());
+            statement.setInt(4, site.getSenha());
+            statement.setInt(5, site.getTelefone());
+            statement.executeUpdate();
+
+            statement.close();
+            conn.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -130,22 +131,22 @@ public class SiteDAO extends GenericDAO{
         String sql = "SELECT * FROM Site WHERE endereco = ?";
 
         try {
-            try (Connection conn = this.getConnection()) {
-                PreparedStatement statement = conn.prepareStatement(sql);
-                
-                statement.setString(1, endereco);
-                ResultSet resultSet = statement.executeQuery();
-                if (resultSet.next()) {
-                    String email = resultSet.getString("email");
-                    String nome = resultSet.getString("nome");
-                    int senha  = resultSet.getInt("senha");
-                    int telefone = resultSet.getInt("telefone");
-                    site = new Site(email, senha, nome, endereco, telefone);
-                }
-                
-                resultSet.close();
-                statement.close();
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            
+            statement.setString(1, endereco);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String email = resultSet.getString("email");
+                String nome = resultSet.getString("nome");
+                int senha  = resultSet.getInt("senha");
+                int telefone = resultSet.getInt("telefone");
+                site = new Site(email, nome, endereco, senha, telefone);
             }
+
+            resultSet.close();
+            statement.close();
+            conn.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
