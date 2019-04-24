@@ -35,9 +35,9 @@
                     <td><c:out value="${teatro.nome}" /></td>
                     <td><c:out value="${teatro.cidade}" /></td>
                     <td>
-                        <a href="edicaoTeatro?id=<c:out value='${teatro.cnpj}' />">Editar</a>
+                        <a href="edicao?cnpj=<c:out value='${teatro.cnpj}' />">Editar</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="remocaoTeatro?id=<c:out value='${teatro.cnpj}' />" 
+                        <a href="remocao?cnpj=<c:out value='${teatro.cnpj}' />" 
                            onclick="return confirm('Você tem certeza?');">
                             Remover
                         </a>                    	

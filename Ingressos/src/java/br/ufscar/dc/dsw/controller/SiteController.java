@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/funcoesS")
+@WebServlet(urlPatterns = "/a")
 public class SiteController extends HttpServlet {
 
     private SiteDAO dao;
