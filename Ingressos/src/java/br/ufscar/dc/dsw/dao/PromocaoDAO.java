@@ -47,20 +47,19 @@ public class PromocaoDAO extends GenericDAO{
 
     public void insert(Promocao promocao) {
 
-        String sql = "INSERT INTO Promocao (id, endereco, cnpj, nome, preco, dia, hora) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Promocao (endereco, cnpj, nome, preco, dia, hora) VALUES (?, ?, ?, ?, ?)";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);;
 
             statement = conn.prepareStatement(sql);
-            statement.setInt(1, promocao.getId());
-            statement.setString(2, promocao.getEndereco());
-            statement.setInt(3, promocao.getCnpj());
-            statement.setString(4, promocao.getNome());
-            statement.setFloat(5, promocao.getPreco());
-            statement.setString(6, promocao.getDia());
-            statement.setString(7, promocao.getHora());            
+            statement.setString(1, promocao.getEndereco());
+            statement.setInt(2, promocao.getCnpj());
+            statement.setString(3, promocao.getNome());
+            statement.setFloat(4, promocao.getPreco());
+            statement.setString(5, promocao.getDia());
+            statement.setString(6, promocao.getHora());            
             statement.executeUpdate();
 
             statement.close();
@@ -89,9 +88,8 @@ public class PromocaoDAO extends GenericDAO{
                 String nome = resultSet.getString("nome");
                 float preco = resultSet.getFloat("preco");
                 int cnpj = resultSet.getInt("cnpj");
-                int id = resultSet.getInt("id");
 
-                Promocao promocao = new Promocao(id, endereco, cnpj, nome, preco, dia, hora);
+                Promocao promocao = new Promocao(endereco, cnpj, nome, preco, dia, hora);
                 listaPromocoes.add(promocao);
             }
 
@@ -105,13 +103,14 @@ public class PromocaoDAO extends GenericDAO{
     }
     
     public void delete(Promocao promocao) {
-        String sql = "DELETE FROM Promocao where id = ?";
+        String sql = "DELETE FROM Promocao where dia = ? and hora = ?";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement.setInt(1, promocao.getId());
+            statement.setString(1, promocao.getDia());
+            statement.setString(2, promocao.getHora());
             statement.executeUpdate();
 
             statement.close();
@@ -122,20 +121,19 @@ public class PromocaoDAO extends GenericDAO{
     }
 
     public void update(Promocao promocao) {
-        String sql = "UPDATE Promocao SET id = ?, endereco = ?, cnpj = ?, nome = ?, preco = ?, dia = ?, hora = ?";
-        sql += " WHERE id = ?";
+        String sql = "UPDATE Promocao SET endereco = ?, cnpj = ?, nome = ?, preco = ?, dia = ?, hora = ?";
+        sql += " WHERE dia = ? and hora = ?";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             
-            statement.setString(2, promocao.getEndereco());
-            statement.setInt(1, promocao.getId());
-            statement.setInt(3, promocao.getCnpj());
-            statement.setString(4, promocao.getNome());
-            statement.setFloat(5, promocao.getPreco());
-            statement.setString(6, promocao.getDia());
-            statement.setString(7, promocao.getHora());
+            statement.setString(1, promocao.getEndereco());
+            statement.setInt(2, promocao.getCnpj());
+            statement.setString(3, promocao.getNome());
+            statement.setFloat(4, promocao.getPreco());
+            statement.setString(5, promocao.getDia());
+            statement.setString(6, promocao.getHora());
             statement.executeUpdate();
 
             statement.close();
@@ -145,24 +143,23 @@ public class PromocaoDAO extends GenericDAO{
         }
     }
 
-    public Promocao get(int id) {
+    public Promocao get(String dia, String hora) {
         Promocao promocao = null;
-        String sql = "SELECT * FROM Promocao WHERE id = ?";
+        String sql = "SELECT * FROM Promocao WHERE dia = ? and hora = ?";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             
-            statement.setInt(1, id);
+            statement.setString(1, dia);
+            statement.setString(2, hora);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 String endereco = resultSet.getString("endereco");
                 int cnpj = resultSet.getInt("cnpj");
                 String nome = resultSet.getString("nome");
                 float preco = resultSet.getFloat("preco");
-                String dia = resultSet.getString("dia");
-                String hora = resultSet.getString("hora");
-                promocao = new Promocao(id, endereco, cnpj, nome, preco, dia, hora);
+                promocao = new Promocao(endereco, cnpj, nome, preco, dia, hora);
             }
 
             resultSet.close();
@@ -190,7 +187,6 @@ public class PromocaoDAO extends GenericDAO{
                 teatro.setCnpj(rs.getInt("cnpj"));
                 teatro.setNome(rs.getString("nome"));
                 teatro.setCidade(rs.getString("cidade"));
-                promocao.setId(rs.getInt("id"));
                 promocao.setEndereco(rs.getString("endereco"));
                 promocao.setCnpj(rs.getInt("cnpj"));
                 promocao.setNome(rs.getString("nome"));
@@ -221,7 +217,6 @@ public class PromocaoDAO extends GenericDAO{
                 site.setNome(rs.getString("nome"));
                 site.setSenha(rs.getString("senha"));
                 site.setTelefone(rs.getInt("telefone"));
-                promocao.setId(rs.getInt("id"));
                 promocao.setEndereco(rs.getString("endereco"));
                 promocao.setCnpj(rs.getInt("cnpj"));
                 promocao.setNome(rs.getString("nome"));

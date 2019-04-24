@@ -22,7 +22,7 @@ nome varchar(256) not null,
 preco float not null,
 dia varchar(256) not null,
 hora varchar(256) not null,
-CONSTRAINT PROMACAO_PK PRIMARY KEY (id),
+CONSTRAINT PROMACAO_PK PRIMARY KEY (dia, hora),
 CONSTRAINT PROMACAO_FK FOREIGN KEY (endereco_site) REFERENCES Site(endereco),
 CONSTRAINT PROMACAO_FK2 FOREIGN KEY (cnpj_teatro)  REFERENCES Teatro(cnpj)
 );

@@ -11,7 +11,6 @@ package br.ufscar.dc.dsw.model.ingressos;
  */
 public class Promocao {
     
-    private int id;
     private String endereco;
     private int cnpj;
     private String nome;
@@ -19,8 +18,7 @@ public class Promocao {
     private String dia; 
     private String hora;
 
-    public Promocao(int id, String endereco, int cnpj, String nome, float preco, String dia, String hora) {
-        this.id = id;
+    public Promocao(String endereco, int cnpj, String nome, float preco, String dia, String hora) {
         this.endereco = endereco;
         this.cnpj = cnpj;
         this.nome = nome;
@@ -30,10 +28,6 @@ public class Promocao {
     }
 
     public Promocao() {
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getEndereco() {
@@ -58,10 +52,6 @@ public class Promocao {
 
     public String getHora() {
         return hora;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setEndereco(String endereco) {
