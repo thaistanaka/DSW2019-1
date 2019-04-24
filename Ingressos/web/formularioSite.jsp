@@ -7,40 +7,40 @@
     </head>
     <body>
     <center>
-        <h1>Gerenciamento de Teatros</h1>
+        <h1>Gerenciamento de Sites</h1>
         <h2>
-            <a href="new">Adicione Novo Teatro</a>
+            <a href="new">Adicione Novo Site</a>
             &nbsp;&nbsp;&nbsp;
-            <a href="lista">Lista de Teatros</a>
+            <a href="lista">Lista de Sites</a>
 
         </h2>
     </center>
     <div align="center">
-        <c:if test="${teatro != null}">
-            <form action="atualizacaoTeatro" method="post">
+        <c:if test="${site != null}">
+            <form action="atualizacaoSite" method="post">
             </c:if>
-            <c:if test="${teatro == null}">
-                <form action="insercaoTeatro" method="post">
+            <c:if test="${site == null}">
+                <form action="insercaoSite" method="post">
                 </c:if>
                 <table border="1" cellpadding="5">
                     <caption>
                         <h2>
-                            <c:if test="${teatro != null}">
+                            <c:if test="${site != null}">
                                 Edição
                             </c:if>
-                            <c:if test="${teatro == null}">
+                            <c:if test="${site == null}">
                                 Cadastro
                             </c:if>
                         </h2>
                     </caption>
-                    <c:if test="${teatro != null}">
-                        <input type="hidden" name="nome" value="<c:out value='${teatro.nome}' />" />
+                    <c:if test="${site != null}">
+                        <input type="hidden" name="endereco" value="<c:out value='${site.endereco}' />" />
                     </c:if>            
                     <tr>
                         <th>Email: </th>
                         <td>
                             <input type="text" name="email" size="45" required
-                                   value="<c:out value='${teatro.email}' />"
+                                   value="<c:out value='${site.email}' />"
                                    />
                         </td>
                     </tr>
@@ -48,23 +48,23 @@
                         <th>Senha: </th>
                         <td>
                             <input type="number" name="senha" size="50" required
-                                   value="<c:out value='${teatro.senha}' />"
+                                   value="<c:out value='${site.senha}' />"
                                    />
                         </td>
                     </tr>
                     <tr>
-                        <th>Cnpj: </th>
+                        <th>Nome: </th>
                         <td>
-                            <input type="number" name="cnpj" size="10" required
-                                   value="<c:out value='${teatro.cnpj}' />"
+                            <input type="text" name="nome" size="100" required
+                                   value="<c:out value='${site.nome}' />"
                                    />
                         </td>
                     </tr>
                     <tr>
-                        <th>Cidade: </th>
+                        <th>Telefone: </th>
                         <td>
-                            <input type="text" name="cidade" size="100" required 
-                                   value="<c:out value='${teatro.cidade}' />"
+                            <input type="number" name="telefone" size="12" required
+                                   value="<c:out value='${site.telefone}' />"
                                    />
                         </td>
                     </tr>
