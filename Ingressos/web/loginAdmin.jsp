@@ -8,8 +8,8 @@
     <body>
         <h1>Login do admin</h1>
         <form name="nome" method="post" action="pageAdmin.jsp">
-            <div>Usuario <input type="text" name="nome"</div>
-            <div>Senha <input type="password" name="senha"</div>
+            <div>Usuario <input type="text" name="nome"></div>
+            <div>Senha <input type="password" name="senha"></div>
             <input type="submit" value="Entrar">
         </form>
     </body>

@@ -12,12 +12,12 @@ package br.ufscar.dc.dsw.model.ingressos;
 public class Site { //do trabalho
 
     private String email;
-    private int senha;
+    private String senha;
     private String endereco;
     private String nome;
     private int telefone;
 
-    public Site(String email, int senha, String endereco, String nome,  int telefone) {
+    public Site(String email, String senha, String endereco, String nome,  int telefone) {
         this.email = email;
         this.senha = senha;
         this.endereco = endereco;
@@ -32,7 +32,7 @@ public class Site { //do trabalho
         return email;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
@@ -52,7 +52,7 @@ public class Site { //do trabalho
         this.email = email;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 

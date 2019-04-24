@@ -44,7 +44,7 @@ public class TeatroDAO extends GenericDAO{
 
             statement = conn.prepareStatement(sql);
             statement.setString(1, teatro.getEmail());
-            statement.setInt(2, teatro.getSenha());
+            statement.setString(2, teatro.getSenha());
             statement.setInt(3, teatro.getCnpj());
             statement.setString(4, teatro.getNome());
             statement.setString(5, teatro.getCidade());
@@ -71,7 +71,7 @@ public class TeatroDAO extends GenericDAO{
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 String email = resultSet.getString("email");
-                int senha = resultSet.getInt("senha");
+                String senha = resultSet.getString("senha");
                 int cnpj = resultSet.getInt("cnpj");
                 String nome = resultSet.getString("nome");
                 String cidade = resultSet.getString("cidade");
@@ -115,7 +115,7 @@ public class TeatroDAO extends GenericDAO{
             PreparedStatement statement = conn.prepareStatement(sql);
 
             statement.setString(1, teatro.getEmail());
-            statement.setInt(2, teatro.getSenha());
+            statement.setString(2, teatro.getSenha());
             statement.setInt(3, teatro.getCnpj());
             statement.setString(4, teatro.getNome());
             statement.setString(5, teatro.getCidade());
@@ -128,7 +128,7 @@ public class TeatroDAO extends GenericDAO{
         }
     }
 
-    public Teatro get(String nome) {
+    public Teatro getN(String nome) {
         Teatro teatro = null;
         String sql = "SELECT * FROM Teatro WHERE nome = ?";
 
@@ -140,7 +140,7 @@ public class TeatroDAO extends GenericDAO{
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 String email = resultSet.getString("email");
-                int senha  = resultSet.getInt("senha");
+                String senha  = resultSet.getString("senha");
                 int cnpj  = resultSet.getInt("cnpj");
                 String cidade = resultSet.getString("cidade");
                 teatro = new Teatro(email, senha, cnpj, nome, cidade);
@@ -166,7 +166,7 @@ public class TeatroDAO extends GenericDAO{
             while (rs.next()) {
                 Teatro teatro = new Teatro();
                 teatro.setEmail(rs.getString("teatro"));
-                teatro.setSenha(rs.getInt("senha"));
+                teatro.setSenha(rs.getString("senha"));
                 teatro.setCnpj(rs.getInt("cnpj"));
                 teatro.setNome(rs.getString("nome"));
                 teatro.setCidade(rs.getString("cidade"));
@@ -189,7 +189,7 @@ public class TeatroDAO extends GenericDAO{
             while (rs.next()) {
                 Teatro teatro = new Teatro();
                 teatro.setEmail(rs.getString("teatro"));
-                teatro.setSenha(rs.getInt("senha"));
+                teatro.setSenha(rs.getString("senha"));
                 teatro.setCnpj(rs.getInt("cnpj"));
                 teatro.setNome(rs.getString("nome"));
                 teatro.setCidade(rs.getString("cidade"));
@@ -197,6 +197,33 @@ public class TeatroDAO extends GenericDAO{
             }
         }
         return ret;
+    }
+    
+    public Teatro get(int cnpj) {
+        Teatro teatro = null;
+        String sql = "SELECT * FROM Teatro WHERE cnpj = ?";
+
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            
+            statement.setInt(1, cnpj);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String email = resultSet.getString("email");
+                String senha  = resultSet.getString("senha");
+                String nome = resultSet.getString("nome");
+                String cidade = resultSet.getString("cidade");
+                teatro = new Teatro(email, senha, cnpj, nome, cidade);
+            }
+
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return teatro;
     }
    
 }

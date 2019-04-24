@@ -13,7 +13,7 @@
             String nome = request.getParameter("nome");
             String senha = request.getParameter("senha");
 
-            Teatro t = new TeatroDAO().get(nome);
+            Teatro t = new TeatroDAO().getN(nome);
         try{
             if (!(nome.equals(t.getNome()) && senha.equals(t.getSenha()))) {
                 response.sendRedirect("loginTeatro.jsp");//trata se nao for igual
@@ -21,8 +21,7 @@
                 response.sendRedirect("loginTeatro.jsp");//trata se nao existir o nome
             }
         %>
-        <p>Seja bem-vindo, admin!</p>
-        <a href="teatroCRUD.jsp">Modificar os dados de teatros</a><br/>
-        <a href="siteCRUD.jsp">Modificar os dados de sites de venda</a><br/>        
+        <p>Seja bem-vindo, <%=nome %>!</p>
+        <a href="Teatro/teatroCRUD.jsp">Modificar os dados de teatros</a><br/>      
     </body>
 </html>

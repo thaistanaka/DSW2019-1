@@ -12,12 +12,12 @@ package br.ufscar.dc.dsw.model.ingressos;
 public class Teatro {
 
     private String email;
-    private int senha;
+    private String senha;
     private int cnpj;
     private String nome;
     private String cidade;    
 
-    public Teatro(String email, int senha, int cnpj, String nome, String cidade) {
+    public Teatro(String email, String senha, int cnpj, String nome, String cidade) {
         this.email = email;
         this.senha = senha;
         this.cnpj = cnpj;
@@ -32,7 +32,7 @@ public class Teatro {
         return email;
     }
 
-    public int getSenha() {
+    public String getSenha() {
         return senha;
     }
 
@@ -52,7 +52,7 @@ public class Teatro {
         this.email = email;
     }
 
-    public void setSenha(int senha) {
+    public void setSenha(String senha) {
         this.senha = senha;
     }
 

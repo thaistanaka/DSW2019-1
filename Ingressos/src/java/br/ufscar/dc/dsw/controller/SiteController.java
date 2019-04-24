@@ -85,7 +85,7 @@ public class SiteController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
-        Integer senha = Integer.parseInt(request.getParameter("senha"));
+        String senha = request.getParameter("senha");
         String endereco = request.getParameter("endereco");
         String nome = request.getParameter("nome");
         Integer telefone = Integer.parseInt(request.getParameter("telefone"));
@@ -100,7 +100,7 @@ public class SiteController extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
-        Integer senha = Integer.parseInt(request.getParameter("senha"));
+        String senha = request.getParameter("senha");
         String endereco = request.getParameter("endereco");
         String nome = request.getParameter("nome");
         Integer telefone = Integer.parseInt(request.getParameter("telefone"));

@@ -18,7 +18,7 @@
             }
         %>
         <p>Seja bem-vindo, admin!</p>
-        <a href="teatroCRUD.jsp">Modificar os dados de teatros</a><br/>
-        <a href="siteCRUD.jsp">Modificar os dados de sites de venda</a><br/>        
+        <a href="Teatro/teatroCRUD.jsp">Modificar os dados de teatros</a><br/>
+        <a href="Site/siteCRUD.jsp">Modificar os dados de sites de venda</a><br/>        
     </body>
 </html>

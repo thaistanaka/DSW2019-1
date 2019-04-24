@@ -38,13 +38,13 @@ public class SiteDAO extends GenericDAO{
 
         try {
             Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);;
+            PreparedStatement statement = conn.prepareStatement(sql);
 
             statement = conn.prepareStatement(sql);
             statement.setString(1, site.getEmail());
             statement.setString(2, site.getNome());
             statement.setString(3, site.getEndereco());
-            statement.setInt(4, site.getSenha());
+            statement.setString(4, site.getSenha());
             statement.setInt(5, site.getTelefone());
             statement.executeUpdate();
 
@@ -71,7 +71,7 @@ public class SiteDAO extends GenericDAO{
                 String email = resultSet.getString("email");
                 String nome = resultSet.getString("nome");
                 String endereco = resultSet.getString("endereco");
-                int senha = resultSet.getInt("senha");
+                String senha = resultSet.getString("senha");
                 int telefone = resultSet.getInt("telefone");
 
                 Site site = new Site(email, senha, nome, endereco, telefone);
@@ -115,7 +115,7 @@ public class SiteDAO extends GenericDAO{
             statement.setString(1, site.getEmail());
             statement.setString(2, site.getNome());
             statement.setString(3, site.getEndereco());
-            statement.setInt(4, site.getSenha());
+            statement.setString(4, site.getSenha());
             statement.setInt(5, site.getTelefone());
             statement.executeUpdate();
 
@@ -126,7 +126,7 @@ public class SiteDAO extends GenericDAO{
         }
     }
 
-    public Site get(String nome) {
+    public Site getN(String nome) {
         Site site = null;
         String sql = "SELECT * FROM Site WHERE nome = ?";
         try {
@@ -138,9 +138,35 @@ public class SiteDAO extends GenericDAO{
             if (resultSet.next()) {
                 String email = resultSet.getString("email");
                 String endereco = resultSet.getString("endereco");
-                int senha  = resultSet.getInt("senha");
+                String senha  = resultSet.getString("senha");
                 int telefone = resultSet.getInt("telefone");
                 site = new Site(email, senha, nome, endereco, telefone);
+            }
+
+            resultSet.close();
+            statement.close();
+            conn.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return site;
+    }
+    public Site get(String endereco) {
+        Site site = null;
+        String sql = "SELECT * FROM Site WHERE endereco = ?";
+
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql);
+            
+            statement.setString(1, endereco);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String email = resultSet.getString("email");
+                String nome = resultSet.getString("nome");
+                String senha  = resultSet.getString("senha");
+                int telefone = resultSet.getInt("telefone");
+                site = new Site(email, nome, endereco, senha, telefone);
             }
 
             resultSet.close();

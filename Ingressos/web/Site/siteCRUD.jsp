@@ -10,8 +10,6 @@
         <h1>Gerenciamento de Livros</h1>
         <h2>
             <a href="cadastro">Adicione Novo Site</a>
-            &nbsp;&nbsp;&nbsp;
-            <a href="lista">Lista de Sites</a>
 
         </h2>
     </center>
@@ -24,6 +22,7 @@
                 <th>Endereço</th>
                 <th>Nome</th>
                 <th>Telefone</th>
+                <th>Modificacoes</th>
             </tr>
             <c:forEach var="site" items="${requestScope.listaSites}">
                 <tr>

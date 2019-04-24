@@ -1,5 +1,8 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@page import="br.ufscar.dc.dsw.dao.TeatroDAO"%>
+<%@page import="br.ufscar.dc.dsw.model.ingressos.Teatro"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <head>
@@ -10,9 +13,6 @@
         <h1>Gerenciamento dos teatros</h1>
         <h2>
             <a href="cadastro">Adicione Novo Teatro</a>
-            &nbsp;&nbsp;&nbsp;
-            <a href="lista">Lista de Teatros</a>
-
         </h2>
     </center>
     <div align="center">
@@ -24,8 +24,10 @@
                 <th>Cnpj</th>
                 <th>Nome</th>
                 <th>Cidade</th>
+                <th>Modificacoes</th>
             </tr>
-            <c:forEach var="teatro" items="${requestScope.listaTeatros}">
+            <% List<Teatro> tete = new TeatroDAO().getAll();%>
+            <c:forEach var="teatro" items="<%=tete%>">
                 <tr>
                     <td><c:out value="${teatro.email}" /></td>
                     <td><c:out value="${teatro.senha}" /></td>

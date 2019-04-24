@@ -185,7 +185,7 @@ public class PromocaoDAO extends GenericDAO{
             while (rs.next()) {
                 Promocao promocao = new Promocao();
                 Teatro teatro = new Teatro();
-                teatro.setSenha(rs.getInt("senha"));
+                teatro.setSenha(rs.getString("senha"));
                 teatro.setEmail(rs.getString("email"));
                 teatro.setCnpj(rs.getInt("cnpj"));
                 teatro.setNome(rs.getString("nome"));
@@ -219,7 +219,7 @@ public class PromocaoDAO extends GenericDAO{
                 site.setEmail(rs.getString("email"));
                 site.setEndereco(rs.getString("endereco"));
                 site.setNome(rs.getString("nome"));
-                site.setSenha(rs.getInt("senha"));
+                site.setSenha(rs.getString("senha"));
                 site.setTelefone(rs.getInt("telefone"));
                 promocao.setId(rs.getInt("id"));
                 promocao.setEndereco(rs.getString("endereco"));

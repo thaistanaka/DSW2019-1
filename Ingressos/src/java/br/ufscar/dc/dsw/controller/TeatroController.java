@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/funcoesT")
+@WebServlet(urlPatterns = "/Teatro/")
 public class TeatroController extends HttpServlet {
 
     private TeatroDAO dao;
@@ -43,6 +43,7 @@ public class TeatroController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
         String action = request.getServletPath();
+        action = action.split("/")[action.split("/").length - 1];
 
         try {
             switch (action) {
@@ -87,7 +88,7 @@ public class TeatroController extends HttpServlet {
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nome = request.getParameter("nome");
-        Teatro teatro = dao.get(nome);
+        Teatro teatro = dao.getN(nome);
         RequestDispatcher dispatcher = request.getRequestDispatcher("Teatro/formulario.jsp");
         request.setAttribute("teatro", teatro);
         dispatcher.forward(request, response);
@@ -97,7 +98,7 @@ public class TeatroController extends HttpServlet {
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
-        Integer senha = Integer.parseInt(request.getParameter("senha"));
+        String senha = request.getParameter("senha");
         Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
         String nome = request.getParameter("nome");
         String cidade = request.getParameter("cidade");
@@ -112,7 +113,7 @@ public class TeatroController extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
-        Integer senha = Integer.parseInt(request.getParameter("senha"));
+        String senha = request.getParameter("senha");
         Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
         String nome = request.getParameter("nome");
         String cidade = request.getParameter("cidade");
