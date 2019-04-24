@@ -28,6 +28,14 @@ public class Teatro {
     public Teatro() {
     }
 
+    public Teatro(int cnpj) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Teatro(String email, Integer senha, String nome, String cidade) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getEmail() {
         return email;
     }
