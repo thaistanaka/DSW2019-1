@@ -89,7 +89,7 @@ public class SiteController extends HttpServlet {
         String nome = request.getParameter("nome");
         Integer telefone = Integer.parseInt(request.getParameter("telefone"));
 
-        Site site = new Site(email, senha, nome, telefone);
+        Site site = new Site(email, nome, senha, telefone);
         dao.insert(site);
         response.sendRedirect("lista");
     }
@@ -104,7 +104,7 @@ public class SiteController extends HttpServlet {
         String nome = request.getParameter("nome");
         Integer telefone = Integer.parseInt(request.getParameter("telefone"));
 
-        Site site = new Site(email, senha, endereco, nome, telefone);
+        Site site = new Site(email, endereco, nome, senha, telefone);
         dao.update(site);
         response.sendRedirect("lista");
     }
