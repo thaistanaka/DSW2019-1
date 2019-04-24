@@ -24,16 +24,16 @@ import java.util.List;
 public class PromocaoDAO extends GenericDAO{
     
     private final static String LISTAR_PROMOCOES_DE_UM_SITE_SQL = "select"
-            + " a.nome, a.endereco, a.preco, a.dia, a.hora,"
+            + " a.nome, a.endereco_site, a.preco, a.dia, a.hora,"
             + " u.email, u.nome, u.telefone"
-            + " from Promocao a inner join Site u on a.endereco = u.endereco"
+            + " from Promocao a inner join Site u on a.endereco_site = u.endereco_site"
             + " where a.endereco = ?";
     
     private final static String LISTAR_PROMOCOES_DE_UM_TEATRO_SQL = "select"
-            + " a.nome, a.endereco, a.preco, a.dia, a.hora"
+            + " a.nome, a.endereco_site, a.preco, a.dia, a.hora,"
             + " u.cidade, u.email, u.nome"
-            + " from Promocao a inner join Teatro u on a.cnpj = u.cnpj"
-            + " where a.cnpj = ?";
+            + " from Promocao a inner join Teatro u on a.cnpj_teatro = u.cnpj"
+            + " where a.cnpj_teatro = ?";
     
     public PromocaoDAO() {
         try {
@@ -49,7 +49,7 @@ public class PromocaoDAO extends GenericDAO{
 
     public void insert(Promocao promocao) {
 
-        String sql = "INSERT INTO Promocao (endereco, cnpj, nome, preco, dia, hora) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Promocao (endereco_site, cnpj_teatro, nome, preco, dia, hora) VALUES (?, ?, ?, ?, ?)";
 
         try {
             Connection conn = this.getConnection();
@@ -86,10 +86,10 @@ public class PromocaoDAO extends GenericDAO{
             while (resultSet.next()) {
                 String dia = resultSet.getString("dia");
                 String hora = resultSet.getString("hora");
-                String endereco = resultSet.getString("endereco");
+                String endereco = resultSet.getString("endereco_site");
                 String nome = resultSet.getString("nome");
                 float preco = resultSet.getFloat("preco");
-                int cnpj = resultSet.getInt("cnpj");
+                int cnpj = resultSet.getInt("cnpj_teatro");
 
                 Promocao promocao = new Promocao(endereco, cnpj, nome, preco, dia, hora);
                 listaPromocoes.add(promocao);
@@ -123,7 +123,7 @@ public class PromocaoDAO extends GenericDAO{
     }
 
     public void update(Promocao promocao) {
-        String sql = "UPDATE Promocao SET endereco = ?, cnpj = ?, nome = ?, preco = ?, dia = ?, hora = ?";
+        String sql = "UPDATE Promocao SET endereco_site = ?, cnpj_teatro = ?, nome = ?, preco = ?, dia = ?, hora = ?";
         sql += " WHERE dia = ? and hora = ?";
 
         try {
@@ -157,8 +157,8 @@ public class PromocaoDAO extends GenericDAO{
             statement.setString(2, hora);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                String endereco = resultSet.getString("endereco");
-                int cnpj = resultSet.getInt("cnpj");
+                String endereco = resultSet.getString("endereco_site");
+                int cnpj = resultSet.getInt("cnpj_teatro");
                 String nome = resultSet.getString("nome");
                 float preco = resultSet.getFloat("preco");
                 promocao = new Promocao(endereco, cnpj, nome, preco, dia, hora);
@@ -187,7 +187,7 @@ public class PromocaoDAO extends GenericDAO{
                 teatro.setEmail(rs.getString("email"));
                 teatro.setNome(rs.getString("nome"));
                 teatro.setCidade(rs.getString("cidade"));
-                promocao.setEndereco(rs.getString("endereco"));
+                promocao.setEndereco(rs.getString("endereco_site"));
                 promocao.setNome(rs.getString("nome"));
                 promocao.setPreco(rs.getFloat("preco"));
                 promocao.setDia(rs.getString("dia"));
@@ -214,7 +214,7 @@ public class PromocaoDAO extends GenericDAO{
                 site.setEmail(rs.getString("email"));
                 site.setNome(rs.getString("nome"));
                 site.setTelefone(rs.getInt("telefone"));
-                promocao.setEndereco(rs.getString("endereco"));
+                promocao.setEndereco(rs.getString("endereco_site"));
                 promocao.setNome(rs.getString("nome"));
                 promocao.setPreco(rs.getFloat("preco"));
                 promocao.setDia(rs.getString("dia"));

@@ -17,7 +17,7 @@
                 </tr>
                     <c:forEach items="${requestScope.promocoes}" var="promocao">
                         <tr>
-                            <td><c:out value="${promocao.endereco}" /></td>
+                            <td><c:out value="${promocao.endereco_site}" /></td>
                             <td><c:out value="${promocao.nome}" /></td>
                             <td><c:out value="${promocao.preco}" /></td>
                             <td><c:out value="${promocao.dia}" /></td>
