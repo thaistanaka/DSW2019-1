@@ -1,7 +1,7 @@
 package br.ufscar.dc.dsw.controller;
 
-import br.ufscar.dc.dsw.dao.SiteDAO;
-import br.ufscar.dc.dsw.model.ingressos.Site;
+import br.ufscar.dc.dsw.dao.TeatroDAO;
+import br.ufscar.dc.dsw.model.ingressos.Teatro;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -11,20 +11,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/funcoesS")
-public class SiteController extends HttpServlet {
+@WebServlet(urlPatterns = "/funcoesT")
+public class TeatroController extends HttpServlet {
 
-    private SiteDAO dao;
+    private TeatroDAO dao;
 
     @Override
     public void init() {
-        dao = new SiteDAO();
+        dao = new TeatroDAO();
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
-        doGet(request, response);
+                String action = request.getRequestURI();
+                try {
+                    switch (action) {
+                        case "cadastro":
+                            insere(request, response);
+                            break;
+                        default:
+                            apresentaFormCadastro(request, response);
+                            break;
+                    }
+                } catch (RuntimeException | IOException | ServletException e) {
+                    throw new ServletException(e);
+                }
     }
 
     @Override
@@ -34,19 +46,19 @@ public class SiteController extends HttpServlet {
 
         try {
             switch (action) {
-                case "/cadastro":
+                case "cadastro":
                     apresentaFormCadastro(request, response);
                     break;
-                case "/insercao":
+                case "insercao":
                     insere(request, response);
                     break;
-                case "/edicao":
+                case "edicao":
                     apresentaFormEdicao(request, response);
                     break;
-                case "/atualizacao":
+                case "atualizacao":
                     atualize(request, response);
                     break;
-                case "/lista":
+                case "lista":
                     lista(request, response);
                     break;
                 default:
@@ -60,24 +72,24 @@ public class SiteController extends HttpServlet {
 
     private void lista(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        List<Site> listaSites = dao.getAll();
-        request.setAttribute("listaSites", listaSites);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Site/siteCRUD.jsp");
+        List<Teatro> listaTeatros = dao.getAll();
+        request.setAttribute("listaTeatros", listaTeatros);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Teatro/teatroCRUD.jsp");
         dispatcher.forward(request, response);
     }
 
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Site/formulario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Teatro/formulario.jsp");
         dispatcher.forward(request, response);
     }
 
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String endereco = request.getParameter("endereco");
-        Site site = dao.get(endereco);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Site/formulario.jsp");
-        request.setAttribute("site", site);
+        String nome = request.getParameter("nome");
+        Teatro teatro = dao.get(nome);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Teatro/formulario.jsp");
+        request.setAttribute("teatro", teatro);
         dispatcher.forward(request, response);
     }
 
@@ -86,12 +98,12 @@ public class SiteController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
         Integer senha = Integer.parseInt(request.getParameter("senha"));
-        String endereco = request.getParameter("endereco");
+        Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
         String nome = request.getParameter("nome");
-        Integer telefone = Integer.parseInt(request.getParameter("telefone"));
+        String cidade = request.getParameter("cidade");
 
-        Site site = new Site(email, senha, nome, endereco, telefone);
-        dao.insert(site);
+        Teatro teatro = new Teatro(email, senha, cnpj, nome, cidade);
+        dao.insert(teatro);
         response.sendRedirect("lista");
     }
 
@@ -101,12 +113,12 @@ public class SiteController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
         Integer senha = Integer.parseInt(request.getParameter("senha"));
-        String endereco = request.getParameter("endereco");
+        Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
         String nome = request.getParameter("nome");
-        Integer telefone = Integer.parseInt(request.getParameter("telefone"));
+        String cidade = request.getParameter("cidade");
 
-        Site site = new Site(email, senha, endereco, nome, telefone);
-        dao.update(site);
+        Teatro teatro = new Teatro(email, senha, cnpj, nome, cidade);
+        dao.update(teatro);
         response.sendRedirect("lista");
     }
 
