@@ -3,11 +3,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <head>
-        <title>Livraria Virtual</title>
+        <title>Ingressos</title>
     </head>
     <body>
     <center>
-        <h1>Gerenciamento de Livros</h1>
+        <h1>Gerenciamento de Sites</h1>
         <h2>
             <a href="cadastro">Adicione Novo Site</a>
 

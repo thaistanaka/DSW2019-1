@@ -22,6 +22,6 @@
             }
         %>
         <p>Seja bem-vindo, <%=nome %>!</p>
-        <a href="siteCRUD.jsp">Modificar os dados de sites de venda</a><br/>        
+        <a href="Site/siteUser.jsp">Ver as promoções disponíveis no seu site</a><br/>        
     </body>
 </html>

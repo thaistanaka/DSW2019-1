@@ -22,6 +22,6 @@
             }
         %>
         <p>Seja bem-vindo, <%=nome %>!</p>
-        <a href="Teatro/teatroCRUD.jsp">Modificar os dados de teatros</a><br/>      
+        <a href="Teatro/teatroUser.jsp">Adicionar promoções no seu teatro</a><br/>      
     </body>
 </html>
