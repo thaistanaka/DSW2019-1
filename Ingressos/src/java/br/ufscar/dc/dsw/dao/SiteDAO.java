@@ -74,7 +74,7 @@ public class SiteDAO extends GenericDAO{
                 int senha = resultSet.getInt("senha");
                 int telefone = resultSet.getInt("telefone");
 
-                Site site = new Site(email, senha, nome, endereco, telefone);
+                Site site = new Site(email, nome, endereco, senha, telefone);
                 listaSites.add(site);
             }
 
@@ -140,7 +140,7 @@ public class SiteDAO extends GenericDAO{
                 String endereco = resultSet.getString("endereco");
                 int senha  = resultSet.getInt("senha");
                 int telefone = resultSet.getInt("telefone");
-                site = new Site(email, senha, nome, endereco, telefone);
+                site = new Site(email, nome, endereco, senha, telefone);
             }
 
             resultSet.close();
