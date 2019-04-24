@@ -19,7 +19,7 @@ public class TeatroDAO extends GenericDAO{
     private final static String LISTAR_TEATROS_POR_CIDADES_SQL = "select"
             + " a.cidade, a.cnpj, a.email, a.nome"
             + " from Teatro a"
-            + " where cidade = ?";
+            + " where a.cidade = ?";
 
 
     public TeatroDAO() {
@@ -188,8 +188,7 @@ public class TeatroDAO extends GenericDAO{
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Teatro teatro = new Teatro();
-                teatro.setEmail(rs.getString("teatro"));
-                teatro.setSenha(rs.getString("senha"));
+                teatro.setEmail(rs.getString("email"));
                 teatro.setCnpj(rs.getInt("cnpj"));
                 teatro.setNome(rs.getString("nome"));
                 teatro.setCidade(rs.getString("cidade"));
