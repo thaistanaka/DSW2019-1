@@ -26,12 +26,14 @@ public class PromocaoDAO extends GenericDAO{
     private final static String LISTAR_PROMOCOES_DE_UM_SITE_SQL = "select"
             + " a.nome, a.endereco, a.preco, a.dia, a.hora,"
             + " u.email, u.nome, u.telefone"
-            + " from Promocao a inner join Site u on a.endereco = u.endereco";
+            + " from Promocao a inner join Site u on a.endereco = u.endereco"
+            + " where a.endereco = ?";
     
     private final static String LISTAR_PROMOCOES_DE_UM_TEATRO_SQL = "select"
-            + " a.nome, a.endereco, a.preco, a.dia, a.hora,"
+            + " a.nome, a.endereco, a.preco, a.dia, a.hora"
             + " u.cidade, u.email, u.nome"
-            + " from Promocao a inner join Teatro u on a.cnpj = u.cnpj";
+            + " from Promocao a inner join Teatro u on a.cnpj = u.cnpj"
+            + " where a.cnpj = ?";
     
     public PromocaoDAO() {
         try {
@@ -182,13 +184,10 @@ public class PromocaoDAO extends GenericDAO{
             while (rs.next()) {
                 Promocao promocao = new Promocao();
                 Teatro teatro = new Teatro();
-                teatro.setSenha(rs.getString("senha"));
                 teatro.setEmail(rs.getString("email"));
-                teatro.setCnpj(rs.getInt("cnpj"));
                 teatro.setNome(rs.getString("nome"));
                 teatro.setCidade(rs.getString("cidade"));
                 promocao.setEndereco(rs.getString("endereco"));
-                promocao.setCnpj(rs.getInt("cnpj"));
                 promocao.setNome(rs.getString("nome"));
                 promocao.setPreco(rs.getFloat("preco"));
                 promocao.setDia(rs.getString("dia"));
@@ -213,12 +212,9 @@ public class PromocaoDAO extends GenericDAO{
                 Promocao promocao = new Promocao();
                 Site site = new Site();
                 site.setEmail(rs.getString("email"));
-                site.setEndereco(rs.getString("endereco"));
                 site.setNome(rs.getString("nome"));
-                site.setSenha(rs.getString("senha"));
                 site.setTelefone(rs.getInt("telefone"));
                 promocao.setEndereco(rs.getString("endereco"));
-                promocao.setCnpj(rs.getInt("cnpj"));
                 promocao.setNome(rs.getString("nome"));
                 promocao.setPreco(rs.getFloat("preco"));
                 promocao.setDia(rs.getString("dia"));

@@ -29,11 +29,11 @@ public class VerTeatrosServlet extends HttpServlet {
         List<Teatro> todosTeatros;
         try {
             TeatroDAO teatroDAO = new TeatroDAO();
-                todosTeatros = teatroDAO.listarTodosTeatros();
+            todosTeatros = teatroDAO.getAll();
 
             request.setAttribute("listaTeatros", todosTeatros);
             request.getRequestDispatcher("listaTeatros.jsp").forward(request, response);
-        } catch (IOException | SQLException | ServletException e) {
+        } catch (IOException | ServletException e) {
             e.printStackTrace();
             request.setAttribute("mensagem", e.getLocalizedMessage());
         }

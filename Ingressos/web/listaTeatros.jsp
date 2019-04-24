@@ -8,27 +8,21 @@
     </head>
     <body>
         <h1>Todos os Teatros</h1>
-        <hr>
-        <c:if test="${empty requestScope.listaTeatros}">
-            Não há teatros!
-        </c:if>
-        <c:if test="${!empty requestScope.listaTeatros}">
-            <table>
+        <table>
+            <tr>
+                <th>Cnpj</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Cidade</th>
+            </tr>
+           <c:forEach items="${requestScope.listaTeatros}" var="teatro">
                 <tr>
-                    <th>Cnpj</th>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Cidade</th>
-                </tr>
-                <c:forEach items="${requestScope.listaTeatros}" var="teatro">
-                    <tr>
-                        <td>${teatro.cnpj}</td>
-                        <td>${teatro.nome}</td>
-                        <td>${teatro.email}</td>
-                        <td>${teatro.cidade}</td>
-                    </tr>
-                </c:forEach>
-            </table>
-        </c:if>
+                    <td>${teatro.cnpj}</td>
+                    <td>${teatro.nome}</td>
+                    <td>${teatro.email}</td>
+                    <td>${teatro.cidade}</td>
+                 </tr>
+            </c:forEach>
+        </table>
     </body>
 </html>

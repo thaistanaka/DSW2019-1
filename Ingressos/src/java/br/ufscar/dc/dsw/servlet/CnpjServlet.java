@@ -5,10 +5,8 @@
  */
 package br.ufscar.dc.dsw.servlet;
 
-import br.ufscar.dc.dsw.bean.AutoCompleteBean;
+import br.ufscar.dc.dsw.dao.PromocaoDAO;
 import br.ufscar.dc.dsw.model.ingressos.Promocao;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -25,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Lap
  */
-@WebServlet(urlPatterns = {"/CnpjServlet"})
+@WebServlet(urlPatterns = {"/buscaPorTeatro"})
 public class CnpjServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -35,18 +33,23 @@ public class CnpjServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         
-        String p = request.getParameter("term");
-
-        int v = Integer.parseInt(p);
+        String p = request.getParameter("cnpj");
         
-        Gson gsonBuilder = new GsonBuilder().create();
-        List<String> promocoes = new ArrayList<>();
-        for ( Promocao promocao : new AutoCompleteBean().getPromocoesDeUmTeatro(v)) {
-            promocoes.add(promocao.toString());
-        }
+        List<Promocao> promocoes = new ArrayList<>();
 
-        System.out.println(gsonBuilder.toJson(promocoes));
-        response.getWriter().write(gsonBuilder.toJson(promocoes));
+        try {
+            PromocaoDAO promocaoDAO = new PromocaoDAO();
+            if (p != null){
+                int v = Integer.parseInt(p);
+                promocoes = promocaoDAO.listarTodasPromocoesDeUmTeatro(v);
+            }
+            request.setAttribute("promocoes", promocoes);
+            request.getRequestDispatcher("listaPromocoesDoTeatro.jsp").forward(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("mensagem", e.getLocalizedMessage());
+            request.getRequestDispatcher("erro.jsp").forward(request, response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

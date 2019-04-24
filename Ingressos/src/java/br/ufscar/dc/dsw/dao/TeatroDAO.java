@@ -11,15 +11,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeatroDAO extends GenericDAO{
-    
-    
-    private final static String LISTAR_TEATROS_SQL = "select"
-            + " a.cnpj, a.email, a.nome, a.cidade from Teatro a";
             
     private final static String LISTAR_TEATROS_POR_CIDADES_SQL = "select"
             + " a.cidade, a.cnpj, a.email, a.nome"
             + " from Teatro a"
-            + " where cidade = ?";
+            + " where a.cidade = ?";
 
 
     public TeatroDAO() {
@@ -154,48 +150,26 @@ public class TeatroDAO extends GenericDAO{
         }
         return teatro;
     }
-   
-   
-    public List<Teatro> listarTodosTeatros() throws SQLException {
-        List<Teatro> ret = new ArrayList<>();
-
-        try (Connection con = this.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(LISTAR_TEATROS_SQL);
-            
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Teatro teatro = new Teatro();
-                teatro.setEmail(rs.getString("teatro"));
-                teatro.setSenha(rs.getString("senha"));
-                teatro.setCnpj(rs.getInt("cnpj"));
-                teatro.setNome(rs.getString("nome"));
-                teatro.setCidade(rs.getString("cidade"));
-                ret.add(teatro);
-            }
-        }
-        
-        return ret;
-    }
     
-    public List<Teatro> listarTodosTeatrosPorCidade(String cidade) throws SQLException {
+    public List<Teatro> listarTodosTeatrosPorCidade(String st) throws SQLException {
 
         List<Teatro> ret = new ArrayList<>();
 
         try (Connection con = this.getConnection()) {
             PreparedStatement ps = con.prepareStatement(LISTAR_TEATROS_POR_CIDADES_SQL);
             
-            ps.setString(1, cidade);
+            ps.setString(1, st);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                Teatro teatro = new Teatro();
-                teatro.setEmail(rs.getString("teatro"));
-                teatro.setSenha(rs.getString("senha"));
-                teatro.setCnpj(rs.getInt("cnpj"));
-                teatro.setNome(rs.getString("nome"));
-                teatro.setCidade(rs.getString("cidade"));
+                String cidade = rs.getString(1);
+                int cnpj = rs.getInt(2);
+                String email = rs.getString(3);
+                String nome = rs.getString(4);
+                Teatro teatro = new Teatro(cidade, cnpj, email, nome);
                 ret.add(teatro);
             }
         }
+
         return ret;
     }
     

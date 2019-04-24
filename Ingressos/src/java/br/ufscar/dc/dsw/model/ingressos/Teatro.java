@@ -24,6 +24,13 @@ public class Teatro {
         this.nome = nome;
         this.cidade = cidade;
     }
+    
+    public Teatro(String cidade, int cnpj, String email, String nome) {
+        this.email = email;
+        this.cnpj = cnpj;
+        this.nome = nome;
+        this.cidade = cidade;
+    }
 
     public Teatro() {
     }

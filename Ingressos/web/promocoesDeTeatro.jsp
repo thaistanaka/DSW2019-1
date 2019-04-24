@@ -1,26 +1,16 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <script>
-            $(function () {
-                $("#teatro").autocomplete({
-                    select: function (event, ui) {
-                        alert("Selecionado: " + ui.item.value);
-                    },
-                    source: "buscaPorTeatro",
-                    minLength: 2
-                });
-            });
-        </script>
-        <title>Promoções</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>PromoÃ§Ãµes</title>
     </head>
-    <div class="ui-widget">
-        <label for="teatro">Cnpj</label>
-        <input id="cnpj" name="teatro" placeholder="Nome do teatro" on>
-    </div>
-    <br/>
-    <a href="index.jsp">Voltar</a>
-</body>
+    <body>
+        <h1>Promocoes por Teatro</h1>
+        <form name="nome" method="post" action="buscaPorTeatro">
+            <div>Cnpj<input type="text" name="cnpj"></div>
+            <input type="submit" value="Entrar">
+        </form>
+        <a href="index.jsp">Voltar</a>
+    </body>
 </html>
