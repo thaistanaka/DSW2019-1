@@ -49,7 +49,7 @@ public class TeatroController extends HttpServlet {
                 case "/atualizacaoTeatro":
                     atualize(request, response);
                     break;
-                default:
+                case "/listaTeatro":
                     lista(request, response);
                     break;
             }

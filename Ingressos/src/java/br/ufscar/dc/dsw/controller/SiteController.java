@@ -49,7 +49,7 @@ public class SiteController extends HttpServlet {
                 case "/atualizacaoSite":
                     atualize(request, response);
                     break;
-                default:
+                case "/listaSite":
                     lista(request, response);
                     break;
             }

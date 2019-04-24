@@ -11,7 +11,7 @@
         <h2>
             <a href="new">Adicione Novo Site</a>
             &nbsp;&nbsp;&nbsp;
-            <a href="lista">Lista de Sites</a>
+            <a href="listaSite">Lista de Sites</a>
 
         </h2>
     </center>
@@ -34,7 +34,7 @@
                         </h2>
                     </caption>
                     <c:if test="${site != null}">
-                        <input type="hidden" name="endereco" value="<c:out value='${site.endereco}' />" />
+                        <input type="hidden" name="nome" value="<c:out value='${site.nome}' />" />
                     </c:if>            
                     <tr>
                         <th>Email: </th>
@@ -53,10 +53,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Nome: </th>
+                        <th>Endereco: </th>
                         <td>
-                            <input type="text" name="nome" size="100" required
-                                   value="<c:out value='${site.nome}' />"
+                            <input type="text" name="endereco" size="50" required
+                                   value="<c:out value='${site.endereco}' />"
                                    />
                         </td>
                     </tr>

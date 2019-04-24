@@ -11,7 +11,7 @@
         <h2>
             <a href="new">Adicione Novo Teatro</a>
             &nbsp;&nbsp;&nbsp;
-            <a href="lista">Lista de Teatros</a>
+            <a href="listaTeatro">Lista de Teatros</a>
 
         </h2>
     </center>
