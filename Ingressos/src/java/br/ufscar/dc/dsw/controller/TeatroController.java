@@ -24,7 +24,19 @@ public class TeatroController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
-        doGet(request, response);
+                String action = request.getRequestURI();
+                try {
+                    switch (action) {
+                        case "cadastro":
+                            insere(request, response);
+                            break;
+                        default:
+                            apresentaFormCadastro(request, response);
+                            break;
+                    }
+                } catch (RuntimeException | IOException | ServletException e) {
+                    throw new ServletException(e);
+                }
     }
 
     @Override
@@ -34,24 +46,24 @@ public class TeatroController extends HttpServlet {
 
         try {
             switch (action) {
-                case "/cadastroTeatro":
+                case "cadastro":
                     apresentaFormCadastro(request, response);
                     break;
-                case "/insercaoTeatro":
+                case "insercao":
                     insere(request, response);
                     break;
-                case "/remocaoTeatro":
-                    remove(request, response);
-                    break;
-                case "/edicaoTeatro":
+                case "edicao":
                     apresentaFormEdicao(request, response);
                     break;
-                case "/atualizacaoTeatro":
+                case "atualizacao":
                     atualize(request, response);
                     break;
-                case "/listaTeatro":
+                case "lista":
                     lista(request, response);
                     break;
+                default:
+                    apresentaFormCadastro(request, response);
+                break;
             }
         } catch (RuntimeException | IOException | ServletException e) {
             throw new ServletException(e);
@@ -62,13 +74,13 @@ public class TeatroController extends HttpServlet {
             throws ServletException, IOException {
         List<Teatro> listaTeatros = dao.getAll();
         request.setAttribute("listaTeatros", listaTeatros);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("teatroCRUD.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Teatro/teatroCRUD.jsp");
         dispatcher.forward(request, response);
     }
 
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("formularioTeatro.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Teatro/formulario.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -76,7 +88,7 @@ public class TeatroController extends HttpServlet {
             throws ServletException, IOException {
         String nome = request.getParameter("nome");
         Teatro teatro = dao.get(nome);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("formularioTeatro.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Teatro/formulario.jsp");
         request.setAttribute("teatro", teatro);
         dispatcher.forward(request, response);
     }
@@ -86,10 +98,11 @@ public class TeatroController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
         Integer senha = Integer.parseInt(request.getParameter("senha"));
+        Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
         String nome = request.getParameter("nome");
         String cidade = request.getParameter("cidade");
 
-        Teatro teatro = new Teatro(email, senha, nome, cidade);
+        Teatro teatro = new Teatro(email, senha, cnpj, nome, cidade);
         dao.insert(teatro);
         response.sendRedirect("lista");
     }
@@ -109,12 +122,4 @@ public class TeatroController extends HttpServlet {
         response.sendRedirect("lista");
     }
 
-    private void remove(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        int cnpj = Integer.parseInt(request.getParameter("cnpj"));
-
-        Teatro teatro = new Teatro(cnpj);
-        dao.delete(teatro);
-        response.sendRedirect("lista");
-    }
 }

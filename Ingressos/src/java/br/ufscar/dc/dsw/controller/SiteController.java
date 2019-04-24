@@ -34,24 +34,24 @@ public class SiteController extends HttpServlet {
 
         try {
             switch (action) {
-                case "/cadastroSite":
+                case "/cadastro":
                     apresentaFormCadastro(request, response);
                     break;
-                case "/insercaoSite":
+                case "/insercao":
                     insere(request, response);
                     break;
-                case "/remocaoSite":
-                    remove(request, response);
-                    break;
-                case "/edicaoSite":
+                case "/edicao":
                     apresentaFormEdicao(request, response);
                     break;
-                case "/atualizacaoSite":
+                case "/atualizacao":
                     atualize(request, response);
                     break;
-                case "/listaSite":
+                case "/lista":
                     lista(request, response);
                     break;
+                default:
+                    apresentaFormCadastro(request, response);
+                break;
             }
         } catch (RuntimeException | IOException | ServletException e) {
             throw new ServletException(e);
@@ -62,13 +62,13 @@ public class SiteController extends HttpServlet {
             throws ServletException, IOException {
         List<Site> listaSites = dao.getAll();
         request.setAttribute("listaSites", listaSites);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("siteCRUD.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Site/siteCRUD.jsp");
         dispatcher.forward(request, response);
     }
 
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("formularioSite.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Site/formulario.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -76,7 +76,7 @@ public class SiteController extends HttpServlet {
             throws ServletException, IOException {
         String endereco = request.getParameter("endereco");
         Site site = dao.get(endereco);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("formularioSite.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("Site/formulario.jsp");
         request.setAttribute("site", site);
         dispatcher.forward(request, response);
     }
@@ -86,10 +86,11 @@ public class SiteController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
         Integer senha = Integer.parseInt(request.getParameter("senha"));
+        String endereco = request.getParameter("endereco");
         String nome = request.getParameter("nome");
         Integer telefone = Integer.parseInt(request.getParameter("telefone"));
 
-        Site site = new Site(email, nome, senha, telefone);
+        Site site = new Site(email, senha, nome, endereco, telefone);
         dao.insert(site);
         response.sendRedirect("lista");
     }
@@ -104,17 +105,9 @@ public class SiteController extends HttpServlet {
         String nome = request.getParameter("nome");
         Integer telefone = Integer.parseInt(request.getParameter("telefone"));
 
-        Site site = new Site(email, endereco, nome, senha, telefone);
+        Site site = new Site(email, senha, endereco, nome, telefone);
         dao.update(site);
         response.sendRedirect("lista");
     }
 
-    private void remove(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        String endereco = request.getParameter("endereco");
-
-        Site site = new Site(endereco);
-        dao.delete(site);
-        response.sendRedirect("lista");
-    }
 }

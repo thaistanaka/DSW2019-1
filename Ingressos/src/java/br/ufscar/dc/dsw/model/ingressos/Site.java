@@ -17,7 +17,7 @@ public class Site { //do trabalho
     private String nome;
     private int telefone;
 
-    public Site(String email, String endereco, String nome, int senha, int telefone) {
+    public Site(String email, int senha, String endereco, String nome,  int telefone) {
         this.email = email;
         this.senha = senha;
         this.endereco = endereco;
@@ -28,13 +28,6 @@ public class Site { //do trabalho
     public Site(){
     }
 
-    public Site(String email, String nome, Integer senha, Integer telefone) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Site(String endereco) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     public String getEmail() {
         return email;
     }

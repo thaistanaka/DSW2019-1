@@ -9,18 +9,16 @@
     <center>
         <h1>Gerenciamento de Teatros</h1>
         <h2>
-            <a href="new">Adicione Novo Teatro</a>
-            &nbsp;&nbsp;&nbsp;
-            <a href="listaTeatro">Lista de Teatros</a>
+            <a href="lista">Lista de Teatros</a>
 
         </h2>
     </center>
     <div align="center">
         <c:if test="${teatro != null}">
-            <form action="atualizacaoTeatro" method="post">
+            <form action="atualizacao" method="post">
             </c:if>
             <c:if test="${teatro == null}">
-                <form action="insercaoTeatro" method="post">
+                <form action="insercao" method="post">
                 </c:if>
                 <table border="1" cellpadding="5">
                     <caption>
@@ -61,6 +59,14 @@
                         </td>
                     </tr>
                     <tr>
+                        <th>Nome: </th>
+                        <td>
+                            <input type="text" name="nome" size="50" required
+                                   value="<c:out value='${teatro.nome}' />"
+                                   />
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Cidade: </th>
                         <td>
                             <input type="text" name="cidade" size="100" required 
@@ -70,7 +76,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" align="center">
-                            <input type="submit" value="Salva" />
+                            <input type="submit" value="Salvar" />
                         </td>
                     </tr>
                 </table>

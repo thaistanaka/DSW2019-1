@@ -9,18 +9,16 @@
     <center>
         <h1>Gerenciamento de Sites</h1>
         <h2>
-            <a href="new">Adicione Novo Site</a>
-            &nbsp;&nbsp;&nbsp;
             <a href="listaSite">Lista de Sites</a>
 
         </h2>
     </center>
     <div align="center">
         <c:if test="${site != null}">
-            <form action="atualizacaoSite" method="post">
+            <form action="atualizacao" method="post">
             </c:if>
             <c:if test="${site == null}">
-                <form action="insercaoSite" method="post">
+                <form action="insercao" method="post">
                 </c:if>
                 <table border="1" cellpadding="5">
                     <caption>
@@ -53,6 +51,14 @@
                         </td>
                     </tr>
                     <tr>
+                        <th>Nome: </th>
+                        <td>
+                            <input type="text" name="nome" size="50" required
+                                   value="<c:out value='${site.nome}' />"
+                                   />
+                        </td>
+                    </tr>
+                    <tr>
                         <th>Endereco: </th>
                         <td>
                             <input type="text" name="endereco" size="50" required
@@ -70,7 +76,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" align="center">
-                            <input type="submit" value="Salva" />
+                            <input type="submit" value="Salvar" />
                         </td>
                     </tr>
                 </table>
