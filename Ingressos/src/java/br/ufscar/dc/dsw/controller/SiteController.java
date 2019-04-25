@@ -34,19 +34,19 @@ public class SiteController extends HttpServlet {
 
         try {
             switch (action) {
-                case "/cadastro":
+                case "/cadastroSite":
                     apresentaFormCadastro(request, response);
                     break;
-                case "/insercao":
+                case "/insercaoSite":
                     insere(request, response);
                     break;
-                case "/edicao":
+                case "/edicaoSite":
                     apresentaFormEdicao(request, response);
                     break;
-                case "/atualizacao":
+                case "/atualizacaoSite":
                     atualize(request, response);
                     break;
-                case "/remocao":
+                case "/remocaoSite":
                     remove(request, response);
                     break;
                 default:
