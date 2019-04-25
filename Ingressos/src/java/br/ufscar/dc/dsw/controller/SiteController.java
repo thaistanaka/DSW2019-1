@@ -62,13 +62,13 @@ public class SiteController extends HttpServlet {
             throws ServletException, IOException {
         List<Site> listaSites = dao.getAll();
         request.setAttribute("listaSites", listaSites);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Site/siteCRUD.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/siteCRUD.jsp");
         dispatcher.forward(request, response);
     }
 
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Site/formulario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/formulario.jsp");
         dispatcher.forward(request, response);
     }
 
@@ -76,7 +76,7 @@ public class SiteController extends HttpServlet {
             throws ServletException, IOException {
         String endereco = request.getParameter("endereco");
         Site site = dao.get(endereco);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("Site/formulario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/formulario.jsp");
         request.setAttribute("site", site);
         dispatcher.forward(request, response);
     }
@@ -88,10 +88,12 @@ public class SiteController extends HttpServlet {
         String senha = request.getParameter("senha");
         String endereco = request.getParameter("endereco");
         String nome = request.getParameter("nome");
-        Integer telefone = Integer.parseInt(request.getParameter("telefone"));
-
-        Site site = new Site(email, nome, endereco, senha, telefone);
-        dao.insert(site);
+        
+        if(request.getParameter("telefone") != null){
+            Integer telefone = Integer.parseInt(request.getParameter("telefone"));
+            Site site = new Site(email, nome, endereco, senha, telefone);
+            dao.update(site);
+        }
         response.sendRedirect("listaSite");
     }
 
@@ -103,10 +105,11 @@ public class SiteController extends HttpServlet {
         String senha = request.getParameter("senha");
         String endereco = request.getParameter("endereco");
         String nome = request.getParameter("nome");
-        Integer telefone = Integer.parseInt(request.getParameter("telefone"));
-
-        Site site = new Site(email, nome, endereco, senha, telefone);
-        dao.update(site);
+        if(request.getParameter("telefone") != null){
+            Integer telefone = Integer.parseInt(request.getParameter("telefone"));
+            Site site = new Site(email, nome, endereco, senha, telefone);
+            dao.update(site);
+        }
         response.sendRedirect("listaSite");
     }
     

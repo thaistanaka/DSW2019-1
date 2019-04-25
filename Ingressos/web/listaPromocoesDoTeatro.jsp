@@ -1,4 +1,8 @@
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="br.ufscar.dc.dsw.dao.PromocaoDAO"%>
+<%@page import= "br.ufscar.dc.dsw.model.ingressos.Promocao" %>
+<%@page import="java.util.List"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,9 +19,18 @@
                     <th>Dia </th>
                     <th>Hora </th>
                 </tr>
-                    <c:forEach items="${requestScope.promocoes}" var="promocao">
+                <%
+                    String p = request.getParameter("cnpj");
+                    List<Promocao> promocoes = new ArrayList<>();
+                    PromocaoDAO promocaoDAO = new PromocaoDAO();
+                    if (p != null){
+                        int v = Integer.parseInt(p);
+                        promocoes = promocaoDAO.listarTodasPromocoesDeUmTeatro(v);
+                    }
+                %>
+                    <c:forEach items="<%=promocoes%>" var="promocao">
                         <tr>
-                            <td><c:out value="${promocao.endereco_site}" /></td>
+                            <td><c:out value="${promocao.endereco}" /></td>
                             <td><c:out value="${promocao.nome}" /></td>
                             <td><c:out value="${promocao.preco}" /></td>
                             <td><c:out value="${promocao.dia}" /></td>

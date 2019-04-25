@@ -1,3 +1,7 @@
+<%@page import="br.ufscar.dc.dsw.dao.TeatroDAO"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="br.ufscar.dc.dsw.model.ingressos.Teatro"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,14 +18,22 @@
                     <th>E-mail </th>
                     <th>Nome </th>
                 </tr>
-                    <c:forEach items="${requestScope.teatros}" var="teatro">
-                        <tr>
-                            <td><c:out value="${teatro.cidade}" /></td>
-                            <td><c:out value="${teatro.cnpj}" /></td>
-                            <td><c:out value="${teatro.email}" /></td>
-                            <td><c:out value="${teatro.nome}" /></td>
-                        </tr>
-                    </c:forEach>
+                <%
+                    String p = request.getParameter("cidade");
+                    List<Teatro> teatros = new ArrayList<>();
+                    TeatroDAO teatroDAO = new TeatroDAO();
+                    if (p != null){
+                        teatros = teatroDAO.listarTodosTeatrosPorCidade(p);
+                    }
+                %>
+                <c:forEach items="<%=teatros%>" var="teatro">
+                    <tr>
+                        <td><c:out value="${teatro.cidade}" /></td>
+                        <td><c:out value="${teatro.cnpj}" /></td>
+                        <td><c:out value="${teatro.email}" /></td>
+                        <td><c:out value="${teatro.nome}" /></td>
+                    </tr>
+                </c:forEach>
             </table>
     </body>
 </html>

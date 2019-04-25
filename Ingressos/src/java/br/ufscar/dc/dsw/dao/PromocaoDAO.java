@@ -26,8 +26,8 @@ public class PromocaoDAO extends GenericDAO{
     private final static String LISTAR_PROMOCOES_DE_UM_SITE_SQL = "select"
             + " a.nome, a.endereco_site, a.preco, a.dia, a.hora,"
             + " u.email, u.nome, u.telefone"
-            + " from Promocao a inner join Site u on a.endereco_site = u.endereco_site"
-            + " where a.endereco = ?";
+            + " from Promocao a inner join Site u on a.endereco_site = u.endereco"
+            + " where a.endereco_site = ?";
     
     private final static String LISTAR_PROMOCOES_DE_UM_TEATRO_SQL = "select"
             + " a.nome, a.endereco_site, a.preco, a.dia, a.hora,"

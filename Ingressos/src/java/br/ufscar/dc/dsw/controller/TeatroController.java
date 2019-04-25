@@ -75,11 +75,15 @@ public class TeatroController extends HttpServlet {
 
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int cnpj = Integer.parseInt(request.getParameter("cnpj"));
-        Teatro teatro = dao.get(cnpj);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("formulario.jsp");
-        request.setAttribute("teatro", teatro);
-        dispatcher.forward(request, response);
+        
+        if(request.getParameter("cnpj") != null)
+        {
+            int cnpj = Integer.parseInt(request.getParameter("cnpj"));
+            Teatro teatro = dao.get(cnpj);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("formulario.jsp");
+            request.setAttribute("teatro", teatro);
+            dispatcher.forward(request, response);
+        }
     }
 
     private void insere(HttpServletRequest request, HttpServletResponse response)

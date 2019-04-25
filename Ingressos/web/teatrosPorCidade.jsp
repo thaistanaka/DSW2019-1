@@ -7,7 +7,7 @@
     </head>
     <body>
         <h1>Teatros por Cidade</h1>
-        <form name="nome" method="post" action="buscaPorCidade">
+        <form name="nome" method="post" action="listaTeatrosPorCidade.jsp">
             <div>Cidade<input type="text" name="cidade"></div>
             <input type="submit" value="Entrar">
         </form>
