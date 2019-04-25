@@ -32,7 +32,7 @@
                         </h2>
                     </caption>
                     <c:if test="${teatro != null}">
-                        <input type="hidden" name="nome" value="<c:out value='${teatro.nome}' />" />
+                        <input type="hidden" name="cnpj" value="<c:out value='${teatro.cnpj}' />" />
                     </c:if>            
                     <tr>
                         <th>Email: </th>

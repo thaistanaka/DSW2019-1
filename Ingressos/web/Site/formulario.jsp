@@ -32,7 +32,7 @@
                         </h2>
                     </caption>
                     <c:if test="${site != null}">
-                        <input type="hidden" name="nome" value="<c:out value='${site.nome}' />" />
+                        <input type="hidden" name="endereco" value="<c:out value='${site.endereco}' />" />
                     </c:if>            
                     <tr>
                         <th>Email: </th>
