@@ -1,16 +1,19 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
+<f:bundle basename="i18n.mensagens">
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ingressos</title>
+        <title><f:message key="page.title"/></title>
     </head>
     <body>
-        <h1>Teatros por Cidade</h1>
+        <h1><f:message key="theater.city"/></h1>
         <form name="nome" method="post" action="listaTeatros.jsp">
-            <div>Cidade<input type="text" name="cidade"></div>
+            <div><f:message key="page.city"/><input type="text" name="cidade"></div>
             <input type="submit" value="Entrar">
         </form>
-        <a href="index.jsp">Voltar</a>
+        <a href="index.jsp"><f:message key="return"/></a>
     </body>
 </html>
+</f:bundle>

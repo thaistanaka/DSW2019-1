@@ -4,25 +4,27 @@
 <%@page import= "br.ufscar.dc.dsw.model.ingressos.Promocao" %>
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
+<f:bundle basename="i18n.mensagens">
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ingressos</title>
+        <title><f:message key="page.title"/></title>
     </head>
     <body>
     <center>
-        <h1>Promoções Do Teatro</h1>
+        <h1><f:message key="sale.in.theater"/></h1>
     </center>
             <div align="center">
             <table border="1" cellpadding="3">
                 <tr>
-                    <th>Endereço </th>
-                    <th>Cnpj </th>
-                    <th>Nome </th>
-                    <th>Preço </th>
-                    <th>Dia </th>
-                    <th>Hora </th>
+                    <th><f:message key="page.adress"/></th>
+                    <th><f:message key="page.cnpj"/></th>
+                    <th><f:message key="page.name"/></th>
+                    <th><f:message key="page.price"/></th>
+                    <th><f:message key="page.day"/></th>
+                    <th><f:message key="page.hour"/></th>
                 </tr>
                 <%
             List<Promocao> promocoes = new PromocaoDAO().listarTodasPromocoesDeUmTeatro(request.getParameter("cnpj"));
@@ -42,3 +44,4 @@
            
     </body>
 </html>
+</f:bundle>
