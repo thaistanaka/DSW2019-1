@@ -24,13 +24,13 @@ import java.util.List;
 public class PromocaoDAO extends GenericDAO{
     
     private final static String LISTAR_PROMOCOES_DE_UM_SITE_SQL = "select"
-            + " a.nome as nomePromocao, a.endereco_site, a.preco, a.dia, a.hora,"
+            + " a.nome as nomePromocao, a.endereco_site, a.preco, a.dia, a.hora, a.cnpj_teatro,"
             + " u.email, u.nome as nomeSite, u.telefone"
             + " from Promocao a inner join Site u on a.endereco_site = u.endereco"
             + " where a.endereco_site = ?";
     
     private final static String LISTAR_PROMOCOES_DE_UM_TEATRO_SQL = "select"
-            + " a.nome as nomePromocao, a.endereco_site, a.preco, a.dia, a.hora,"
+            + " a.nome as nomePromocao, a.endereco_site, a.preco, a.dia, a.hora, a.cnpj_teatro,"
             + " u.cidade, u.email, u.nome as nomeTeatro"
             + " from Promocao a inner join Teatro u on a.cnpj_teatro = u.cnpj"
             + " where a.cnpj_teatro = ?";
@@ -173,12 +173,13 @@ public class PromocaoDAO extends GenericDAO{
         return promocao;
     }
     
-    public List<Promocao> listarTodasPromocoesDeUmTeatro(int cnpj) throws SQLException {
+    public List<Promocao> listarTodasPromocoesDeUmTeatro(String st) throws SQLException {
         List<Promocao> ret = new ArrayList<>();
 
         try (Connection con = this.getConnection()) {
             PreparedStatement ps = con.prepareStatement(LISTAR_PROMOCOES_DE_UM_TEATRO_SQL);
             
+            int cnpj = Integer.parseInt(st);
             ps.setInt(1, cnpj);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -188,6 +189,7 @@ public class PromocaoDAO extends GenericDAO{
                 teatro.setNome(rs.getString("nomeTeatro"));
                 teatro.setCidade(rs.getString("cidade"));
                 promocao.setEndereco(rs.getString("endereco_site"));
+                promocao.setCnpj(rs.getInt("cnpj_teatro"));
                 promocao.setNome(rs.getString("nomePromocao"));
                 promocao.setPreco(rs.getFloat("preco"));
                 promocao.setDia(rs.getString("dia"));
@@ -215,6 +217,7 @@ public class PromocaoDAO extends GenericDAO{
                 site.setNome(rs.getString("nomeSite"));
                 site.setTelefone(rs.getInt("telefone"));
                 promocao.setEndereco(rs.getString("endereco_site"));
+                promocao.setCnpj(rs.getInt("cnpj_teatro"));                
                 promocao.setNome(rs.getString("nomePromocao"));
                 promocao.setPreco(rs.getFloat("preco"));
                 promocao.setDia(rs.getString("dia"));

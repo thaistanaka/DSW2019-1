@@ -3,6 +3,7 @@
 <%@page import="br.ufscar.dc.dsw.dao.PromocaoDAO"%>
 <%@page import= "br.ufscar.dc.dsw.model.ingressos.Promocao" %>
 <%@page import="java.util.List"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,7 +25,7 @@
                     <th>Hora </th>
                 </tr>
                 <%
-            List<Promocao> promocoes = new PromocaoDAO().listarTodasPromocoesDeUmTeatro(Integer.parseInt(request.getParameter("cnpj")));
+            List<Promocao> promocoes = new PromocaoDAO().listarTodasPromocoesDeUmTeatro(request.getParameter("cnpj"));
         %>
                     <c:forEach items="<%=promocoes%>" var="promocao">
                         <tr>
