@@ -12,7 +12,7 @@
     <center>
         <h1>Gerenciamento de Sites</h1>
         <h2>
-            <a href="cadastroSite">Adicione Novo Site</a>
+            <a href="cadastro">Adicione Novo Site</a>
 
         </h2>
     </center>
@@ -36,9 +36,9 @@
                     <td><c:out value="${site.nome}" /></td>
                     <td><c:out value="${site.telefone}" /></td>
                     <td>
-                        <a href="edicaoSite?id=<c:out value='${site.endereco}' />">Editar</a>
+                        <a href="edicao?id=<c:out value='${site.endereco}' />">Editar</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="remocaoSite?id=<c:out value='${site.endereco}' />" 
+                        <a href="remocao?id=<c:out value='${site.endereco}' />" 
                            onclick="return confirm('Você tem certeza?');">
                             Remover
                         </a>                    	
