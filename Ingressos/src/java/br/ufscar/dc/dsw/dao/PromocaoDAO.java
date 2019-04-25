@@ -24,14 +24,14 @@ import java.util.List;
 public class PromocaoDAO extends GenericDAO{
     
     private final static String LISTAR_PROMOCOES_DE_UM_SITE_SQL = "select"
-            + " a.nome, a.endereco_site, a.preco, a.dia, a.hora,"
-            + " u.email, u.nome, u.telefone"
+            + " a.nome as nomePromocao, a.endereco_site, a.preco, a.dia, a.hora,"
+            + " u.email, u.nome as nomeSite, u.telefone"
             + " from Promocao a inner join Site u on a.endereco_site = u.endereco"
             + " where a.endereco_site = ?";
     
     private final static String LISTAR_PROMOCOES_DE_UM_TEATRO_SQL = "select"
-            + " a.nome, a.endereco_site, a.preco, a.dia, a.hora,"
-            + " u.cidade, u.email, u.nome"
+            + " a.nome as nomePromocao, a.endereco_site, a.preco, a.dia, a.hora,"
+            + " u.cidade, u.email, u.nome as nomeTeatro"
             + " from Promocao a inner join Teatro u on a.cnpj_teatro = u.cnpj"
             + " where a.cnpj_teatro = ?";
     
@@ -185,10 +185,10 @@ public class PromocaoDAO extends GenericDAO{
                 Promocao promocao = new Promocao();
                 Teatro teatro = new Teatro();
                 teatro.setEmail(rs.getString("email"));
-                teatro.setNome(rs.getString("nome"));
+                teatro.setNome(rs.getString("nomeTeatro"));
                 teatro.setCidade(rs.getString("cidade"));
                 promocao.setEndereco(rs.getString("endereco_site"));
-                promocao.setNome(rs.getString("nome"));
+                promocao.setNome(rs.getString("nomePromocao"));
                 promocao.setPreco(rs.getFloat("preco"));
                 promocao.setDia(rs.getString("dia"));
                 promocao.setHora(rs.getString("hora"));
@@ -212,10 +212,10 @@ public class PromocaoDAO extends GenericDAO{
                 Promocao promocao = new Promocao();
                 Site site = new Site();
                 site.setEmail(rs.getString("email"));
-                site.setNome(rs.getString("nome"));
+                site.setNome(rs.getString("nomeSite"));
                 site.setTelefone(rs.getInt("telefone"));
                 promocao.setEndereco(rs.getString("endereco_site"));
-                promocao.setNome(rs.getString("nome"));
+                promocao.setNome(rs.getString("nomePromocao"));
                 promocao.setPreco(rs.getFloat("preco"));
                 promocao.setDia(rs.getString("dia"));
                 promocao.setHora(rs.getString("hora"));

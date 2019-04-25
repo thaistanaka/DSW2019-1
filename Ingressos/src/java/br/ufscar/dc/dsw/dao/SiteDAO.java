@@ -126,19 +126,19 @@ public class SiteDAO extends GenericDAO{
         }
     }
 
-    public Site getN(String nome) {
+    public Site getN(String email, String senha) {
         Site site = null;
-        String sql = "SELECT * FROM Site WHERE nome = ?";
+        String sql = "SELECT * FROM Site WHERE email = ? and senha = ?";
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
             
-            statement.setString(1, nome);
+            statement.setString(1, email);
+            statement.setString(2, senha);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                String email = resultSet.getString("email");
+                String nome = resultSet.getString("nome");
                 String endereco = resultSet.getString("endereco");
-                String senha  = resultSet.getString("senha");
                 int telefone = resultSet.getInt("telefone");
                 site = new Site(email, nome, endereco, senha, telefone);
             }

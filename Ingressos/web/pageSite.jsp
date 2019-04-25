@@ -10,18 +10,19 @@
     </head>
     <body>
         <%
-            String nome = request.getParameter("nome");
+            String email = request.getParameter("email");
             String senha = request.getParameter("senha");
 
-            Site t = new SiteDAO().getN(nome);
+            Site t = new SiteDAO().getN(email, senha);
+            String endereco = t.getEndereco();
         try{
-            if (!(nome.equals(t.getNome()) && senha.equals(t.getSenha()))) {
+            if (!(email.equals(t.getEmail()) && senha.equals(t.getSenha()))) {
                 response.sendRedirect("loginSite.jsp");//trata se nao for igual
             }}catch(NullPointerException e){
                 response.sendRedirect("loginSite.jsp");//trata se nao existir o nome
             }
         %>
-        <p>Seja bem-vindo, <%=nome %>!</p>
-        <a href="Site/siteUser.jsp">Ver as promoções disponíveis no seu site</a><br/>        
+        <p>Seja bem-vindo, <%=email%>!</p>
+        <a href="Site/siteUser.jsp?endereco=<%=endereco%>">Ver as promoções disponíveis no seu site</a><br/>        
     </body>
 </html>

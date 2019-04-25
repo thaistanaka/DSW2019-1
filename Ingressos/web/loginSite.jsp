@@ -8,7 +8,7 @@
     <body>
         <h1>Login do Site</h1>
         <form name="nome" method="post" action="pageSite.jsp">
-            <div>Usuario <input type="text" name="nome"></div>
+            <div>E-mail <input type="text" name="email"></div>
             <div>Senha <input type="password" name="senha"></div>
             <input type="submit" value="Entrar">
         </form>

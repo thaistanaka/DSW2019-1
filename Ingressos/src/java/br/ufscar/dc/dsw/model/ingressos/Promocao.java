@@ -62,8 +62,8 @@ public class Promocao {
         this.cnpj = cnpj;
     }
     
-    public String setNome(String nome) {
-        return nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public void setPreco(float preco) {
