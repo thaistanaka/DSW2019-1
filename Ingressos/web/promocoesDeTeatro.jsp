@@ -8,7 +8,7 @@
     <body>
         <h1>Promocoes por Teatro</h1>
         <form name="nome" method="post" action="listaPromocoesDoTeatro.jsp">
-            <div>Cnpj<input type="text" name="cnpj"></div>
+            <div>Cnpj<input type="number" required name="cnpj"></div>
             <input type="submit" value="Entrar">
         </form>
         <a href="index.jsp">Voltar</a>

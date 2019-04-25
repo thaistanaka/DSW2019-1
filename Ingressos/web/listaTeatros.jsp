@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="br.ufscar.dc.dsw.dao.TeatroDAO"%>
 <%@page import="br.ufscar.dc.dsw.model.ingressos.Teatro"%>
 <%@page import="java.util.List"%>
@@ -9,21 +10,34 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Ingressos</title>
     </head>
+    
     <body>
-        <h1>Todos os Teatros</h1>
-        <table>
+        <%
+                List<Teatro> teatros = new ArrayList<>();
+                TeatroDAO teatroDAO = new TeatroDAO();
+                request.setCharacterEncoding("UTF-8");
+                if(request.getParameter("cidade") != null){
+                    teatros = teatroDAO.listarTodosTeatrosPorCidade(request.getParameter("cidade"));
+                    out.println("<center>");
+                    out.println("<h2>Todos os teatros de" + request.getParameter("cidade") +"</h2>");
+                    out.println("</center>");
+                }
+                else{
+                    teatros = teatroDAO.getAll();
+                    out.println("<center>");
+                    out.println("<h2>Todos os teatros</h2>");
+                    out.println("</center>");
+                }
+        %>
+        <div align="center">
+            <table border="1" cellpadding="3">
             <tr>
                 <th>Cnpj</th>
                 <th>Nome</th>
                 <th>E-mail</th>
                 <th>Cidade</th>
             </tr>
-            <%
-                List<Teatro> todosTeatros;
-                TeatroDAO teatroDAO = new TeatroDAO();
-                todosTeatros = teatroDAO.getAll();
-            %>
-            <c:forEach items="<%=todosTeatros%>" var="teatro">
+            <c:forEach items="<%=teatros%>" var="teatro">
                 <tr>
                     <td>${teatro.cnpj}</td>
                     <td>${teatro.nome}</td>
@@ -31,6 +45,8 @@
                     <td>${teatro.cidade}</td>
                  </tr>
             </c:forEach>
-        </table>
+            </table>
+        </div>
+        
     </body>
 </html>

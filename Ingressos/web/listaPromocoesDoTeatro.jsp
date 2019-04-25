@@ -10,27 +10,26 @@
         <title>Ingressos</title>
     </head>
     <body>
-        <h1>Promoções do Teatro</h1>
-            <table>
+    <center>
+        <h1>Promoções Do Teatro</h1>
+    </center>
+            <div align="center">
+            <table border="1" cellpadding="3">
                 <tr>
                     <th>Endereço </th>
+                    <th>Cnpj </th>
                     <th>Nome </th>
                     <th>Preço </th>
                     <th>Dia </th>
                     <th>Hora </th>
                 </tr>
                 <%
-                    String p = request.getParameter("cnpj");
-                    List<Promocao> promocoes = new ArrayList<>();
-                    PromocaoDAO promocaoDAO = new PromocaoDAO();
-                    if (p != null){
-                        int v = Integer.parseInt(p);
-                        promocoes = promocaoDAO.listarTodasPromocoesDeUmTeatro(v);
-                    }
-                %>
+            List<Promocao> promocoes = new PromocaoDAO().listarTodasPromocoesDeUmTeatro(Integer.parseInt(request.getParameter("cnpj")));
+        %>
                     <c:forEach items="<%=promocoes%>" var="promocao">
                         <tr>
                             <td><c:out value="${promocao.endereco}" /></td>
+                            <td><c:out value="${promocao.cnpj}" /></td>
                             <td><c:out value="${promocao.nome}" /></td>
                             <td><c:out value="${promocao.preco}" /></td>
                             <td><c:out value="${promocao.dia}" /></td>
@@ -38,5 +37,7 @@
                         </tr>
                     </c:forEach>
             </table>
+        </div>
+           
     </body>
 </html>

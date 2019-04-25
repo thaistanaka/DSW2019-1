@@ -34,6 +34,6 @@
                     <td><c:out value="${promocao.hora}" /></td>
             </c:forEach>
         </table>
-    </div>	
+        </div>	
 </body>
 </html>
