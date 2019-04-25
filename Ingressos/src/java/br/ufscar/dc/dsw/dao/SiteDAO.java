@@ -74,7 +74,7 @@ public class SiteDAO extends GenericDAO{
                 String senha = resultSet.getString("senha");
                 int telefone = resultSet.getInt("telefone");
 
-                Site site = new Site(email, senha, nome, endereco, telefone);
+                Site site = new Site(email, nome, endereco, senha, telefone);
                 listaSites.add(site);
             }
 
@@ -105,7 +105,7 @@ public class SiteDAO extends GenericDAO{
     }
 
     public void update(Site site) {
-        String sql = "UPDATE Site SET email = ?, nome = ?, endereco = ?, senha = ?, telefone = ?";
+        String sql = "UPDATE Site SET email = ?, nome = ?, senha = ?, telefone = ?";
         sql += " WHERE endereco = ?";
 
         try {
@@ -114,9 +114,9 @@ public class SiteDAO extends GenericDAO{
 
             statement.setString(1, site.getEmail());
             statement.setString(2, site.getNome());
-            statement.setString(3, site.getEndereco());
-            statement.setString(4, site.getSenha());
-            statement.setInt(5, site.getTelefone());
+            statement.setString(5, site.getEndereco());
+            statement.setString(3, site.getSenha());
+            statement.setInt(4, site.getTelefone());
             statement.executeUpdate();
 
             statement.close();
@@ -140,7 +140,7 @@ public class SiteDAO extends GenericDAO{
                 String endereco = resultSet.getString("endereco");
                 String senha  = resultSet.getString("senha");
                 int telefone = resultSet.getInt("telefone");
-                site = new Site(email, senha, nome, endereco, telefone);
+                site = new Site(email, nome, endereco, senha, telefone);
             }
 
             resultSet.close();

@@ -107,7 +107,7 @@ public class TeatroDAO extends GenericDAO{
     }
 
     public void update(Teatro teatro) {
-        String sql = "UPDATE Teatro SET email = ?, senha = ?, cnpj = ?, nome = ?, cidade = ?";
+        String sql = "UPDATE Teatro SET email = ?, senha = ?, nome = ?, cidade = ?";
         sql += " WHERE cnpj = ?";
 
         try {
@@ -116,9 +116,9 @@ public class TeatroDAO extends GenericDAO{
 
             statement.setString(1, teatro.getEmail());
             statement.setString(2, teatro.getSenha());
-            statement.setInt(3, teatro.getCnpj());
-            statement.setString(4, teatro.getNome());
-            statement.setString(5, teatro.getCidade());
+            statement.setInt(5, teatro.getCnpj());
+            statement.setString(3, teatro.getNome());
+            statement.setString(4, teatro.getCidade());
             statement.executeUpdate();
 
             statement.close();

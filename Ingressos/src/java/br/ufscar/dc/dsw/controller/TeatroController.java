@@ -24,20 +24,7 @@ public class TeatroController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
-                String action = request.getRequestURI();
-                action = action.split("/")[action.split("/").length - 1];
-                try {
-                    switch (action) {
-                        case "cadastro":
-                            insere(request, response);
-                            break;
-                        default:
-                            lista(request, response);
-                            break;
-                    }
-                } catch (RuntimeException | IOException | ServletException e) {
-                    throw new ServletException(e);
-                }
+        doGet(request, response);
     }
 
     @Override
@@ -121,15 +108,15 @@ public class TeatroController extends HttpServlet {
 
         Teatro teatro = new Teatro(email, senha, cnpj, nome, cidade);
         dao.update(teatro);
-        //response.sendRedirect("lista");
+        response.sendRedirect("lista");
     }
 
     private void remove(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         int cnpj = Integer.parseInt(request.getParameter("cnpj"));
 
-        Teatro book = new TeatroDAO().get(cnpj);
-        dao.delete(book);
+        Teatro teatro = new TeatroDAO().get(cnpj);
+        dao.delete(teatro);
         response.sendRedirect("lista");
     }
 }

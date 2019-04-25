@@ -46,12 +46,12 @@ public class SiteController extends HttpServlet {
                 case "/atualizacao":
                     atualize(request, response);
                     break;
-                case "/lista":
-                    lista(request, response);
+                case "/remocao":
+                    remove(request, response);
                     break;
                 default:
-                    apresentaFormCadastro(request, response);
-                break;
+                    lista(request, response);
+                    break;
             }
         } catch (RuntimeException | IOException | ServletException e) {
             throw new ServletException(e);
@@ -90,9 +90,9 @@ public class SiteController extends HttpServlet {
         String nome = request.getParameter("nome");
         Integer telefone = Integer.parseInt(request.getParameter("telefone"));
 
-        Site site = new Site(email, senha, nome, endereco, telefone);
+        Site site = new Site(email, nome, endereco, senha, telefone);
         dao.insert(site);
-        response.sendRedirect("lista");
+        response.sendRedirect("listaSite");
     }
 
     private void atualize(HttpServletRequest request, HttpServletResponse response)
@@ -105,9 +105,18 @@ public class SiteController extends HttpServlet {
         String nome = request.getParameter("nome");
         Integer telefone = Integer.parseInt(request.getParameter("telefone"));
 
-        Site site = new Site(email, senha, endereco, nome, telefone);
+        Site site = new Site(email, nome, endereco, senha, telefone);
         dao.update(site);
-        response.sendRedirect("lista");
+        response.sendRedirect("listaSite");
+    }
+    
+    private void remove(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        String endereco = request.getParameter("endereco");
+
+        Site site = new SiteDAO().get(endereco);
+        dao.delete(site);
+        response.sendRedirect("listaSite");
     }
 
 }

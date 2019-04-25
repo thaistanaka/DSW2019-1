@@ -49,7 +49,7 @@ public class PromocaoDAO extends GenericDAO{
 
     public void insert(Promocao promocao) {
 
-        String sql = "INSERT INTO Promocao (endereco_site, cnpj_teatro, nome, preco, dia, hora) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Promocao (endereco_site, cnpj_teatro, nome, preco, dia, hora) VALUES (?, ?, ?, ?, ?, ?)";
 
         try {
             Connection conn = this.getConnection();
@@ -123,7 +123,7 @@ public class PromocaoDAO extends GenericDAO{
     }
 
     public void update(Promocao promocao) {
-        String sql = "UPDATE Promocao SET endereco_site = ?, cnpj_teatro = ?, nome = ?, preco = ?, dia = ?, hora = ?";
+        String sql = "UPDATE Promocao SET endereco_site = ?, cnpj_teatro = ?, nome = ?, preco = ?";
         sql += " WHERE dia = ? and hora = ?";
 
         try {

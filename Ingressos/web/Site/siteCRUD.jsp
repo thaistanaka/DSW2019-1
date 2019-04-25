@@ -1,5 +1,8 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<%@page import="br.ufscar.dc.dsw.dao.SiteDAO"%>
+<%@page import="br.ufscar.dc.dsw.model.ingressos.Site"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
     <head>
@@ -24,7 +27,8 @@
                 <th>Telefone</th>
                 <th>Modificacoes</th>
             </tr>
-            <c:forEach var="site" items="${requestScope.listaSites}">
+            <% List<Site> sites = new SiteDAO().getAll();%>
+            <c:forEach var="site" items="<%=sites%>">
                 <tr>
                     <td><c:out value="${site.email}" /></td>
                     <td><c:out value="${site.senha}" /></td>

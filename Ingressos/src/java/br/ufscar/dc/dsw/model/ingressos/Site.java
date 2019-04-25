@@ -17,7 +17,7 @@ public class Site { //do trabalho
     private String nome;
     private int telefone;
 
-    public Site(String email, String senha, String endereco, String nome,  int telefone) {
+    public Site(String email, String nome, String endereco, String senha,  int telefone) {
         this.email = email;
         this.senha = senha;
         this.endereco = endereco;
