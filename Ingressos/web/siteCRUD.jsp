@@ -12,7 +12,7 @@
     </head>
     <body>
     <center>
-        <h1><f:message key="manage.site"/></h1> 
+        <h1><f:message key="manager.site"/></h1> 
         <h2>
             <a href="site/cadastro"><f:message key="site.add"/></a>
 
