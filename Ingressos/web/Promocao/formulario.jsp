@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<link rel = "stylesheet" type ="text/css" href = "estilo.css">
+<link rel = "stylesheet" type ="text/css" href = "../estilo.css">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
 <f:bundle basename="i18n.mensagens">
@@ -13,7 +13,7 @@
         <h1><f:message key="manage.sale"/></h1>
     </center>
     <div align="center">
-        <form action="promocao/insercao?cnpj=<%=request.getParameter("cnpj")%>" method="post">
+        <form action="/Ingressos/promocao/insercao?cnpj=<%=request.getParameter("cnpj")%>" method="post">
                 <table border="1" cellpadding="5">
                     <h2><f:message key="register"/></h2>
                     <tr>
@@ -52,7 +52,7 @@
                     <tr>
                         <th><f:message key="page.hour"/></th>
                         <td>
-                            <input type="number" name="hora" size="50" required
+                            <input type="text" name="hora" size="50" required
                                    />
                         </td>
                     </tr>

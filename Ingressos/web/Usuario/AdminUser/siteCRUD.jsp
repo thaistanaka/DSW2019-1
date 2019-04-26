@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<link rel = "stylesheet" type ="text/css" href = "estilo.css">
+<link rel = "stylesheet" type ="text/css" href = "../../estilo.css">
 <%@page import="br.ufscar.dc.dsw.dao.SiteDAO"%>
 <%@page import="br.ufscar.dc.dsw.model.ingressos.Site"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -15,7 +15,7 @@
     <center>
         <h1><f:message key="manager.site"/></h1>
         <h2>
-            <a href="site/cadastro"><f:message key="site.add"/></a>
+            <a href="/Ingressos/site/cadastro"><f:message key="site.add"/></a>
 
         </h2>
     </center>
@@ -39,9 +39,9 @@
                     <td><c:out value="${site.nome}" /></td>
                     <td><c:out value="${site.telefone}" /></td>
                     <td>
-                        <a href="site/edicao?endereco=<c:out value='${site.endereco}' />"><f:message key="edit"/></a>
+                        <a href="/Ingressos/site/edicao?endereco=<c:out value='${site.endereco}' />"><f:message key="edit"/></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="site/remocao?endereco=<c:out value='${site.endereco}' />"
+                        <a href="/Ingressos/site/remocao?endereco=<c:out value='${site.endereco}' />"
                            onclick="return confirm('<f:message key="confirm"/>?');">
                             <f:message key="remove"/>
                         </a>

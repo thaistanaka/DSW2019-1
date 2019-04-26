@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<link rel = "stylesheet" type ="text/css" href = "estilo.css">
+<link rel = "stylesheet" type ="text/css" href = "../../estilo.css">
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
 <f:bundle basename="i18n.mensagens">
 <html>
@@ -17,7 +17,7 @@
             String senha = request.getParameter("senha");
 
             if (!((nome.equals(nome_certo)) && (senha.equals(senha_certo)))){
-                response.sendRedirect("loginAdmin.jsp");
+                response.sendRedirect("/Ingressos/loginAdmin.jsp");
             }
         %>
         <p><f:message key="admin.welcome"/></p>

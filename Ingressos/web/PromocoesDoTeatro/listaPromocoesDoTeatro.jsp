@@ -1,6 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link rel = "stylesheet" type ="text/css" href = "estilo.css">
+<link rel = "stylesheet" type ="text/css" href = "../estilo.css">
 <%@page import="br.ufscar.dc.dsw.dao.PromocaoDAO"%>
 <%@page import= "br.ufscar.dc.dsw.model.ingressos.Promocao" %>
 <%@page import="java.util.List"%>
@@ -43,7 +43,7 @@
                     </c:forEach>
             </table>
         </div>
-            <a href="index.jsp"><f:message key="return"/></a>
+            <a href="promocoesDeTeatro.jsp"><f:message key="return"/></a>
 
 
     </body>

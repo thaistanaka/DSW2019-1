@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<link rel = "stylesheet" type ="text/css" href = "estilo.css">
+<link rel = "stylesheet" type ="text/css" href = "../../estilo.css">
 <%@page import="br.ufscar.dc.dsw.dao.TeatroDAO"%>
 <%@page import="br.ufscar.dc.dsw.model.ingressos.Teatro"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -15,7 +15,7 @@
     <center>
         <h1><f:message key="manager.theater"/></h1>
         <h2>
-            <a href="teatro/cadastro"><f:message key="theater.add"/></a>
+            <a href="/Ingressos/teatro/cadastro"><f:message key="theater.add"/></a>
         </h2>
     </center>
     <div align="center">
@@ -38,9 +38,9 @@
                     <td><c:out value="${teatro.nome}" /></td>
                     <td><c:out value="${teatro.cidade}" /></td>
                     <td>
-                        <a href="teatro/edicao?cnpj=<c:out value='${teatro.cnpj}' />"><f:message key="edit"/></a>
+                        <a href="/Ingressos/teatro/edicao?cnpj=<c:out value='${teatro.cnpj}' />"><f:message key="edit"/></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="teatro/remocao?cnpj=<c:out value='${teatro.cnpj}' />"
+                        <a href="/Ingressos/teatro/remocao?cnpj=<c:out value='${teatro.cnpj}' />"
                            onclick="return confirm('<f:message key="confirm"/>');">
                             <f:message key="remove"/>
                         </a>

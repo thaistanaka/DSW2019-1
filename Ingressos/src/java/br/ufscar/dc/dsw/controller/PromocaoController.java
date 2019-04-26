@@ -55,7 +55,7 @@ public class PromocaoController extends HttpServlet{
 
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/formularioPromocao.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Promocao/formulario.jsp");
         request.setAttribute("cnpj",request.getParameter("cnpj"));
         dispatcher.forward(request, response);
     }
@@ -75,7 +75,7 @@ public class PromocaoController extends HttpServlet{
             dao.insert(promocao);
         }
         
-        response.sendRedirect("/Ingressos/teatroUser.jsp");
+        response.sendRedirect("/Ingressos/Usuario/TeatroUser/teatroUser.jsp");
     }
 
 }

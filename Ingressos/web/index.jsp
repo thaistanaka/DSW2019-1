@@ -15,9 +15,9 @@
         <a href="loginAdmin.jsp"><f:message key="acess.admin"/></a><br/>
         <a href="loginTeatro.jsp"><f:message key="acess.theater"/></a><br/>
         <a href="loginSite.jsp"><f:message key="acess.site"/></a><br/>
-        <a href="teatrosPorCidade.jsp"><f:message key="theater.city"/></a><br/>
-        <a href="listaTeatros.jsp"><f:message key="theaters"/></a><br/>
-        <a href="promocoesDeTeatro.jsp"><f:message key="theater.sale"/></a><br/>
+        <a href="TeatrosPorCidade/teatrosPorCidade.jsp"><f:message key="theater.city"/></a><br/>
+        <a href="Teatro/listaTeatros.jsp"><f:message key="theaters"/></a><br/>
+        <a href="PromocoesDoTeatro/promocoesDeTeatro.jsp"><f:message key="theater.sale"/></a><br/>
     </body>
 </html>
 </f:bundle>

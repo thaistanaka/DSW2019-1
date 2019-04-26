@@ -34,6 +34,7 @@ public class TeatroController extends HttpServlet {
         action = action.split("/")[action.split("/").length - 1];
 
         try {
+            
             switch (action) {
                 case "cadastro":
                     apresentaFormCadastro(request, response);
@@ -63,7 +64,7 @@ public class TeatroController extends HttpServlet {
             throws ServletException, IOException {
         List<Teatro> listaTeatros = dao.getAll();
         request.setAttribute("listaTeatros", listaTeatros);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/teatroCRUD.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Usuario/AdminUser/teatroCRUD.jsp");
         dispatcher.forward(request, response);
     }
 

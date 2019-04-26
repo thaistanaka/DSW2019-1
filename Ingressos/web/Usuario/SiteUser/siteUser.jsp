@@ -1,5 +1,5 @@
 <%@page import="br.ufscar.dc.dsw.dao.PromocaoDAO"%>
-<link rel = "stylesheet" type ="text/css" href = "../estilo.css">
+<link rel = "stylesheet" type ="text/css" href = "../../estilo.css">
 <%@page import="br.ufscar.dc.dsw.model.ingressos.Promocao"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"

@@ -10,7 +10,7 @@
     </head>
     <body>
         <h1><f:message key="theater.login"/></h1>
-        <form name="nome" method="post" action="pageTeatro.jsp">
+        <form name="nome" method="post" action="Usuario/TeatroUser/pageTeatro.jsp">
             <div><f:message key="page.email"/> <input type="text" name="email"></div>
             <div><f:message key="user.password"/> <input type="password" name="senha"></div>
             <input type="submit" value="<f:message key="enter"/>">

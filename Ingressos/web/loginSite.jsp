@@ -10,7 +10,7 @@
     </head>
     <body>
         <h1><f:message key="site.login"/></h1>
-        <form name="nome" method="post" action="pageSite.jsp">
+        <form name="nome" method="post" action="Usuario/SiteUser/pageSite.jsp">
             <div><f:message key="page.email"/> <input type="text" name="email"></div>
             <div><f:message key="user.password"/> <input type="password" name="senha"></div>
             <input type="submit" value="<f:message key="enter"/>">

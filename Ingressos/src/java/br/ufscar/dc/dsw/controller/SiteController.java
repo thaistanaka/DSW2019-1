@@ -32,7 +32,7 @@ public class SiteController extends HttpServlet {
             throws ServletException {
         String action = request.getRequestURI();
         action = action.split("/")[action.split("/").length - 1];
-
+        
         try {
             switch (action) {
                 case "cadastro":
@@ -63,7 +63,7 @@ public class SiteController extends HttpServlet {
             throws ServletException, IOException {
         List<Site> listaSites = dao.getAll();
         request.setAttribute("listaSites", listaSites);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/siteCRUD.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/Usuario/AdminUser/siteCRUD.jsp");
         dispatcher.forward(request, response);
     }
 
