@@ -49,7 +49,7 @@
             </c:forEach>
             </table>
         </div>
-        <a href="index.jsp">f:message key="return"/></a>
+        <a href="index.jsp"><f:message key="return"/></a>
     </body>
 </html>
 </f:bundle>

@@ -12,7 +12,7 @@
     </head>
     <body>
     <center>
-        <h1><f:message key="manage.theater"/></h1>
+        <h1><f:message key="manager.theater"/></h1>
         <h2>
             <a href="teatro/cadastro"><f:message key="theater.add"/></a>
         </h2>
