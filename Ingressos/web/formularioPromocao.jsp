@@ -1,51 +1,53 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
+<f:bundle basename="i18n.mensagens">
 <html>
     <head>
-        <title>Ingressos</title>
+        <title><f:message key="sale"/></title>
     </head>
     <body>
     <center>
-        <h1>Gerenciamento de Promoções</h1>
+        <h1><f:message key="manage.sale"/></h1>
     </center>
     <div align="center">
         <form action="promocao/insercao" method="post">
                 <table border="1" cellpadding="5">
-                    <h2>Cadastro</h2>
+                    <h2><f:message key="register"/></h2>
                     <tr>
-                        <th>Endereço: </th>
+                        <th><f:message key="page.adress"/></th>
                         <td>
                             <input type="text" name="endereco" size="45" required/>
                         </td>
                     </tr>
                     <tr>
-                        <th>Cnpj: </th>
+                        <th><f:message key="page.cnpj"/></th>
                         <td>
                             <input type="number" name="cnpj" size="50" required/>
                         </td>
                     </tr>
                     <tr>
-                        <th>Nome: </th>
+                        <th><f:message key="page.name"/></th>
                         <td>
                             <input type="text" name="nome" size="50" required />
                         </td>
                     </tr>
                     <tr>
-                        <th>Preço: </th>
+                        <th><f:message key="page.price"/></th>
                         <td>
                             <input type="text" name="preco" size="50" required />
                         </td>
                     </tr>
                     <tr>
-                        <th>Dia: </th>
+                        <th><f:message key="page.day"/></th>
                         <td>
                             <input type="text" name="dia" size="50" required
                                    />
                         </td>
                     </tr>
                     <tr>
-                        <th>Hora: </th>
+                        <th><f:message key="page.hour"/></th>
                         <td>
                             <input type="number" name="hora" size="50" required
                                    />
@@ -68,3 +70,4 @@
     </c:if>
 </body>
 </html>
+</f:bundle>
