@@ -15,11 +15,12 @@
         <%
             String email = request.getParameter("email");
             String senha = request.getParameter("senha");
-
+            String endereco = null;
+            String nome = null;
+            try{
             Site t = new SiteDAO().getN(email, senha);
-            String endereco = t.getEndereco();
-            String nome = t.getNome();
-        try{
+            endereco = t.getEndereco();
+            nome = t.getNome();
             if (!(email.equals(t.getEmail()) && senha.equals(t.getSenha()))) {
                 response.sendRedirect("loginSite.jsp");//trata se nao for igual
             }}catch(NullPointerException e){

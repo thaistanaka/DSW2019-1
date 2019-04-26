@@ -14,11 +14,14 @@
         <%
             String email = request.getParameter("email");
             String senha = request.getParameter("senha");
-
-            Teatro t = new TeatroDAO().getN(email, senha);
-            String nome = t.getNome();
-            String cnpj = Integer.toString(t.getCnpj());
-        try{
+            String nome = null;
+            String cnpj = null;
+            try{
+                Teatro t = new TeatroDAO().getN(email, senha);
+       
+            nome = t.getNome();
+            cnpj = Integer.toString(t.getCnpj());
+        
             if (!(email.equals(t.getEmail()) && senha.equals(t.getSenha()))) {
                 response.sendRedirect("loginTeatro.jsp");//trata se nao for igual
             }}catch(NullPointerException e){
