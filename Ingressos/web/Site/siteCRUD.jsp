@@ -23,7 +23,7 @@
             <caption><h2><f:message key="site.list"/></h2></caption>
             <tr>
                 <th><f:message key="page.email"/></th>
-                <th><f:message key="page.password"/></th>
+                <th><f:message key="user.password"/></th>
                 <th><f:message key="page.adress"/></th>
                 <th><f:message key="page.name"/></th>
                 <th><f:message key="page.phone"/></th>
