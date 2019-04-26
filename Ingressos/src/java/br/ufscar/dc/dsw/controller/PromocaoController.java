@@ -8,7 +8,6 @@ package br.ufscar.dc.dsw.controller;
 import br.ufscar.dc.dsw.dao.PromocaoDAO;
 import br.ufscar.dc.dsw.model.ingressos.Promocao;
 import java.io.IOException;
-import static java.lang.System.out;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,6 +56,7 @@ public class PromocaoController extends HttpServlet{
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/formularioPromocao.jsp");
+        request.setAttribute("cnpj",request.getParameter("cnpj"));
         dispatcher.forward(request, response);
     }
 

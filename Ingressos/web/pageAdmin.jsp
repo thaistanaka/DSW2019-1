@@ -20,8 +20,8 @@
             }
         %>
         <p><f:message key="admin.welcome"/></p>
-        <a href="Teatro/teatroCRUD.jsp"><f:message key="mod.theater.data"/></a><br/>
-        <a href="Site/siteCRUD.jsp"><f:message key="mod.site.data"/></a><br/>        
+        <a href="teatroCRUD.jsp"><f:message key="mod.theater.data"/></a><br/>
+        <a href="siteCRUD.jsp"><f:message key="mod.site.data"/></a><br/>        
     </body>
 </html>
 </f:bundle>

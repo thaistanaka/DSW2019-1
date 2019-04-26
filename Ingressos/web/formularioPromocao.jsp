@@ -12,7 +12,7 @@
         <h1><f:message key="manage.sale"/></h1>
     </center>
     <div align="center">
-        <form action="promocao/insercao" method="post">
+        <form action="promocao/insercao?cnpj=<%=request.getParameter("cnpj")%>" method="post">
                 <table border="1" cellpadding="5">
                     <h2><f:message key="register"/></h2>
                     <tr>
@@ -24,7 +24,9 @@
                     <tr>
                         <th><f:message key="page.cnpj"/></th>
                         <td>
-                            <input type="number" name="cnpj" size="50" required/>
+                            <input type="number" name="cnpj" size="50" disabled="disabled" required 
+                                   value="<%=request.getParameter("cnpj")%>"
+                                   />
                         </td>
                     </tr>
                     <tr>
@@ -55,7 +57,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" align="center">
-                            <input type="submit" value="Salvar" />
+                            <input type="submit" value="<f:message key="save"/>" />
                         </td>
                     </tr>
                 </table>

@@ -4,9 +4,9 @@
 <%@page import= "br.ufscar.dc.dsw.model.ingressos.Promocao" %>
 <%@page import="java.util.List"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
 <f:bundle basename="i18n.mensagens">
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -42,7 +42,7 @@
                     </c:forEach>
             </table>
         </div>
-            <a href="index.jsp">f:message key="return"/></a>
+            <a href="index.jsp"><f:message key="return"/></a>
      
            
     </body>

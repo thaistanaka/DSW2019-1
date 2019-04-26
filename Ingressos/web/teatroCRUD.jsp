@@ -37,10 +37,10 @@
                     <td><c:out value="${teatro.nome}" /></td>
                     <td><c:out value="${teatro.cidade}" /></td>
                     <td>
-                        <a href="edicao?cnpj=<c:out value='${teatro.cnpj}' />"><f:message key="edit"/></a>
+                        <a href="teatro/edicao?cnpj=<c:out value='${teatro.cnpj}' />"><f:message key="edit"/></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="remocao?cnpj=<c:out value='${teatro.cnpj}' />" 
-                           onclick="return confirm(<f:message key="confirm"/>);">
+                        <a href="teatro/remocao?cnpj=<c:out value='${teatro.cnpj}' />" 
+                           onclick="return confirm('<f:message key="confirm"/>');">
                             <f:message key="remove"/>
                         </a>                    	
                     </td>

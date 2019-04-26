@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
+<f:bundle basename="i18n.mensagens">
 <html>
     <head>
-        <title>Ingressos</title>
+        <title><f:message key="page.title"/></title>
     </head>
     <body>
     <center>
-        <h1>Gerenciamento de Teatros</h1>
+        <h1><f:message key="manager.theater"/></h1>
         <h2>
-            <a href="lista">Lista de Teatros</a>
+            <a href="lista"><f:message key="theater.list"/></a>
 
         </h2>
     </center>
@@ -24,10 +26,10 @@
                     <caption>
                         <h2>
                             <c:if test="${teatro != null}">
-                                Edição
+                                <f:message key="edition"/>
                             </c:if>
                             <c:if test="${teatro == null}">
-                                Cadastro
+                                <f:message key="register"/>
                             </c:if>
                         </h2>
                     </caption>
@@ -35,7 +37,7 @@
                         <input type="hidden" name="cnpj" value="<c:out value='${teatro.cnpj}' />" />
                     </c:if>            
                     <tr>
-                        <th>Email: </th>
+                        <th><f:message key="page.email"/>: </th>
                         <td>
                             <input type="text" name="email" size="45" required
                                    value="<c:out value='${teatro.email}' />"
@@ -43,7 +45,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Senha: </th>
+                        <th><f:message key="user.password"/>: </th>
                         <td>
                             <input type="number" name="senha" size="50" required
                                    value="<c:out value='${teatro.senha}' />"
@@ -51,7 +53,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Cnpj: </th>
+                        <th><f:message key="page.cnpj"/>: </th>
                         <td>
                             <input type="number" name="cnpj" size="10" required
                                    value="<c:out value='${teatro.cnpj}' />"
@@ -59,7 +61,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Nome: </th>
+                        <th><f:message key="page.name"/>: </th>
                         <td>
                             <input type="text" name="nome" size="50" required
                                    value="<c:out value='${teatro.nome}' />"
@@ -67,7 +69,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Cidade: </th>
+                        <th><f:message key="page.city"/>: </th>
                         <td>
                             <input type="text" name="cidade" size="100" required 
                                    value="<c:out value='${teatro.cidade}' />"
@@ -76,7 +78,7 @@
                     </tr>
                     <tr>
                         <td colspan="2" align="center">
-                            <input type="submit" value="Salvar" />
+                            <input type="submit" value="<f:message key="save"/>" />
                         </td>
                     </tr>
                 </table>
@@ -91,3 +93,4 @@
     </c:if>
 </body>
 </html>
+</f:bundle>

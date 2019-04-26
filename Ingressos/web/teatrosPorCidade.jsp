@@ -11,7 +11,7 @@
         <h1><f:message key="theater.city"/></h1>
         <form name="nome" method="post" action="listaTeatros.jsp">
             <div><f:message key="page.city"/><input type="text" name="cidade"></div>
-            <input type="submit" value="Entrar">
+            <input type="submit" value="<f:message key="enter"/>">
         </form>
         <a href="index.jsp"><f:message key="return"/></a>
     </body>

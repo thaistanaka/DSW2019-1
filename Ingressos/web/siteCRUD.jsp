@@ -12,7 +12,7 @@
     </head>
     <body>
     <center>
-        <h1><f:message key="manage.site"/></h1>
+        <h1><f:message key="manage.site"/></h1> 
         <h2>
             <a href="site/cadastro"><f:message key="site.add"/></a>
 
@@ -20,7 +20,7 @@
     </center>
     <div align="center">
         <table border="1" cellpadding="3">
-             <caption><h2><f:message key="site.list"/></h2></caption>
+            <caption><h2><f:message key="site.list"/></h2></caption>
             <tr>
                 <th><f:message key="page.email"/></th>
                 <th><f:message key="page.password"/></th>
@@ -38,10 +38,10 @@
                     <td><c:out value="${site.nome}" /></td>
                     <td><c:out value="${site.telefone}" /></td>
                     <td>
-                        <a href="edicao?endereco=<c:out value='${site.endereco}' />"><f:message key="edit"/></a>
+                        <a href="site/edicao?endereco=<c:out value='${site.endereco}' />"><f:message key="edit"/></a>
                         &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="remocao?endereco=<c:out value='${site.endereco}' />" 
-                            onclick="return confirm(<f:message key="confirm"/>);">
+                        <a href="site/remocao?endereco=<c:out value='${site.endereco}' />" 
+                           onclick="return confirm('<f:message key="confirm"/>?');">
                             <f:message key="remove"/>
                         </a>                    	
                     </td>

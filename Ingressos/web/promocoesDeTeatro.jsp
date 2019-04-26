@@ -11,7 +11,7 @@
         <h1><f:message key="theater.sale"/></h1>
         <form name="nome" method="post" action="listaPromocoesDoTeatro.jsp">
             <div><f:message key="page.cnpj"/><input type="number" required name="cnpj"></div>
-            <input type="submit" value="Entrar">
+            <input type="submit" value="<f:message key="enter"/>">
         </form>
         <a href="index.jsp"><f:message key="return"/></a>
     </body>

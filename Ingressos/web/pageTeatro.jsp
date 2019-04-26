@@ -15,6 +15,8 @@
             String senha = request.getParameter("senha");
 
             Teatro t = new TeatroDAO().getN(email, senha);
+            String nome = t.getNome();
+            String cnpj = Integer.toString(t.getCnpj());
         try{
             if (!(email.equals(t.getEmail()) && senha.equals(t.getSenha()))) {
                 response.sendRedirect("loginTeatro.jsp");//trata se nao for igual
@@ -22,8 +24,8 @@
                 response.sendRedirect("loginTeatro.jsp");//trata se nao existir o nome
             }
         %>
-        <p><f:message key="welcome"/> <%=email %>!</p>
-        <a href="Teatro/teatroUser.jsp"><f:message key="sale.theater"/></a><br/>      
+        <p><f:message key="welcome"/> <%=nome%>!</p>
+        <a href="teatroUser.jsp?cnpj=<%=cnpj%>"><f:message key="sale.theater"/></a><br/>      
     </body>
 </html>
 </f:bundle>
