@@ -1,6 +1,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<link rel = "stylesheet" type ="text/css" href = "../estilo.css">
 <link rel = "stylesheet" type ="text/css" href = "../../estilo.css">
 <%@page import="br.ufscar.dc.dsw.dao.TeatroDAO"%>
 <%@page import="br.ufscar.dc.dsw.model.ingressos.Teatro"%>
