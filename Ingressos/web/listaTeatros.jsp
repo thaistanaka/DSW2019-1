@@ -47,6 +47,6 @@
             </c:forEach>
             </table>
         </div>
-        
+        <a href="index.jsp">Voltar</a>
     </body>
 </html>

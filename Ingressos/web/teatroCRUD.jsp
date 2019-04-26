@@ -12,7 +12,7 @@
     <center>
         <h1>Gerenciamento dos teatros</h1>
         <h2>
-            <a href="cadastro">Adicione Novo Teatro</a>
+            <a href="teatro/cadastro">Adicione Novo Teatro</a>
         </h2>
     </center>
     <div align="center">

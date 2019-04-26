@@ -9,7 +9,7 @@
 <center>
         <h1>Gerenciamento de Promoções</h1>
         <h2>
-            <a href="cadastro">Adicione Nova Promoção</a>
+            <a href="promocao/cadastro">Adicione Nova Promoção</a>
         </h2>
     </center>
 </body>

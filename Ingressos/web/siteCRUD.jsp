@@ -12,7 +12,7 @@
     <center>
         <h1>Gerenciamento de Sites</h1>
         <h2>
-            <a href="cadastro">Adicione Novo Site</a>
+            <a href="site/cadastro">Adicione Novo Site</a>
 
         </h2>
     </center>

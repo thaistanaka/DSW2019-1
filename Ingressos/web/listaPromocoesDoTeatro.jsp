@@ -14,6 +14,9 @@
     <center>
         <h1>Promoções Do Teatro</h1>
     </center>
+    <%
+            List<Promocao> promocoes = new PromocaoDAO().listarTodasPromocoesDeUmTeatro(request.getParameter("cnpj"));
+        %>
             <div align="center">
             <table border="1" cellpadding="3">
                 <tr>
@@ -24,9 +27,7 @@
                     <th>Dia </th>
                     <th>Hora </th>
                 </tr>
-                <%
-            List<Promocao> promocoes = new PromocaoDAO().listarTodasPromocoesDeUmTeatro(request.getParameter("cnpj"));
-        %>
+                
                     <c:forEach items="<%=promocoes%>" var="promocao">
                         <tr>
                             <td><c:out value="${promocao.endereco}" /></td>
@@ -39,6 +40,8 @@
                     </c:forEach>
             </table>
         </div>
+            <a href="index.jsp">Voltar</a>
+     
            
     </body>
 </html>

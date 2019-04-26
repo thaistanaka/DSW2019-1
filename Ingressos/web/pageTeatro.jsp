@@ -22,6 +22,6 @@
             }
         %>
         <p>Seja bem-vindo, <%=email %>!</p>
-        <a href="Teatro/teatroUser.jsp">Adicionar promoções no seu teatro</a><br/>      
+        <a href="teatroUser.jsp">Adicionar promoções no seu teatro</a><br/>      
     </body>
 </html>
