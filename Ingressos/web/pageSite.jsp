@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="br.ufscar.dc.dsw.dao.SiteDAO"%>
+<link rel = "stylesheet" type ="text/css" href = "estilo.css">
 <%@page import="br.ufscar.dc.dsw.model.ingressos.Site"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
 <f:bundle basename="i18n.mensagens">
@@ -26,7 +27,7 @@
             }
         %>
         <p><f:message key="welcome"/> <%=nome%>!</p>
-        <a href="Site/siteUser.jsp?endereco=<%=endereco%>">><f:message key="sale.site"/></a><br/>        
+        <a href="Site/siteUser.jsp?endereco=<%=endereco%>">><f:message key="sale.site"/></a><br/>
     </body>
 </html>
 </f:bundle>

@@ -1,0 +1,39 @@
+body {
+    background-color: cornflowerblue;
+}
+
+h1, h2 {
+    color:crimson;
+    text-align: center;
+}
+
+div {
+    font-weight: bold;
+    margin-left: 40px;
+    font-size: x-large;
+    color: firebrick;
+}
+
+a {
+    margin-top: 30px;
+    margin-left: 40px;
+    font-size: x-large;
+}
+
+table {
+    background-color: beige;
+}
+
+input {
+    font-weight: bold;
+    background-color: thistle;
+    margin-top: 20px;
+    font-size: large;
+    margin-left: 25px;
+}
+
+p {
+    margin-top: 30px;
+    margin-left: 30px;
+    font-size: x-large;
+}

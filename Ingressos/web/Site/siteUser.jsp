@@ -1,4 +1,5 @@
 <%@page import="br.ufscar.dc.dsw.dao.PromocaoDAO"%>
+<link rel = "stylesheet" type ="text/css" href = "estilo.css">
 <%@page import="br.ufscar.dc.dsw.model.ingressos.Promocao"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -36,7 +37,7 @@
                     <td><c:out value="${promocao.hora}" /></td>
             </c:forEach>
         </table>
-        </div>	
+        </div>
 </body>
 </html>
 </f:bundle>

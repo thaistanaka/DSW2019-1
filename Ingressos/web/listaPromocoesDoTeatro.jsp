@@ -1,5 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<link rel = "stylesheet" type ="text/css" href = "estilo.css">
 <%@page import="br.ufscar.dc.dsw.dao.PromocaoDAO"%>
 <%@page import= "br.ufscar.dc.dsw.model.ingressos.Promocao" %>
 <%@page import="java.util.List"%>
@@ -29,7 +30,7 @@
                     <th><f:message key="page.day"/></th>
                     <th><f:message key="page.hour"/></th>
                 </tr>
-                
+
                     <c:forEach items="<%=promocoes%>" var="promocao">
                         <tr>
                             <td><c:out value="${promocao.endereco}" /></td>
@@ -43,8 +44,8 @@
             </table>
         </div>
             <a href="index.jsp"><f:message key="return"/></a>
-     
-           
+
+
     </body>
 </html>
 </f:bundle>

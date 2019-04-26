@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<link rel = "stylesheet" type ="text/css" href = "estilo.css">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
 <f:bundle basename="i18n.mensagens">
@@ -24,7 +25,7 @@
                     <tr>
                         <th><f:message key="page.cnpj"/></th>
                         <td>
-                            <input type="number" name="cnpj" size="50" disabled="disabled" required 
+                            <input type="number" name="cnpj" size="50" disabled="disabled" required
                                    value="<%=request.getParameter("cnpj")%>"
                                    />
                         </td>

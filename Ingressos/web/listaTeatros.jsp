@@ -1,6 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="br.ufscar.dc.dsw.dao.TeatroDAO"%>
 <%@page import="br.ufscar.dc.dsw.model.ingressos.Teatro"%>
+<link rel = "stylesheet" type ="text/css" href = "estilo.css">
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -12,7 +13,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><f:message key="page.title"/></title>
     </head>
-    
+
     <body>
         <%
                 List<Teatro> teatros = new ArrayList<>();

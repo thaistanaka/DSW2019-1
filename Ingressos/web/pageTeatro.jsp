@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="br.ufscar.dc.dsw.dao.TeatroDAO"%>
+<link rel = "stylesheet" type ="text/css" href = "estilo.css">
 <%@page import="br.ufscar.dc.dsw.model.ingressos.Teatro"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
 <f:bundle basename="i18n.mensagens">
@@ -25,7 +26,7 @@
             }
         %>
         <p><f:message key="welcome"/> <%=nome%>!</p>
-        <a href="teatroUser.jsp?cnpj=<%=cnpj%>"><f:message key="sale.theater"/></a><br/>      
+        <a href="teatroUser.jsp?cnpj=<%=cnpj%>"><f:message key="sale.theater"/></a><br/>
     </body>
 </html>
 </f:bundle>

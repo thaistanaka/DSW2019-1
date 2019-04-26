@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
+<link rel = "stylesheet" type ="text/css" href = "estilo.css">
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
 <f:bundle basename="i18n.mensagens">
@@ -35,7 +36,7 @@
                     </caption>
                     <c:if test="${teatro != null}">
                         <input type="hidden" name="cnpj" value="<c:out value='${teatro.cnpj}' />" />
-                    </c:if>            
+                    </c:if>
                     <tr>
                         <th><f:message key="page.email"/>: </th>
                         <td>
@@ -71,7 +72,7 @@
                     <tr>
                         <th><f:message key="page.city"/>: </th>
                         <td>
-                            <input type="text" name="cidade" size="100" required 
+                            <input type="text" name="cidade" size="100" required
                                    value="<c:out value='${teatro.cidade}' />"
                                    />
                         </td>
