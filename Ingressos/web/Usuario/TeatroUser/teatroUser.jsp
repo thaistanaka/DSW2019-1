@@ -15,6 +15,7 @@
             <a href="/Ingressos/promocao/cadastro?cnpj=<%=request.getParameter("cnpj")%>"><f:message key="sale.add"/></a>
         </h2>
     </center>
+    <a href="/Ingressos/loginTeatro.jsp"><f:message key="return"/></a>
 </body>
 </html>
 </f:bundle>

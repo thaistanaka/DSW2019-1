@@ -23,6 +23,7 @@
         <p><f:message key="admin.welcome"/></p>
         <a href="teatroCRUD.jsp"><f:message key="mod.theater.data"/></a><br/>
         <a href="siteCRUD.jsp"><f:message key="mod.site.data"/></a><br/>
+        <a href="/Ingressos/loginAdmin.jsp"><f:message key="return"/></a>
     </body>
 </html>
 </f:bundle>

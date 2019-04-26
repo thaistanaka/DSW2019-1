@@ -12,8 +12,8 @@
         <h1><f:message key="theater.city"/></h1>
         <form name="nome" method="post" action="listaTeatrosPorCidade.jsp">
             <div><f:message key="page.city"/><input type="text" required name="cidade"></div>
-            <input type="submit" value="<f:message key="enter"/>">
             <a href="/Ingressos/index.jsp"><f:message key="return"/></a>
+            <input type="submit" value="<f:message key="enter"/>">
         </form>
     </body>
 </html>

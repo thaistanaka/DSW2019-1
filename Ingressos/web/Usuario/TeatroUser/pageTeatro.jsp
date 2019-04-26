@@ -30,6 +30,7 @@
         %>
         <p><f:message key="welcome"/> <%=nome%>!</p>
         <a href="teatroUser.jsp?cnpj=<%=cnpj%>"><f:message key="sale.theater"/></a><br/>
+        <a href="/Ingressos/loginTeatro.jsp"><f:message key="return"/></a>
     </body>
 </html>
 </f:bundle>

@@ -13,6 +13,7 @@
         <form name="nome" method="post" action="Usuario/SiteUser/pageSite.jsp">
             <div><f:message key="page.email"/> <input type="text" name="email"></div>
             <div><f:message key="user.password"/> <input type="password" name="senha"></div>
+            <a href="/Ingressos/index.jsp"><f:message key="return"/></a>
             <input type="submit" value="<f:message key="enter"/>">
         </form>
     </body>

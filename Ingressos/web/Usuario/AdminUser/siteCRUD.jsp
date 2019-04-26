@@ -50,6 +50,7 @@
             </c:forEach>
         </table>
     </div>
+    <a href="/Ingressos/loginAdmin.jsp"><f:message key="return"/></a>
 </body>
 </html>
 </f:bundle>

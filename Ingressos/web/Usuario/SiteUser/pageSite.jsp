@@ -29,6 +29,7 @@
         %>
         <p><f:message key="welcome"/> <%=nome%>!</p>
         <a href="siteUser.jsp?endereco=<%=endereco%>"><f:message key="sale.site"/></a><br/>
+        <a href="/Ingressos/loginSite.jsp"><f:message key="return"/></a>
     </body>
 </html>
 </f:bundle>
