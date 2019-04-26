@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
+<f:bundle basename="i18n.mensagens">
 <html>
     <head>
-        <title>Ingressos</title>
+        <title><f:message key="page.title"/></title>
     </head>
     <body>
     <center>
-        <h1>Gerenciamento de Sites</h1>
+        <h1><f:message key="manage.site"/></h1>
         <h2>
-            <a href="listaSite">Lista de Sites</a>
+            <a href="listaSite"><f:message key="site.list"/></a>
 
         </h2>
     </center>
@@ -24,10 +26,10 @@
                     <caption>
                         <h2>
                             <c:if test="${site != null}">
-                                Edição
+                                <f:message key="edition"/>
                             </c:if>
                             <c:if test="${site == null}">
-                                Cadastro
+                                 <f:message key="register"/>
                             </c:if>
                         </h2>
                     </caption>
@@ -35,7 +37,7 @@
                         <input type="hidden" name="endereco" value="<c:out value='${site.endereco}' />" />
                     </c:if>            
                     <tr>
-                        <th>Email: </th>
+                        <th><f:message key="page.email"/>: </th>
                         <td>
                             <input type="text" name="email" size="45" required
                                    value="<c:out value='${site.email}' />"
@@ -43,7 +45,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Senha: </th>
+                        <th><f:message key="user.password"/>: </th>
                         <td>
                             <input type="number" name="senha" size="50" required
                                    value="<c:out value='${site.senha}' />"
@@ -51,7 +53,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Nome: </th>
+                        <th><f:message key="page.name"/>: </th>
                         <td>
                             <input type="text" name="nome" size="50" required
                                    value="<c:out value='${site.nome}' />"
@@ -59,7 +61,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Endereco: </th>
+                        <th><f:message key="page.adress"/>: </th>
                         <td>
                             <input type="text" name="endereco" size="50" required
                                    value="<c:out value='${site.endereco}' />"
@@ -67,7 +69,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>Telefone: </th>
+                        <th><f:message key="page.phone"/>: </th>
                         <td>
                             <input type="number" name="telefone" size="12" required
                                    value="<c:out value='${site.telefone}' />"
@@ -91,3 +93,4 @@
     </c:if>
 </body>
 </html>
+</f:bundle>
