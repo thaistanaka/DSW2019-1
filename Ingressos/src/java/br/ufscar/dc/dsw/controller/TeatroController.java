@@ -1,6 +1,8 @@
 package br.ufscar.dc.dsw.controller;
 
+import br.ufscar.dc.dsw.dao.SiteDAO;
 import br.ufscar.dc.dsw.dao.TeatroDAO;
+import br.ufscar.dc.dsw.model.ingressos.Site;
 import br.ufscar.dc.dsw.model.ingressos.Teatro;
 import java.io.IOException;
 import java.util.List;
@@ -15,10 +17,12 @@ import javax.servlet.http.HttpServletResponse;
 public class TeatroController extends HttpServlet {
 
     private TeatroDAO dao;
+    private SiteDAO daos;
 
     @Override
     public void init() {
         dao = new TeatroDAO();
+        daos = new SiteDAO();
     }
 
     @Override
@@ -50,6 +54,8 @@ public class TeatroController extends HttpServlet {
                 case "remocao":
                     remove(request, response);
                     break;
+                case "cadastroSite":
+                    apresentaFormCadastroSite(request, response);
                 default:
                     lista(request, response);
                     break;
@@ -119,4 +125,11 @@ public class TeatroController extends HttpServlet {
         dao.delete(teatro);
         response.sendRedirect("lista");
     }
+    
+    private void apresentaFormCadastroSite(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/formulario.jsp");
+        dispatcher.forward(request, response);
+    }
+    
 }

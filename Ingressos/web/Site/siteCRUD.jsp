@@ -14,7 +14,7 @@
     <center>
         <h1><f:message key="manage.site"/></h1>
         <h2>
-            <a href="cadastro"><f:message key="site.add"/></a>
+            <a href="cadastroSite"><f:message key="site.add"/></a>
 
         </h2>
     </center>
