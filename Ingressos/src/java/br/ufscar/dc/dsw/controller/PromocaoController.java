@@ -8,10 +8,11 @@ package br.ufscar.dc.dsw.controller;
 import br.ufscar.dc.dsw.dao.PromocaoDAO;
 import br.ufscar.dc.dsw.model.ingressos.Promocao;
 import java.io.IOException;
-import java.util.List;
+import static java.lang.System.out;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,8 +21,8 @@ import javax.servlet.http.HttpServletResponse;
  * @author Windows
  */
 
-@WebServlet(urlPatterns = "/b")
-public class PromocaoController {
+@WebServlet(urlPatterns = "/promocao/*")
+public class PromocaoController extends HttpServlet{
     private PromocaoDAO dao;
 
     public void init() {
@@ -35,11 +36,12 @@ public class PromocaoController {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException {
-        String action = request.getServletPath();
-
+        String action = request.getRequestURI();
+        action = action.split("/")[action.split("/").length - 1];
         try {
+            
             switch (action) {
-                case "/cadastro":
+                case "cadastro":
                     apresentaFormCadastro(request, response);
                     break;
                 default:
@@ -54,22 +56,26 @@ public class PromocaoController {
 
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/formulario.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/formularioPromocao.jsp");
         dispatcher.forward(request, response);
     }
 
     private void insere(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String endereco = request.getParameter("endereco_site");
-        String nome = request.getParameter("nome");
-        String dia = request.getParameter("dia");
-        String hora = request.getParameter("hora");
-        float preco = Float.parseFloat(request.getParameter("preco"));
-        Integer cnpj = Integer.parseInt(request.getParameter("cnpj_teatro"));
-        Promocao promocao = new Promocao(endereco, cnpj, nome, preco, dia, hora);
-        dao.update(promocao);
-        response.sendRedirect("listaPromocao");
+        
+        if(request.getParameter("preco") != null && request.getParameter("cnpj") != null){
+            String endereco = request.getParameter("endereco");
+            String nome = request.getParameter("nome");
+            String dia = request.getParameter("dia");
+            String hora = request.getParameter("hora");
+            float preco = Float.parseFloat(request.getParameter("preco"));
+            Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
+            Promocao promocao = new Promocao(endereco, cnpj, nome, preco, dia, hora);
+            dao.insert(promocao);
+        }
+        
+        response.sendRedirect("/Ingressos/teatroUser.jsp");
     }
 
 }
