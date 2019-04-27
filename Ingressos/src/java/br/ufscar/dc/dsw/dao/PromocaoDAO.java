@@ -105,14 +105,16 @@ public class PromocaoDAO extends GenericDAO{
     }
     
     public void delete(Promocao promocao) {
-        String sql = "DELETE FROM Promocao where dia = ? and hora = ?";
+        String sql = "DELETE FROM Promocao where ((endereco_site = ? and dia = ?) and hora = ?)";
 
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-
-            statement.setString(1, promocao.getDia());
-            statement.setString(2, promocao.getHora());
+            
+            statement.setString(1, promocao.getEndereco());
+            statement.setString(2, promocao.getDia());
+            statement.setString(3, promocao.getHora());
+            
             statement.executeUpdate();
 
             statement.close();
@@ -124,7 +126,7 @@ public class PromocaoDAO extends GenericDAO{
 
     public void update(Promocao promocao) {
         String sql = "UPDATE Promocao SET endereco_site = ?, cnpj_teatro = ?, nome = ?, preco = ?";
-        sql += " WHERE dia = ? and hora = ?";
+        sql += " WHERE ((endereco_site = ? and dia = ?) and hora = ?)";
 
         try {
             Connection conn = this.getConnection();
@@ -145,9 +147,9 @@ public class PromocaoDAO extends GenericDAO{
         }
     }
 
-    public Promocao get(String dia, String hora) {
+    public Promocao get(String dia, String hora, String endereco) {
         Promocao promocao = null;
-        String sql = "SELECT * FROM Promocao WHERE dia = ? and hora = ?";
+        String sql = "SELECT * FROM Promocao WHERE ((dia = ? and hora = ?) and endereco_site = ?)";
 
         try {
             Connection conn = this.getConnection();
@@ -155,9 +157,10 @@ public class PromocaoDAO extends GenericDAO{
             
             statement.setString(1, dia);
             statement.setString(2, hora);
+            statement.setString(3, endereco);
+            
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                String endereco = resultSet.getString("endereco_site");
                 int cnpj = resultSet.getInt("cnpj_teatro");
                 String nome = resultSet.getString("nome");
                 float preco = resultSet.getFloat("preco");
@@ -227,4 +230,29 @@ public class PromocaoDAO extends GenericDAO{
         }
         return ret;
     }
+    
+    public boolean Verifica(String endereco,int cnpj,String hora, String dia) throws SQLException{
+        String sql = "select * from Promocao where ((endereco_site = ? and dia = ?) and hora = ?) or (cnpj_teatro = ? and (hora = ? and dia = ?))";
+        try{
+        Connection conn = this.getConnection();
+        PreparedStatement statement = conn.prepareStatement(sql);
+        statement.setString(1,endereco);
+        statement.setString(2,dia);
+        statement.setString(3, hora);
+        statement.setInt(4,cnpj);
+        statement.setString(5,hora);
+        statement.setString(6, dia);
+        ResultSet resultSet = statement.executeQuery();
+        if(resultSet.next()){
+            return false;
+            }
+        else{
+            return true;
+        }
+        }
+        catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
 }

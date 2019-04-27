@@ -91,9 +91,12 @@ public class TeatroController extends HttpServlet {
         Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
         String nome = request.getParameter("nome");
         String cidade = request.getParameter("cidade");
+        
+        if(dao.Verifica(email, senha)){
+            Teatro teatro = new Teatro(email, senha, cnpj, nome, cidade);
+            dao.insert(teatro);
+        }
 
-        Teatro teatro = new Teatro(email, senha, cnpj, nome, cidade);
-        dao.insert(teatro);
         response.sendRedirect("lista");
     }
 
@@ -109,6 +112,7 @@ public class TeatroController extends HttpServlet {
 
         Teatro teatro = new Teatro(email, senha, cnpj, nome, cidade);
         dao.update(teatro);
+        
         response.sendRedirect("lista");
     }
 

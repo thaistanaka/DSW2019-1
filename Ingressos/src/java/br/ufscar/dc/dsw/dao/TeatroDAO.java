@@ -10,17 +10,15 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TeatroDAO extends GenericDAO{
-    
-    
+public class TeatroDAO extends GenericDAO {
+
     private final static String LISTAR_TEATROS_SQL = "select"
             + " a.cnpj, a.email, a.nome, a.cidade from Teatro a";
-            
+
     private final static String LISTAR_TEATROS_POR_CIDADES_SQL = "select"
             + " a.cidade, a.cnpj, a.email, a.nome"
             + " from Teatro a"
             + " where a.cidade = ?";
-
 
     public TeatroDAO() {
         try {
@@ -39,25 +37,27 @@ public class TeatroDAO extends GenericDAO{
         String sql = "INSERT INTO Teatro (email, senha, cnpj, nome, cidade) VALUES (?, ?, ?, ?, ?)";
 
         try {
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+            if (get(teatro.getCnpj()) == null) {
+                Connection conn = this.getConnection();
+                PreparedStatement statement = conn.prepareStatement(sql);
 
-            statement = conn.prepareStatement(sql);
-            statement.setString(1, teatro.getEmail());
-            statement.setString(2, teatro.getSenha());
-            statement.setInt(3, teatro.getCnpj());
-            statement.setString(4, teatro.getNome());
-            statement.setString(5, teatro.getCidade());
-            statement.executeUpdate();
+                statement = conn.prepareStatement(sql);
+                statement.setString(1, teatro.getEmail());
+                statement.setString(2, teatro.getSenha());
+                statement.setInt(3, teatro.getCnpj());
+                statement.setString(4, teatro.getNome());
+                statement.setString(5, teatro.getCidade());
+                statement.executeUpdate();
 
-            statement.close();
-            conn.close();
+                statement.close();
+                conn.close();
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    
     public List<Teatro> getAll() {
 
         List<Teatro> listaTeatros = new ArrayList<>();
@@ -135,13 +135,13 @@ public class TeatroDAO extends GenericDAO{
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            
+
             statement.setString(1, email);
             statement.setString(2, senha);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 String nome = resultSet.getString("nome");
-                int cnpj  = resultSet.getInt("cnpj");
+                int cnpj = resultSet.getInt("cnpj");
                 String cidade = resultSet.getString("cidade");
                 teatro = new Teatro(email, senha, cnpj, nome, cidade);
             }
@@ -154,14 +154,13 @@ public class TeatroDAO extends GenericDAO{
         }
         return teatro;
     }
-   
-   
+
     public List<Teatro> listarTodosTeatros() throws SQLException {
         List<Teatro> ret = new ArrayList<>();
 
         try (Connection con = this.getConnection()) {
             PreparedStatement ps = con.prepareStatement(LISTAR_TEATROS_SQL);
-            
+
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Teatro teatro = new Teatro();
@@ -173,17 +172,17 @@ public class TeatroDAO extends GenericDAO{
                 ret.add(teatro);
             }
         }
-        
+
         return ret;
     }
-    
+
     public List<Teatro> listarTodosTeatrosPorCidade(String cidade) throws SQLException {
 
         List<Teatro> ret = new ArrayList<>();
 
         try (Connection con = this.getConnection()) {
             PreparedStatement ps = con.prepareStatement(LISTAR_TEATROS_POR_CIDADES_SQL);
-            
+
             ps.setString(1, cidade);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -197,7 +196,7 @@ public class TeatroDAO extends GenericDAO{
         }
         return ret;
     }
-    
+
     public Teatro get(int cnpj) {
         Teatro teatro = null;
         String sql = "SELECT * FROM Teatro WHERE cnpj = ?";
@@ -205,12 +204,12 @@ public class TeatroDAO extends GenericDAO{
         try {
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
-            
+
             statement.setInt(1, cnpj);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 String email = resultSet.getString("email");
-                String senha  = resultSet.getString("senha");
+                String senha = resultSet.getString("senha");
                 String nome = resultSet.getString("nome");
                 String cidade = resultSet.getString("cidade");
                 teatro = new Teatro(email, senha, cnpj, nome, cidade);
@@ -224,5 +223,28 @@ public class TeatroDAO extends GenericDAO{
         }
         return teatro;
     }
-   
+
+    public boolean Verifica(String email, String senha) {
+        String sql1 = "select * from Site where email = ? or senha = ?";
+        String sql2 = "select * from Teatro where email = ? or senha = ?";
+        try {
+            Connection conn = this.getConnection();
+            PreparedStatement statement = conn.prepareStatement(sql1);
+            statement.setString(1, email);
+            statement.setString(2, senha);
+            PreparedStatement st = conn.prepareStatement(sql2);
+            st.setString(1, email);
+            st.setString(2, senha);
+            ResultSet resultSet = statement.executeQuery();
+            ResultSet rs = st.executeQuery();
+            if (resultSet.next() || rs.next()) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

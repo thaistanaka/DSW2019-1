@@ -12,7 +12,7 @@
     <center>
         <h1><f:message key="manager.site"/></h1>
         <h2>
-            <a href="listaSite"><f:message key="manager.site"/></a>
+            <a href="listaSite"><f:message key="site.list"/></a>
 
         </h2>
     </center>

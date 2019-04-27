@@ -32,7 +32,7 @@ public class SiteController extends HttpServlet {
             throws ServletException {
         String action = request.getRequestURI();
         action = action.split("/")[action.split("/").length - 1];
-        
+
         try {
             switch (action) {
                 case "cadastro":
@@ -89,10 +89,13 @@ public class SiteController extends HttpServlet {
         String senha = request.getParameter("senha");
         String endereco = request.getParameter("endereco");
         String nome = request.getParameter("nome");
-        
+
         Integer telefone = Integer.parseInt(request.getParameter("telefone"));
-        Site site = new Site(email, nome, endereco, senha, telefone);
-        dao.insert(site);
+        if (dao.Verifica(email, senha)) {
+            Site site = new Site(email, nome, endereco, senha, telefone);
+            dao.insert(site);
+        }
+
         response.sendRedirect("listaSite");
     }
 
@@ -105,12 +108,13 @@ public class SiteController extends HttpServlet {
         String endereco = request.getParameter("endereco");
         String nome = request.getParameter("nome");
         Integer telefone = Integer.parseInt(request.getParameter("telefone"));
+
         Site site = new Site(email, nome, endereco, senha, telefone);
         dao.update(site);
-        
+
         response.sendRedirect("listaSite");
     }
-    
+
     private void remove(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         String endereco = request.getParameter("endereco");

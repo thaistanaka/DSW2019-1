@@ -64,6 +64,7 @@
                 </table>
             </form>
     </div>
+    <a href="/Ingressos/loginTeatro.jsp"><f:message key="return"/></a>
     <c:if test="${!empty requestScope.mensagens}">
         <ul class="erro">
             <c:forEach items="${requestScope.mensagens}" var="mensagem">

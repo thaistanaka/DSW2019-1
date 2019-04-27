@@ -8,6 +8,9 @@ package br.ufscar.dc.dsw.controller;
 import br.ufscar.dc.dsw.dao.PromocaoDAO;
 import br.ufscar.dc.dsw.model.ingressos.Promocao;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,9 +22,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Windows
  */
-
 @WebServlet(urlPatterns = "/promocao/*")
-public class PromocaoController extends HttpServlet{
+public class PromocaoController extends HttpServlet {
+
     private PromocaoDAO dao;
 
     public void init() {
@@ -38,13 +41,19 @@ public class PromocaoController extends HttpServlet{
         String action = request.getRequestURI();
         action = action.split("/")[action.split("/").length - 1];
         try {
-            
+
             switch (action) {
                 case "cadastro":
                     apresentaFormCadastro(request, response);
                     break;
                 default:
+            {
+                try {
                     insere(request, response);
+                } catch (SQLException ex) {
+                    Logger.getLogger(PromocaoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                     break;
             }
         } catch (RuntimeException | IOException | ServletException e) {
@@ -52,30 +61,32 @@ public class PromocaoController extends HttpServlet{
         }
     }
 
-
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher dispatcher = request.getRequestDispatcher("/Promocao/formulario.jsp");
-        request.setAttribute("cnpj",request.getParameter("cnpj"));
+        request.setAttribute("cnpj", request.getParameter("cnpj"));
         dispatcher.forward(request, response);
     }
 
     private void insere(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         request.setCharacterEncoding("UTF-8");
-        
-        if(request.getParameter("preco") != null && request.getParameter("cnpj") != null){
+
+        if (request.getParameter("preco") != null && request.getParameter("cnpj") != null) {
             String endereco = request.getParameter("endereco");
             String nome = request.getParameter("nome");
             String dia = request.getParameter("dia");
             String hora = request.getParameter("hora");
             float preco = Float.parseFloat(request.getParameter("preco"));
             Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
-            Promocao promocao = new Promocao(endereco, cnpj, nome, preco, dia, hora);
-            dao.insert(promocao);
-        }
-        
-        response.sendRedirect("/Ingressos/Usuario/TeatroUser/teatroUser.jsp");
+            if (dao.Verifica(endereco, cnpj, hora, dia)) {
+                Promocao promocao = new Promocao(endereco, cnpj, nome, preco, dia, hora);
+                dao.insert(promocao);
+            } 
+                  
+        } 
+            response.sendRedirect("/Ingressos/loginTeatro.jsp");
+ 
     }
 
 }
