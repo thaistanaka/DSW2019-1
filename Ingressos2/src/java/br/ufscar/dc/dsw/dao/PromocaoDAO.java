@@ -5,9 +5,9 @@
  */
 package br.ufscar.dc.dsw.dao;
 
-import br.ufscar.dc.dsw.model.ingressos.Promocao;
-import br.ufscar.dc.dsw.model.ingressos.Site;
-import br.ufscar.dc.dsw.model.ingressos.Teatro;
+import br.ufscar.dc.dsw.pojo.Site;
+import br.ufscar.dc.dsw.pojo.Teatro;
+import br.ufscar.dc.dsw.pojo.Promocao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,12 +16,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 /**
  *
  * @author Windows
  */
-public class PromocaoDAO extends GenericDAO{
+public class PromocaoDAO extends GenericDAO<Promocao>{
     
     private final static String LISTAR_PROMOCOES_DE_UM_SITE_SQL = "select"
             + " a.nome as nomePromocao, a.endereco_site, a.preco, a.dia, a.hora, a.cnpj_teatro,"
@@ -35,94 +38,25 @@ public class PromocaoDAO extends GenericDAO{
             + " from Promocao a inner join Teatro u on a.cnpj_teatro = u.cnpj"
             + " where a.cnpj_teatro = ?";
     
-    public PromocaoDAO() {
-        try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    protected Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:derby://localhost:1527/Ingressos", "root", "root");
-    }
-
-    public void insert(Promocao promocao) {
-
-        String sql = "INSERT INTO Promocao (endereco_site, cnpj_teatro, nome, preco, dia, hora) VALUES (?, ?, ?, ?, ?, ?)";
-
-        try {
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);;
-
-            statement = conn.prepareStatement(sql);
-            statement.setString(1, promocao.getEndereco());
-            statement.setInt(2, promocao.getCnpj());
-            statement.setString(3, promocao.getNome());
-            statement.setFloat(4, promocao.getPreco());
-            statement.setString(5, promocao.getDia());
-            statement.setString(6, promocao.getHora());            
-            statement.executeUpdate();
-
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    
     public List<Promocao> getAll() {
-
-        List<Promocao> listaPromocoes = new ArrayList<>();
-
-        String sql = "SELECT * FROM Promocao";
-
-        try {
-            Connection conn = this.getConnection();
-            Statement statement = conn.createStatement();
-
-            ResultSet resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                String dia = resultSet.getString("dia");
-                String hora = resultSet.getString("hora");
-                String endereco = resultSet.getString("endereco_site");
-                String nome = resultSet.getString("nome");
-                float preco = resultSet.getFloat("preco");
-                int cnpj = resultSet.getInt("cnpj_teatro");
-
-                Promocao promocao = new Promocao(endereco, cnpj, nome, preco, dia, hora);
-                listaPromocoes.add(promocao);
-            }
-
-            resultSet.close();
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return listaPromocoes;
+        EntityManager em = this.getEntityManager();
+        Query q = em.createQuery("select e from Promocao e", Promocao.class);
+        List<Promocao> editoras = q.getResultList();
+        em.close();
+        return editoras;
     }
     
+    @Override
     public void delete(Promocao promocao) {
-        String sql = "DELETE FROM Promocao where ((endereco_site = ? and dia = ?) and hora = ?)";
-
-        try {
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
-            
-            statement.setString(1, promocao.getEndereco());
-            statement.setString(2, promocao.getDia());
-            statement.setString(3, promocao.getHora());
-            
-            statement.executeUpdate();
-
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        EntityManager em = this.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        promocao = em.getReference(Promocao.class, promocao.get());
+        tx.begin();
+        em.remove(promocao);
+        tx.commit();
     }
 
+    @Override
     public void update(Promocao promocao) {
         String sql = "UPDATE Promocao SET endereco_site = ?, cnpj_teatro = ?, nome = ?, preco = ?";
         sql += " WHERE ((endereco_site = ? and dia = ?) and hora = ?)";
@@ -252,6 +186,16 @@ public class PromocaoDAO extends GenericDAO{
         catch(SQLException e){
             throw new RuntimeException(e);
         }
+    }
+    
+    @Override
+    void save(Promocao promocao) {
+        EntityManager em = this.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(promocao);
+        tx.commit();
+        em.close();
     }
 
 }
