@@ -30,6 +30,14 @@ public class Promocao {
     public Promocao() {
     }
 
+    public String[] get() {
+        String []vetor  = new String[3];
+        vetor [0] = endereco;
+        vetor [1] = dia;
+        vetor [2] = hora;
+        return vetor;
+    }
+    
     public String getEndereco() {
         return endereco;
     }

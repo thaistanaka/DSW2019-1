@@ -1,16 +1,19 @@
 package br.ufscar.dc.dsw.dao;
 
+import br.ufscar.dc.dsw.pojo.Site;
 import br.ufscar.dc.dsw.pojo.Teatro;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
-public class TeatroDAO extends GenericDAO {
+public class TeatroDAO extends GenericDAO<Teatro>{
 
     private final static String LISTAR_TEATROS_SQL = "select"
             + " a.cnpj, a.email, a.nome, a.cidade from Teatro a";
@@ -20,246 +23,77 @@ public class TeatroDAO extends GenericDAO {
             + " from Teatro a"
             + " where a.cidade = ?";
 
-    public TeatroDAO() {
-        try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    protected Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:derby://localhost:1527/Ingressos", "root", "root");
-    }
-
-    public void insert(Teatro teatro) {
-
-        String sql = "INSERT INTO Teatro (email, senha, cnpj, nome, cidade) VALUES (?, ?, ?, ?, ?)";
-
-        try {
-            if (get(teatro.getCnpj()) == null) {
-                Connection conn = this.getConnection();
-                PreparedStatement statement = conn.prepareStatement(sql);
-
-                statement = conn.prepareStatement(sql);
-                statement.setString(1, teatro.getEmail());
-                statement.setString(2, teatro.getSenha());
-                statement.setInt(3, teatro.getCnpj());
-                statement.setString(4, teatro.getNome());
-                statement.setString(5, teatro.getCidade());
-                statement.executeUpdate();
-
-                statement.close();
-                conn.close();
-            }
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public List<Teatro> getAll() {
-
-        List<Teatro> listaTeatros = new ArrayList<>();
-
-        String sql = "SELECT * FROM Teatro";
-
-        try {
-            Connection conn = this.getConnection();
-            Statement statement = conn.createStatement();
-
-            ResultSet resultSet = statement.executeQuery(sql);
-            while (resultSet.next()) {
-                String email = resultSet.getString("email");
-                String senha = resultSet.getString("senha");
-                int cnpj = resultSet.getInt("cnpj");
-                String nome = resultSet.getString("nome");
-                String cidade = resultSet.getString("cidade");
-
-                Teatro teatro = new Teatro(email, senha, cnpj, nome, cidade);
-                listaTeatros.add(teatro);
-            }
-
-            resultSet.close();
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return listaTeatros;
+        EntityManager em = this.getEntityManager();
+        Query q = em.createQuery("select e from Promocao e", Teatro.class);
+        List<Teatro> teatros = q.getResultList();
+        em.close();
+        return teatros;
     }
 
     public void delete(Teatro teatro) {
-        String sql = "DELETE FROM Teatro where cnpj = ?";
-
-        try {
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
-
-            statement.setInt(1, teatro.getCnpj());
-            statement.executeUpdate();
-
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        EntityManager em = this.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        teatro = em.getReference(Teatro.class, teatro.getCnpj());
+        tx.begin();
+        em.remove(teatro);
+        tx.commit();
     }
-
+    
+    @Override
     public void update(Teatro teatro) {
-        String sql = "UPDATE Teatro SET email = ?, senha = ?, nome = ?, cidade = ?";
-        sql += " WHERE cnpj = ?";
-
-        try {
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
-
-            statement.setString(1, teatro.getEmail());
-            statement.setString(2, teatro.getSenha());
-            statement.setInt(5, teatro.getCnpj());
-            statement.setString(3, teatro.getNome());
-            statement.setString(4, teatro.getCidade());
-            statement.executeUpdate();
-
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        EntityManager em = this.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.merge(teatro);
+        tx.commit();
+        em.close();
     }
-
+    
+    @Override
+    public void save(Teatro teatro) {
+        EntityManager em = this.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(teatro);
+        tx.commit();
+        em.close();
+    }
+    
     public Teatro getN(String email, String senha) {
-        Teatro teatro = null;
-        String sql = "SELECT * FROM Teatro WHERE email = ? and senha = ?";
-
-        try {
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
-
-            statement.setString(1, email);
-            statement.setString(2, senha);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                String nome = resultSet.getString("nome");
-                int cnpj = resultSet.getInt("cnpj");
-                String cidade = resultSet.getString("cidade");
-                teatro = new Teatro(email, senha, cnpj, nome, cidade);
-            }
-
-            resultSet.close();
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        EntityManager em = this.getEntityManager();
+        String []vetor  = new String[2];
+        vetor [0] = email;
+        vetor [1] = senha;
+        Teatro teatro = em.find(Teatro.class, vetor);
+        em.close();
         return teatro;
     }
-
+        
     public List<Teatro> listarTodosTeatros() throws SQLException {
-        List<Teatro> ret = new ArrayList<>();
-
-        try (Connection con = this.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(LISTAR_TEATROS_SQL);
-
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Teatro teatro = new Teatro();
-                teatro.setEmail(rs.getString("teatro"));
-                teatro.setSenha(rs.getString("senha"));
-                teatro.setCnpj(rs.getInt("cnpj"));
-                teatro.setNome(rs.getString("nome"));
-                teatro.setCidade(rs.getString("cidade"));
-                ret.add(teatro);
-            }
-        }
-
-        return ret;
-    }
-
-    public List<Teatro> listarTodosTeatrosPorCidade(String cidade) throws SQLException {
-
-        List<Teatro> ret = new ArrayList<>();
-
-        try (Connection con = this.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(LISTAR_TEATROS_POR_CIDADES_SQL);
-
-            ps.setString(1, cidade);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Teatro teatro = new Teatro();
-                teatro.setEmail(rs.getString("email"));
-                teatro.setCnpj(rs.getInt("cnpj"));
-                teatro.setNome(rs.getString("nome"));
-                teatro.setCidade(rs.getString("cidade"));
-                ret.add(teatro);
-            }
-        }
-        return ret;
+        EntityManager em = this.getEntityManager();
+        String s = "select p from Teatro p";
+        TypedQuery<Teatro> q = em.createQuery(s, Teatro.class);
+        return q.getResultList();
     }
 
     public Teatro get(int cnpj) {
-        Teatro teatro = null;
-        String sql = "SELECT * FROM Teatro WHERE cnpj = ?";
-
-        try {
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
-
-            statement.setInt(1, cnpj);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                String email = resultSet.getString("email");
-                String senha = resultSet.getString("senha");
-                String nome = resultSet.getString("nome");
-                String cidade = resultSet.getString("cidade");
-                teatro = new Teatro(email, senha, cnpj, nome, cidade);
-            }
-
-            resultSet.close();
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        EntityManager em = this.getEntityManager();
+        Teatro teatro = em.find(Teatro.class, cnpj);
+        em.close();
         return teatro;
     }
 
     public boolean Verifica(String email, String senha) {
-        String sql1 = "select * from Site where email = ? or senha = ?";
-        String sql2 = "select * from Teatro where email = ? or senha = ?";
-        try {
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql1);
-            statement.setString(1, email);
-            statement.setString(2, senha);
-            PreparedStatement st = conn.prepareStatement(sql2);
-            st.setString(1, email);
-            st.setString(2, senha);
-            ResultSet resultSet = statement.executeQuery();
-            ResultSet rs = st.executeQuery();
-            if (resultSet.next() || rs.next()) {
-                return false;
-            } else {
-                return true;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+        EntityManager em = this.getEntityManager();
+        String s1 = "select * from Site where email = :nomeS1 or senha = :nomeS2";
+        String s2 = "select * from Teatro where email = :nomeT1 or senha = :nomeT2";
+        TypedQuery<Site> q1 = em.createQuery(s1, Site.class);
+        q1.setParameter("nomeS1", email);
+        q1.setParameter("nomeS2", senha);
+        TypedQuery<Teatro> q2 = em.createQuery(s1, Teatro.class);
+        q2.setParameter("nomeT1", email);
+        q2.setParameter("nomeT2", senha);
+        return !((q1.getResultList() != null) || (q2.getResultList() != null));
     }
-
-    @Override
-    void save(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    void update(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    void delete(Object t) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
 }
