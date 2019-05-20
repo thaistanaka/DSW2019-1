@@ -21,42 +21,42 @@
             </div>  
             <hr/>  
             <div class="form-group">  
-                <h:outputLabel for="title" class="control-label col-sm-4">#{msg['page.address']}</h:outputLabel>  
+                <h:outputLabel for="endereco" class="control-label col-sm-4">#{msg['page.address']}</h:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputText id="title" value="#{livroBean.livro.titulo}" class="form-control"   
-                                 validatorMessage="#{msg['book.title.required.message']}">
+                    <h:inputText id="endereco" value="#{promocaoBean.promocao.endereco}" class="form-control"   
+                                 validatorMessage="#{msg['book.title.required.message']}"> msg de erro
                         <f:validateRequired/>
                     </h:inputText>
-                    <h:message for="title"/>
+                    <h:message for="endereco"/>
                 </div>  
             </div>  
                         
             <div class="form-group">  
-                <h:outputLabel for="autor" class="control-label col-sm-4">#{msg['book.author.label']}</h:outputLabel>  
+                <h:outputLabel for="cnpj" class="control-label col-sm-4">#{msg['page.cnpj']}</h:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputText id="autor" value="#{livroBean.livro.autor}" class="form-control"   
+                    <h:inputText id="cnpj" value="#{promocaoBean.promocao.cnpj}" class="form-control"   
                                  validatorMessage="#{msg['book.author.required.message']}">
                         <f:validateRequired/>
                     </h:inputText>
-                    <h:message for="autor"/>
+                    <h:message for="cnpj"/>
                 </div>  
             </div>  
             <div class="form-group">  
-                <h:outputLabel for="ano" class="control-label col-sm-4">#{msg['book.year.label']}</h:outputLabel>  
+                <h:outputLabel for="nome" class="control-label col-sm-4">#{msg['page.name']}</h:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputText id="ano" value="#{livroBean.livro.ano}" class="form-control"   
+                    <h:inputText id="nome" value="#{promocaoBean.promocao.nome}" class="form-control"   
                                    validatorMessage="#{msg['book.year.required.message']}"
                                    a:type="Number" a:min="1500">
                         <f:validateRequired/>
                         
                     </h:inputText>
-                    <h:message for="ano"/>
+                    <h:message for="nome"/>
                 </div>  
             </div>
             <div class="form-group">  
-                <h:outputLabel for="preco" class="control-label col-sm-4">#{msg['book.price.label']}</h:outputLabel>  
+                <h:outputLabel for="preco" class="control-label col-sm-4">#{msg['page.price']}</h:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputText id="preco" value="#{livroBean.livro.preco}" class="form-control"   
+                    <h:inputText id="preco" value="#{promocaoBean.promocao.preco}" class="form-control"   
                                  validatorMessage="#{msg['book.price.required.message']}"
                                  a:type="Number" a:step="any" a:min="0.01">
                         <f:validateRequired/>
@@ -66,26 +66,36 @@
             
             </div>
             <div class="form-group">  
-                <h:outputLabel for="publisher" class="control-label col-sm-4">#{msg['book.publisher.label']}</h:outputLabel>  
+                <h:outputLabel for="dia" class="control-label col-sm-4">#{msg['page.day']}</h:outputLabel>  
                 <div class="col-sm-4">
-                    <h:selectOneMenu id="publisher" value="#{livroBean.livro.editora}">
+                    <h:selectOneMenu id="dia" value="#{promocaoBean.promocao.dia}">
                         <f:selectItems value="#{editoraBean.editoras}"/>
                         <f:converter converterId="EditoraConverter" />
                     </h:selectOneMenu>
-                    <h:message for="publisher"/>
+                    <h:message for="dia"/>
                 </div>  
-            </div>            
+            </div>
+            <div class="form-group">  
+                <h:outputLabel for="hora" class="control-label col-sm-4">#{msg['page.hour']}</h:outputLabel>  
+                <div class="col-sm-4">
+                    <h:selectOneMenu id="hora" value="#{promocaoBean.promocao.hora}">
+                        <f:selectItems value="#{editoraBean.editoras}"/>
+                        <f:converter converterId="EditoraConverter" />
+                    </h:selectOneMenu>
+                    <h:message for="hora"/>
+                </div>  
+            </div>
             <div class="form-group">  
                 <div class="col-sm-4"></div>  
                 <div class="col-sm-4">  
                     <div class="col-sm-2">
-                        <h:commandButton value="#{msg['book.save.command.label']}" action="#{livroBean.salva()}"
+                        <h:commandButton value="#{msg['save']}" action="#{promocaoBean.salva()}"
                               class="btn btn-primary" style="width: 80px;">
                          </h:commandButton>  
                     </div>  
                     <br/>
                     <div class="col-sm-2">  
-                        <h:link outcome="index" value="#{msg['book.list.command.label']}" class="btn btn-success" />  
+                        <h:link outcome="index" value="#{msg['return']}" class="btn btn-success" />  
                     </div>  
                 </div>  
             </div>  
