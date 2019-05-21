@@ -1,16 +1,28 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{msg['page.title']}</title>
+        <h:outputStylesheet library="css" name="estilo.css"/>
+    </h:head>
+    <h:body>
+        <%
+            String nome_certo = "admin";
+            String senha_certo = "admin";
+
+            String nome = request.getParameter("nome");
+            String senha = request.getParameter("senha");
+
+            if (!((nome.equals(nome_certo)) && (senha.equals(senha_certo)))){
+                response.sendRedirect("/Ingressos/loginAdmin.jsp");
+            }
+        %>
+        <p>#{msg["admin.welcome"]}</p>
+        <a href="teatroCRUD.xhtml">#{msg["mod.theater.data"]}</a><br/>
+        <a href="siteCRUD.xhtml">#{msg["mod.site.data"]}</a><br/>
+        <a href="/Ingressos/loginAdmin.xhtml">#{msg["return"]}</a>
+    </h:body>
 </html>
+</f:bundle>

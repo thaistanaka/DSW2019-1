@@ -10,11 +10,14 @@
     <h:body>
         <h1>#{msg['index.name']}</h1>
         <p>#{msg['index.explanation']}</p>
-        <a href="loginAdmin.xhtml">#{msg['acess.admin']}</a><br/>
-        <a href="loginTeatro.xhtml">#{msg['acess.theater']}</a><br/>
-        <a href="loginSite.xhtml">#{msg['acess.site']}</a><br/>
-        <a href="TeatrosPorCidade/teatrosPorCidade.xhtml">#{msg['theater.city']}</a><br/>
-        <a href="Teatro/listaTeatros.xhtml">#{msg['theaters']}</a><br/>
-        <a href="PromocoesDoTeatro/promocoesDeTeatro.xhtml">#{msg['theater.sale']}</a><br/>
+        <h:form>
+        <h:commandLink action="loginAdmin">#{msg['acess.admin']}</h:commandLink><br/>
+        <h:commandLink action="loginTeatro">#{msg['acess.theater']}</h:commandLink><br/>
+        <h:commandLink action="loginSite">#{msg['acess.site']}</h:commandLink><br/>
+        <h:commandLink action="TeatrosPorCidade/teatrosPorCidade">#{msg['theater.city']}</h:commandLink><br/>
+        <h:commandLink action="Teatro/listaTeatros">#{msg['theaters']}</h:commandLink><br/>
+        <h:commandLink action="PromocoesDoTeatro/promocoesDeTeatro">#{msg['theater.sale']}</h:commandLink><br/>
+    </h:form>
+    
     </h:body>
 </html>
