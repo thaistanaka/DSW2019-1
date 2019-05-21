@@ -18,8 +18,10 @@
             <h:outputLabel for='password'>#{msg["user.password"]}</h:outputLabel>
             <h:inputText id='password' value='#{site.senha}'></h:inputText>
             
-            <h:outputLink value="/Ingressos2/index.xhtml" >#{msg['return']}</h:outputLink><br/>
             <h:commandButton value="submit" action="index.xhtml" class='btn btn-primary'>#{msg["enter"]}</h:commandButton>
+        </h:form>
+        <h:form>
+        <h:outputLink value="index.xhtml" >#{msg['return']}</h:outputLink><br/>
         </h:form>
     </h:body>
 </html>
