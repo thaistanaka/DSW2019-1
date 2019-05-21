@@ -8,17 +8,6 @@
         <h:outputStylesheet library="css" name="estilo.css"/>
     </h:head>
     <h:body>
-        <%
-            String nome_certo = "admin";
-            String senha_certo = "admin";
-
-            String nome = request.getParameter("nome");
-            String senha = request.getParameter("senha");
-
-            if (!((nome.equals(nome_certo)) && (senha.equals(senha_certo)))){
-                response.sendRedirect("/Ingressos/loginAdmin.jsp");
-            }
-        %>
         <p>#{msg["admin.welcome"]}</p>
         <a href="teatroCRUD.xhtml">#{msg["mod.theater.data"]}</a><br/>
         <a href="siteCRUD.xhtml">#{msg["mod.site.data"]}</a><br/>

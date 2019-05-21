@@ -8,12 +8,13 @@
         <h:outputStylesheet name="/css/estilo.css"/>
     </h:head>
     <h:body>
-        <h1>#{msg["admin.login"]}</h1>
+        <h1>#{msg['admin.login']}</h1>
         <h:outputLabel for="name" class="control-label col-sm-4">#{msg['user.name']}</h:outputLabel>
-        <div><inputText id='name' value="name" class="form-control"></inputText></div>
-        <div>#{msg["user.password"]} <input type="password" name="senha"></input></div>
-        <a href="/Ingressos/index.xhtml">#{msg["return"]}</a>
-        <h:commandButton action="submit" value="#{msg["enter"]}">
-        </h:commandButton>
+        <div><inputText id="name" value="#{adminBean.nome}" class="form-control"></inputText></div>
+        
+        <h:outputLabel for="senha" class="control-label col-sm-4">#{msg['user.password']}</h:outputLabel>
+        <div><inputSecret id="senha" value="#{adminBean.senha}" class="form-control"></inputSecret></div>
+        <h:commandButton id="submit" value="#{msg['return']}" action="index"/>
+        <h:commandButton id="submit" value="#{msg['enter']}" action="#{adminBean.login}"/>
     </h:body>
 </html>
