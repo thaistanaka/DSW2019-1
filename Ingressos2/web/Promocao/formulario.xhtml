@@ -24,7 +24,7 @@
                 <h:outputLabel for="endereco" class="control-label col-sm-4">#{msg['page.address']}</h:outputLabel>  
                 <div class="col-sm-4">  
                     <h:inputText id="endereco" value="#{promocaoBean.promocao.endereco}" class="form-control"   
-                                 validatorMessage="#{msg['book.title.required.message']}"> msg de erro
+                                 validatorMessage="#{msg['book.title.required.message']}">
                         <f:validateRequired/>
                     </h:inputText>
                     <h:message for="endereco"/>
@@ -45,8 +45,7 @@
                 <h:outputLabel for="nome" class="control-label col-sm-4">#{msg['page.name']}</h:outputLabel>  
                 <div class="col-sm-4">  
                     <h:inputText id="nome" value="#{promocaoBean.promocao.nome}" class="form-control"   
-                                   validatorMessage="#{msg['book.year.required.message']}"
-                                   a:type="Number" a:min="1500">
+                                   validatorMessage="#{msg['book.year.required.message']}">
                         <f:validateRequired/>
                         
                     </h:inputText>
@@ -69,8 +68,7 @@
                 <h:outputLabel for="dia" class="control-label col-sm-4">#{msg['page.day']}</h:outputLabel>  
                 <div class="col-sm-4">
                     <h:selectOneMenu id="dia" value="#{promocaoBean.promocao.dia}">
-                        <f:selectItems value="#{editoraBean.editoras}"/>
-                        <f:converter converterId="EditoraConverter" />
+                        <f:selectItems value="#{promocaoBean.promocoes}"/>
                     </h:selectOneMenu>
                     <h:message for="dia"/>
                 </div>  
@@ -79,8 +77,7 @@
                 <h:outputLabel for="hora" class="control-label col-sm-4">#{msg['page.hour']}</h:outputLabel>  
                 <div class="col-sm-4">
                     <h:selectOneMenu id="hora" value="#{promocaoBean.promocao.hora}">
-                        <f:selectItems value="#{editoraBean.editoras}"/>
-                        <f:converter converterId="EditoraConverter" />
+                        <f:selectItems value="#{promocaoBean.promocoes}"/>
                     </h:selectOneMenu>
                     <h:message for="hora"/>
                 </div>  
