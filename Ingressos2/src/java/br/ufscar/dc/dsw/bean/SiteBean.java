@@ -7,130 +7,64 @@ package br.ufscar.dc.dsw.bean;
 
 import br.ufscar.dc.dsw.dao.SiteDAO;
 import br.ufscar.dc.dsw.pojo.Site;
-import java.io.IOException;
+import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author Windows
  */
-@WebServlet(urlPatterns = "/site/*")
-public class SiteBean extends HttpServlet {
+@ManagedBean
+@SessionScoped
+public class SiteBean implements Serializable {
 
-    private SiteDAO dao;
+    private Site site;
 
-    @Override
-    public void init() {
-        dao = new SiteDAO();
+   public String lista() {
+        return "site/index.xhtml";
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException {
-        doGet(request, response);
+    public String cadastra() {
+        site = new Site();
+        return "form.xhtml";
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException {
-        String action = request.getRequestURI();
-        action = action.split("/")[action.split("/").length - 1];
-
-        try {
-            switch (action) {
-                case "cadastro":
-                    apresentaFormCadastro(request, response);
-                    break;
-                case "insercao":
-                    insere(request, response);
-                    break;
-                case "edicao":
-                    apresentaFormEdicao(request, response);
-                    break;
-                case "atualizacao":
-                    atualize(request, response);
-                    break;
-                case "remocao":
-                    remove(request, response);
-                    break;
-                default:
-                    lista(request, response);
-                    break;
-            }
-        } catch (RuntimeException | IOException | ServletException e) {
-            throw new ServletException(e);
-        }
+    public String edita(String endereco) {
+        SiteDAO dao = new SiteDAO();
+        site = dao.get(endereco);
+        return "site/formulario.xhtml";
     }
 
-    private void lista(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        List<Site> listaSites = dao.getAll();
-        request.setAttribute("listaSites", listaSites);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Usuario/AdminUser/siteCRUD.xhtml");
-        dispatcher.forward(request, response);
-    }
-
-    private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Site/formulario.xhtml");
-        dispatcher.forward(request, response);
-    }
-
-    private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String endereco = request.getParameter("endereco");
-        Site site = dao.get(endereco);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/Site/formulario.xhtml");
-        request.setAttribute("site", site);
-        dispatcher.forward(request, response);
-    }
-
-    private void insere(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        String email = request.getParameter("email");
-        String senha = request.getParameter("senha");
-        String endereco = request.getParameter("endereco");
-        String nome = request.getParameter("nome");
-
-        Integer telefone = Integer.parseInt(request.getParameter("telefone"));
-        if (dao.Verifica(email, senha)) {
-            Site site = new Site(email, nome, endereco, senha, telefone);
+    public String salva() {
+        SiteDAO dao = new SiteDAO();
+        if (site.getEndereco() == null) {
             dao.save(site);
+        } else {
+            dao.update(site);
         }
-
-        response.sendRedirect("listaSite");
+        return "index.xhtml";
     }
 
-    private void atualize(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        request.setCharacterEncoding("UTF-8");
-        String email = request.getParameter("email");
-        String senha = request.getParameter("senha");
-        String endereco = request.getParameter("endereco");
-        String nome = request.getParameter("nome");
-        Integer telefone = Integer.parseInt(request.getParameter("telefone"));
-
-        Site site = new Site(email, nome, endereco, senha, telefone);
-        dao.update(site);
-
-        response.sendRedirect("listaSite");
-    }
-
-    private void remove(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        String endereco = request.getParameter("endereco");
-
-        Site site = new SiteDAO().get(endereco);
+    public String delete(Site site) {
+        SiteDAO dao = new SiteDAO();
         dao.delete(site);
-        response.sendRedirect("listaSite");
+        return "index.xhtml";
+    }
+
+    public String volta() {
+        return "/index.xhtml?faces-redirect=true";
+    }
+
+    public List<Site> getSites() throws SQLException {
+        SiteDAO dao = new SiteDAO();
+        return dao.getAll();
+    }
+
+    public Site getSite() {
+        return site;
     }
 
 }
