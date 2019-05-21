@@ -66,19 +66,66 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
     }
     
     public List<Promocao> listarTodasPromocoesDeUmTeatro(String st) throws SQLException {
+        
+        List<Promocao> ret = new ArrayList<>();
         EntityManager em = this.getEntityManager();
-        String s = "select p from Promocao p where p.cnpj = :nome";
-        TypedQuery<Promocao> q = em.createQuery(s, Promocao.class);
+        String s = "select a.nome, a.endereco_site, a.preco, a.dia, a.hora, a.cnpj_teatro,"
+            + " u.cidade, u.email, u.nome"
+            + " from Promocao a inner join Teatro u on a.cnpj_teatro = u.cnpj"
+            + " where a.cnpj_teatro = :nome";
+        
+        TypedQuery<Object[]> q = em.createQuery(s, Object[].class);
         q.setParameter("nome", st);
-        return q.getResultList();
+        List<Object[]> results = q.getResultList();
+        
+        results.stream().map((result) -> {
+            Promocao promocao = new Promocao();
+            Teatro teatro = new Teatro();
+            promocao.setEndereco(result[1].toString());
+            promocao.setCnpj(Integer.parseInt(result[5].toString()));
+            promocao.setNome(result[0].toString());
+            promocao.setPreco(Float.parseFloat(result[2].toString()));
+            promocao.setDia(result[3].toString());
+            promocao.setHora(result[4].toString());
+            teatro.setEmail(result[7].toString());
+            teatro.setNome(result[8].toString());
+            teatro.setCidade(result[6].toString());
+            return promocao;
+        }).forEachOrdered(ret::add);
+        
+        return ret;
     }
     
     public List<Promocao> listarTodasPromocoesDeUmSite(String endereco) throws SQLException {
+        List<Promocao> ret = new ArrayList<>();
         EntityManager em = this.getEntityManager();
-        String s = "select p from Promocao p where p.endereco = :nome";
-        TypedQuery<Promocao> q = em.createQuery(s, Promocao.class);
+        String s = "select"
+            + " a.nome, a.endereco_site, a.preco, a.dia, a.hora, a.cnpj_teatro,"
+            + " u.email, u.nome, u.telefone"
+            + " from Promocao a inner join Site u on a.endereco_site = u.endereco"
+            + " where a.endereco_site = ?";
+        
+        TypedQuery<Object[]> q = em.createQuery(s, Object[].class);
         q.setParameter("nome", endereco);
-        return q.getResultList();
+        List<Object[]> results = q.getResultList();
+        
+        results.stream().map((result) -> {
+            Promocao promocao = new Promocao();
+            Site site = new Site();
+            promocao.setEndereco(result[1].toString());
+            promocao.setCnpj(Integer.parseInt(result[5].toString()));
+            promocao.setNome(result[0].toString());
+            promocao.setPreco(Float.parseFloat(result[2].toString()));
+            promocao.setDia(result[3].toString());
+            promocao.setHora(result[4].toString());
+            site.setEmail(result[6].toString());
+            site.setNome(result[7].toString());
+            site.setTelefone(Integer.parseInt(result[8].toString()));
+            return promocao;
+        }).forEachOrdered(ret::add);
+        
+        return ret;
+        
     }
     
     public boolean Verifica(String endereco,int cnpj,String hora, String dia) throws SQLException{
@@ -89,12 +136,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         q.setParameter("nome2", cnpj);
         q.setParameter("nome3", hora);
         q.setParameter("nome4", dia);
-        if(q.getResultList() != null){
-            return false;
-            }
-        else{
-            return true;
-        }
+        return q.getResultList() == null;
     }
     
     @Override
