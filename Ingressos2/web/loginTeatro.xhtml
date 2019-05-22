@@ -9,6 +9,7 @@
     </h:head>
     <h:body>
         <h1>#{msg["theater.login"]}</h1>
+        <h:form>
         <div><h:outputLabel for='email' class="control-label col-sm-4">#{msg["page.email"]}</h:outputLabel>
             <h:inputText id='email' value='#{site.endereco}' class="form-control"></h:inputText></div>
 
@@ -16,6 +17,7 @@
             <h:inputSecret id='password' value='#{site.senha}' class="form-control"></h:inputSecret></div>
 
         <h:commandButton id="submit" value='#{msg["enter"]}' action="index.xhtml" class='btn btn-primary'></h:commandButton>
+        </h:form>
         <h:button outcome="index" value="#{msg['return']}"/>
     </h:body>
 </html>
