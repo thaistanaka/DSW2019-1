@@ -11,7 +11,7 @@ public class AdminBean {
     
     public String login(){
         if("admin".equals(admin.getNome()) && "admin".equals(admin.getSenha())){
-            return "usuario/adminUser/pageAdmin.xhtml";
+            return "Usuario/AdminUser/pageAdmin.xhtml";
         }
         else
             return "loginAdmin.xhtml";              
