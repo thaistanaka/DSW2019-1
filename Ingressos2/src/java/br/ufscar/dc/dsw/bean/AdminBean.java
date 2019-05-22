@@ -1,33 +1,27 @@
 package br.ufscar.dc.dsw.bean;
 
+import br.ufscar.dc.dsw.pojo.Admin;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 @ManagedBean
 @SessionScoped
 public class AdminBean {
-    private String nome = "";
-    private String senha = "";
+       private Admin admin = new Admin();
     
     public String login(){
-        if(nome.equals("admin") && senha.equals("admin")){
+        if("admin".equals(admin.getNome()) && "admin".equals(admin.getSenha())){
             return "usuario/adminUser/pageAdmin.xhtml";
         }
         else
             return "loginAdmin.xhtml";              
     }
-    
-    
-    public String getNome() {
-        return nome;
+ 
+    public Admin getAdmin() {
+        return admin;
     }
-    public void setNome(String nome) {
-        this.nome= nome;
-    }
-    public String getSenha() {
-        return senha;
-    }
-    public void setSenha(String senha) {
-        this.senha = senha;
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
     }
 }
