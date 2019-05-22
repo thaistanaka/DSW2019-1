@@ -41,23 +41,23 @@
                     <f:facet name="header">
                         <h:outputText value="#{msg['page.price']}" />
                     </f:facet>
-                    <h:outputText id="preco" value="#{palpite.preco}" />
+                    <h:outputText id="preco" value="#{promocao.preco}" />
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{msg['page.day']}" />
                     </f:facet>
-                    <h:outputText id="dia" value="#{palpite.dia}" />
+                    <h:outputText id="dia" value="#{promocao.dia}" />
                 </h:column>
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{msg['page.hour']}" />
                     </f:facet>
-                    <h:outputText id="hora" value="#{palpite.hora}" />
+                    <h:outputText id="hora" value="#{promocao.hora}" />
                 </h:column>
             </h:dataTable>
             <div class="col-sm-2">  
-                <h:link outcome="index" value="#{msg['return']}" class="btn btn-success" />  
+                <h:button outcome="index" value="#{msg['return']}"/>
             </div>
         </h:form>
     </h:body>
