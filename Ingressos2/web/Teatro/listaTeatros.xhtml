@@ -13,32 +13,32 @@
         <br/>
         <h:form>
                 <h:dataTable id="teatros"
-                             summary="#{msg['sale.in.theater']}"
-                             value="#{listaPromocoes.listaPromocoes}"
+                             summary="#{msg['theater.list']}"
+                             value="#{teatroBean.getTeatros()}"
                              var="teatro">
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg['page.cnpj']}" />
                         </f:facet>
-                        <h:outputText id="endereco" value="#{teatro.cnpj}" />
+                        <h:outputText id="cnpj" value="#{teatro.cnpj}" />
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg['page.name']}" />
                         </f:facet>
-                        <h:outputText id="cnpj" value="#{teatro.nome}" />
+                        <h:outputText id="nome" value="#{teatro.nome}" />
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg['page.email']}" />
                         </f:facet>
-                        <h:outputText id="nome" value="#{teatro.email}" />
+                        <h:outputText id="email" value="#{teatro.email}" />
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg['page.city']}" />
                         </f:facet>
-                        <h:outputText id="preco" value="#{teatro.cidade}" />
+                        <h:outputText id="cidade" value="#{teatro.cidade}" />
                     </h:column>
                 </h:dataTable>
                 <div class="col-sm-2">  

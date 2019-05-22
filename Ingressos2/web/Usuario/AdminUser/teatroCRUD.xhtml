@@ -1,16 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>#{msg['page.title']}</title>
+        <h:outputStylesheet library="css" name="estilo.css"/>
+    </h:head>
+    <h:body>
+        <h1>#{msg['theaters']}</h1>
+        <hr/>
+        <br/>
+        <h:form>
+                <h:dataTable id="teatros"
+                             summary="#{msg['theater.list']}"
+                             value="#{teatroBean.getTeatros()}"
+                             var="teatro">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['page.cnpj']}" />
+                        </f:facet>
+                        <h:outputText id="cnpj" value="#{teatro.cnpj}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['page.name']}" />
+                        </f:facet>
+                        <h:outputText id="nome" value="#{teatro.nome}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['page.email']}" />
+                        </f:facet>
+                        <h:outputText id="email" value="#{teatro.email}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{msg['page.city']}" />
+                        </f:facet>
+                        <h:outputText id="cidade" value="#{teatro.cidade}" />
+                    </h:column>
+                    <h:column>  
+                    <f:facet name="header"></f:facet>  
+                    <h:commandButton action = "#{teatroBean.edita(teatro)}" value="#{msg['edit']}" class="btn btn-primary">  
+                    </h:commandButton>  
+                </h:column>  
+                <h:column>  
+                    <f:facet name="header"></f:facet>  
+                    <h:commandButton action = "#{teatroBean.delete(teatro)}" value="#{msg['remove']}" 
+                                     onclick="return confirm('#{msg['confirm']}');"
+                                     class="btn btn-danger">  
+                    </h:commandButton>  
+                </h:column>
+                </h:dataTable>
+                <div class="col-sm-2">  
+                    <h:button outcome="Ingressos2/faces/index.xhtml" value="#{msg['return']}"/> 
+                </div>
+        </h:form>
+    </h:body>
 </html>
