@@ -5,14 +5,20 @@
  */
 package br.ufscar.dc.dsw.pojo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author Windows
  */
-public class Teatro {
+@Entity
+public class Teatro implements Serializable{
 
     private String email;
     private String senha;
+    @Id
     private int cnpj;
     private String nome;
     private String cidade;    

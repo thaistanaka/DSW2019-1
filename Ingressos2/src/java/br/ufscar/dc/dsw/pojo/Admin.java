@@ -5,7 +5,13 @@
  */
 package br.ufscar.dc.dsw.pojo;
 
-public class Admin {
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Admin implements Serializable{
+    @Id
     private String nome;
     private String senha;
     

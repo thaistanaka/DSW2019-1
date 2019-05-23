@@ -5,18 +5,23 @@
  */
 package br.ufscar.dc.dsw.pojo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+
 /**
  *
  * @author Windows
  */
-public class Promocao {
-    
-    private String endereco;
+@Entity @IdClass(PromocaoKey.class)
+public class Promocao implements Serializable {
+    @Id private String endereco;
     private int cnpj;
     private String nome;
     private float preco;
-    private String dia; 
-    private String hora;
+    @Id private String dia;
+    @Id private String hora;
 
     public Promocao(String endereco, int cnpj, String nome, float preco, String dia, String hora) {
         this.endereco = endereco;
@@ -85,4 +90,5 @@ public class Promocao {
     public void setHora(String hora) {
         this.hora = hora;
     }
+   
 }

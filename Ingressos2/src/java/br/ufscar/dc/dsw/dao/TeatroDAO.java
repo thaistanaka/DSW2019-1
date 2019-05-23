@@ -13,9 +13,19 @@ import javax.persistence.TypedQuery;
 public class TeatroDAO extends GenericDAO<Teatro>{
 
     @Override
+    public void save(Teatro teatro) {
+        EntityManager em = this.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(teatro);
+        tx.commit();
+        em.close();
+    }
+    
+    @Override
     public List<Teatro> getAll() {
         EntityManager em = this.getEntityManager();
-        Query q = em.createQuery("select e from Promocao e", Teatro.class);
+        Query q = em.createQuery("select e from Teatro e", Teatro.class);
         List<Teatro> teatros = q.getResultList();
         em.close();
         return teatros;
@@ -37,16 +47,6 @@ public class TeatroDAO extends GenericDAO<Teatro>{
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         em.merge(teatro);
-        tx.commit();
-        em.close();
-    }
-    
-    @Override
-    public void save(Teatro teatro) {
-        EntityManager em = this.getEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        tx.begin();
-        em.persist(teatro);
         tx.commit();
         em.close();
     }

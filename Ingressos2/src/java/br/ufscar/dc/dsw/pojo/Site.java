@@ -5,14 +5,20 @@
  */
 package br.ufscar.dc.dsw.pojo;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author Windows
  */
-public class Site { //do trabalho
+@Entity
+public class Site implements Serializable{ //do trabalho
 
     private String email;
     private String senha;
+    @Id
     private String endereco;
     private String nome;
     private int telefone;
