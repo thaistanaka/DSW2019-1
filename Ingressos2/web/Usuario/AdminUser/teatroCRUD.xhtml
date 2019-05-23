@@ -8,7 +8,8 @@
         <h:outputStylesheet library="css" name="estilo.css"/>
     </h:head>
     <h:body>
-        <h1>#{msg['theaters']}</h1>
+        <h1>#{msg['manager.theater']}</h1>
+        <h:commandButton action="#{teatroBean.cadastra()}" value="#{msg['theater.add']}"/>
         <hr/>
         <br/>
         <h:form>

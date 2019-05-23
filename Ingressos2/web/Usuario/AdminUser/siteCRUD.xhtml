@@ -8,7 +8,11 @@
         <h:outputStylesheet library="css" name="estilo.css"/>
     </h:head>
     <h:body>
-        <h1>#{msg['theaters']}</h1>
+        <h1>#{msg['manager.site']}</h1>
+        <h2>
+            <h:commandButton action="#{siteBean.cadastra()}" value="#{msg['site.add']}"/>
+
+        </h2>
         <hr/>
         <br/>
         <h:form>
