@@ -14,7 +14,7 @@
            <h:outputLabel for="cnpj" class="control-label col-sm-4">#{msg["page.cnpj"]}</h:outputLabel>
            <h:inputText id="cnpj" value="#{promocaoBean.promocao.cnpj}" class="form-control"></h:inputText>
             
-            <h:commandButton value="#{msg["enter"]}" action="#{promocaoBean.lista_promocoes()}" class="btn btn-primary"/>
+           <h:commandButton id="submit" value="#{msg["enter"]}" action="#{promocaoBean.getPromocoes(cnpj)}" class="btn btn-primary"></h:commandButton>>
         </h:form>
         <h:button outcome="Ingressos2/faces/index.xhtml" value="#{msg['return']}"/> 
     </h:body>

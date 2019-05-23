@@ -14,7 +14,7 @@
             <h:inputText id="nome" value="#{teatroBean.teatro.nome}">
             </h:inputText>
                         
-            <h:commandButton value="#{msg["enter"]}" action="#{teatroBean.lista_teatros_cidade}" class="btn btn-primary"/>
+            <h:commandButton id="submit" value="#{msg["enter"]}" action="#{teatroBean.lista_teatros_cidade()}" class="btn btn-primary"/>
         </h:form>
         
         <h:button outcome="index" value="#{msg['return']}"/> 

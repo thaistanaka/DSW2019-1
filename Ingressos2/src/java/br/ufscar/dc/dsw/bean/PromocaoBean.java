@@ -50,8 +50,14 @@ public class PromocaoBean implements Serializable {
         PromocaoDAO dao = new PromocaoDAO();
         return dao.getAll();
     }
+    
+    public List<Promocao> getPromocoes(String cnpj) throws SQLException {
+        PromocaoDAO dao = new PromocaoDAO();
+        return dao.listarTodasPromocoesDeUmTeatro(cnpj);
+    }
 
     public Promocao getPromocao() {
         return promocao;
     }
+    
 }
