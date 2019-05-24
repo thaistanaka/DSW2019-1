@@ -22,6 +22,10 @@ import javax.faces.bean.SessionScoped;
 public class TeatroBean implements Serializable {
 
     private Teatro teatro;
+    
+    public TeatroBean(){
+        teatro = new Teatro();
+    }
 
     public String lista() {
         return "teatro/index.xhtml";
@@ -65,5 +69,15 @@ public class TeatroBean implements Serializable {
 
     public Teatro getTeatro() {
         return teatro;
+    }
+    
+    public String login() {
+        TeatroDAO dao = new TeatroDAO();
+        if (dao.verifica(teatro.getEmail(), teatro.getSenha())) {
+            return "Usuario/TeatroUser/pageTeatro.xhtml";
+        } else {
+            return "loginTeatro.xhtml";
+        }
+
     }
 }

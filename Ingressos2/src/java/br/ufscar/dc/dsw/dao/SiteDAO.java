@@ -64,20 +64,10 @@ public class SiteDAO extends GenericDAO<Site>{
         em.close();
         return site;
     }
-    
-    public Site getN(String email, String senha) {
-        EntityManager em = this.getEntityManager();
-        String []vetor  = new String[2];
-        vetor [0] = email;
-        vetor [1] = senha;
-        Site site = em.find(Site.class, vetor);
-        em.close();
-        return site;
-    }
 
     public boolean verifica(String email, String senha) {
         EntityManager em = this.getEntityManager();
-        String s1 = "select * from Site where email = :nomeS1 or senha = :nomeS2";
+        String s1 = "select s from Site s where s.email = :nomeS1 and s.senha = :nomeS2";
         TypedQuery<Site> q1 = em.createQuery(s1, Site.class);
         q1.setParameter("nomeS1", email);
         q1.setParameter("nomeS2", senha);

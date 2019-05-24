@@ -1,6 +1,5 @@
 package br.ufscar.dc.dsw.dao;
 
-import br.ufscar.dc.dsw.pojo.Site;
 import br.ufscar.dc.dsw.pojo.Teatro;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -112,16 +111,12 @@ public class TeatroDAO extends GenericDAO<Teatro>{
         return teatro;
     }
 
-    public boolean Verifica(String email, String senha) {
+    public boolean verifica(String email, String senha) {
         EntityManager em = this.getEntityManager();
-        String s1 = "select * from Site where email = :nomeS1 or senha = :nomeS2";
-        String s2 = "select * from Teatro where email = :nomeT1 or senha = :nomeT2";
-        TypedQuery<Site> q1 = em.createQuery(s1, Site.class);
-        q1.setParameter("nomeS1", email);
-        q1.setParameter("nomeS2", senha);
+        String s2 = "select t from Teatro t where t.email = :nome and t.senha = :nome";
         TypedQuery<Teatro> q2 = em.createQuery(s2, Teatro.class);
-        q2.setParameter("nomeT1", email);
-        q2.setParameter("nomeT2", senha);
-        return !(q1.getResultList() != null || q2.getResultList() != null);
+        q2.setParameter("nome", email);
+        q2.setParameter("nome", senha);
+        return q2.getResultList() != null;
     }
 }

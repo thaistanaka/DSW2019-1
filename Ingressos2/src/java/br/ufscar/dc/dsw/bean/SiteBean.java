@@ -23,6 +23,9 @@ public class SiteBean implements Serializable {
 
     private Site site;
 
+    public SiteBean() {
+        site = new Site();
+    }
     public String lista() {
         return "site/index.xhtml";
     }
@@ -69,7 +72,7 @@ public class SiteBean implements Serializable {
 
     public String login() {
         SiteDAO dao = new SiteDAO();
-        if (dao.getN(site.getEmail(), site.getSenha()) != null) {
+        if (dao.verifica(site.getEmail(), site.getSenha())) {
             return "Usuario/SiteUser/pageSite.xhtml";
         } else {
             return "loginSite.xhtml";
