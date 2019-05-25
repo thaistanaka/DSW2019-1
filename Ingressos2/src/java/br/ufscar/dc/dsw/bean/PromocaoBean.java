@@ -7,6 +7,8 @@ package br.ufscar.dc.dsw.bean;
 
 import br.ufscar.dc.dsw.dao.PromocaoDAO;
 import br.ufscar.dc.dsw.pojo.Promocao;
+import br.ufscar.dc.dsw.pojo.Site;
+import br.ufscar.dc.dsw.pojo.Teatro;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
@@ -26,6 +28,8 @@ public class PromocaoBean implements Serializable {
     
     public PromocaoBean(){
         promocao = new Promocao();
+        promocao.setTeatro(new Teatro());
+        promocao.setSite(new Site());
     }
 
     public String lista() {
@@ -62,8 +66,8 @@ public class PromocaoBean implements Serializable {
     
     public List<Promocao> listaPromocaoTeatro() throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
-        String nome = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("cnpj");
-        return dao.listarTodasPromocoesDeUmTeatro(nome);
+        String teatro = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("cnpj");
+        return dao.listarTodasPromocoesDeUmTeatro(teatro);
     }
 
     public Promocao getPromocao() {

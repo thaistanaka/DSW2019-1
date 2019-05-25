@@ -14,19 +14,19 @@
         <h:form>
                 <h:dataTable id="promocoes"
                              summary="#{msg['sale.list']}"
-                             value="#{promocaoBean.getPromocao()}"
+                             value="#{promocaoBean.promocoes}"
                              var="promocao">
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg['page.adress']}" />
                         </f:facet>
-                        <h:outputText id="endereco" value="#{promocao.endereco}" />
+                        <h:outputText id="endereco" value="#{promocao.site.endereco}" />
                     </h:column>
                     <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg['page.cnpj']}" />
                         </f:facet>
-                        <h:outputText id="cnpj" value="#{promocao.cnpj}" />
+                        <h:outputText id="cnpj" value="#{promocao.teatro.cnpj}" />
                     </h:column>
                     <h:column>
                         <f:facet name="header">

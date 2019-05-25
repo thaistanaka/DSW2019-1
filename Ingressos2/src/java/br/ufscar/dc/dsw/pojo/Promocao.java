@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -18,20 +18,25 @@ import javax.persistence.IdClass;
  */
 @Entity
 public class Promocao implements Serializable {
+    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
-    private String endereco;
-    private String cnpj;
     private String nome;
     private float preco;
-    @Id private String dia;
-    @Id private String hora;
+    private String dia;
+    private String hora;
+    
+    @ManyToOne
+    private Site site;
+    
+    @ManyToOne
+    private Teatro teatro;
 
-    public Promocao(Long id, String endereco, String cnpj, String nome, float preco, String dia, String hora) {
+    public Promocao(Long id, Site site, Teatro teatro, String nome, float preco, String dia, String hora) {
         this.id = id;
-        this.endereco = endereco;
-        this.cnpj = cnpj;
+        this.site = site;
+        this.teatro = teatro;
         this.nome = nome;
         this.preco = preco;
         this.dia = dia;
@@ -45,12 +50,12 @@ public class Promocao implements Serializable {
         return id;
     }
     
-    public String getEndereco() {
-        return endereco;
+    public Teatro getTeatro() {
+        return teatro;
     }
 
-    public String getCnpj() {
-        return cnpj;
+    public Site getSite() {
+        return site;
     }
 
     public String getNome() {
@@ -69,16 +74,16 @@ public class Promocao implements Serializable {
         return hora;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setTeatro(Teatro teatro) {
+        this.teatro = teatro;
     }
     
     public void setId(Long id){
         this.id = id;
     }
 
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
+    public void setSite(Site site) {
+        this.site = site;
     }
     
     public void setNome(String nome) {
