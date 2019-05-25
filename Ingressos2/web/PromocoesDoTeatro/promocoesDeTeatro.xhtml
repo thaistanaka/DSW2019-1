@@ -8,14 +8,14 @@
         <h:outputStylesheet name="/css/estilo.css"/>
     </h:head>
     <h:body>
-        <h1>#{msg["theater.sale"]}/></h1>
+        <h1>#{msg["theater.sale"]}</h1>
         <h:form id="form" class="form-horizontal">
         
            <h:outputLabel for="cnpj" class="control-label col-sm-4">#{msg["page.cnpj"]}</h:outputLabel>
            <h:inputText id="cnpj" value="#{promocaoBean.promocao.cnpj}" class="form-control"></h:inputText>
             
-           <h:commandButton id="submit" value="#{msg["enter"]}" action="#{promocaoBean.getPromocoes(cnpj)}" class="btn btn-primary"></h:commandButton>>
+           <h:commandButton id="submit" value='#{msg["enter"]}' action="#{promocaoBean.getPromocoes(cnpj)}" class="btn btn-primary"></h:commandButton>
         </h:form>
-        <h:button outcome="Ingressos2/faces/index.xhtml" value="#{msg['return']}"/> 
+        <h:commandButton action="index" value="#{msg['return']}"/> 
     </h:body>
 </html>

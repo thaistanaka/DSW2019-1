@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -78,6 +79,16 @@ public class TeatroBean implements Serializable {
         } else {
             return "loginTeatro.xhtml";
         }
-
     }
+    
+    public String teatrosCidade() throws SQLException {
+        return "listaTeatrosPorCidade.html";
+    }
+    
+    public List<Teatro> listaTeatrosCidade() throws SQLException {
+        TeatroDAO dao = new TeatroDAO();
+        String nome = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("cidade");
+        return dao.listarTeatrosPorCidade(nome);
+    }
+    
 }

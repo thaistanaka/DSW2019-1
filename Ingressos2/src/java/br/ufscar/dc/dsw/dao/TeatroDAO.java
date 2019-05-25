@@ -49,16 +49,6 @@ public class TeatroDAO extends GenericDAO<Teatro>{
         tx.commit();
         em.close();
     }
-    
-    public Teatro getN(String email, String senha) {
-        EntityManager em = this.getEntityManager();
-        String []vetor  = new String[2];
-        vetor [0] = email;
-        vetor [1] = senha;
-        Teatro teatro = em.find(Teatro.class, vetor);
-        em.close();
-        return teatro;
-    }
         
     public List<Teatro> listarTodosTeatros() throws SQLException {
         List<Teatro> ret = new ArrayList<>();
