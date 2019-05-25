@@ -35,7 +35,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
     public void delete(Promocao promocao) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        promocao = em.getReference(Promocao.class, promocao.get());
+        promocao = em.getReference(Promocao.class, promocao.getId());
         tx.begin();
         em.remove(promocao);
         tx.commit();
@@ -51,13 +51,9 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         em.close();
     }
 
-    public Promocao get(String dia, String hora, String endereco) {
+    public Promocao get(Long id) {
         EntityManager em = this.getEntityManager();
-        String []vetor  = new String[3];
-        vetor [0] = endereco;
-        vetor [1] = dia;
-        vetor [2] = hora;
-        Promocao promocao = em.find(Promocao.class, vetor);
+        Promocao promocao = em.find(Promocao.class, id);
         em.close();
         return promocao;
     }
@@ -79,7 +75,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
             Promocao promocao = new Promocao();
             Teatro teatro = new Teatro();
             promocao.setEndereco(result[1].toString());
-            promocao.setCnpj(Integer.parseInt(result[5].toString()));
+            promocao.setCnpj(result[5].toString());
             promocao.setNome(result[0].toString());
             promocao.setPreco(Float.parseFloat(result[2].toString()));
             promocao.setDia(result[3].toString());
@@ -110,7 +106,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
             Promocao promocao = new Promocao();
             Site site = new Site();
             promocao.setEndereco(result[1].toString());
-            promocao.setCnpj(Integer.parseInt(result[5].toString()));
+            promocao.setCnpj(result[5].toString());
             promocao.setNome(result[0].toString());
             promocao.setPreco(Float.parseFloat(result[2].toString()));
             promocao.setDia(result[3].toString());

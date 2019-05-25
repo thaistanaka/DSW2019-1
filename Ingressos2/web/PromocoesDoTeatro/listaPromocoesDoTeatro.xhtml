@@ -14,7 +14,7 @@
         <h:form>
             <h:dataTable id="promocoes"
                          summary="#{msg['sale.in.theater']}"
-                         value="#{promocaoBean.promocoes}"
+                         value="#{promocaoBean.listaPromocaoTeatro}"
                          var="promocao">
                 <h:column>
                     <f:facet name="header">
@@ -53,8 +53,8 @@
                     <h:outputText id="hora" value="#{promocao.hora}" />
                 </h:column>
             </h:dataTable>
-            <div class="col-sm-2">  
-                <h:button outcome="index" value="#{msg['return']}"/>
+            <div class="col-sm-2"> 
+                <h:commandButton action="promocoesDeTeatro" value="#{msg['return']}"/>
             </div>
         </h:form>
     </h:body>

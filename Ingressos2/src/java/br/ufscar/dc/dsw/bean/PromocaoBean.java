@@ -23,6 +23,10 @@ import javax.faces.context.FacesContext;
 public class PromocaoBean implements Serializable {
 
     private Promocao promocao;
+    
+    public PromocaoBean(){
+        promocao = new Promocao();
+    }
 
     public String lista() {
         return "promocao/index.xhtml";
@@ -35,7 +39,7 @@ public class PromocaoBean implements Serializable {
 
     public String salva() {
         PromocaoDAO dao = new PromocaoDAO();
-        if (promocao.get() == null) {
+        if (promocao.getId() == null) {
             dao.save(promocao);
         } else {
             dao.update(promocao);
@@ -53,13 +57,13 @@ public class PromocaoBean implements Serializable {
     }
     
     public String promocoesPorTeatro() throws SQLException {
-        return "listaPromocoesDeTeatro";
+        return "listaPromocoesDoTeatro.xhtml";
     }
     
     public List<Promocao> listaPromocaoTeatro() throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
-        String cnpj = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("cnpj");
-        return dao.listarTodasPromocoesDeUmTeatro(cnpj);
+        String nome = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("cnpj");
+        return dao.listarTodasPromocoesDeUmTeatro(nome);
     }
 
     public Promocao getPromocao() {

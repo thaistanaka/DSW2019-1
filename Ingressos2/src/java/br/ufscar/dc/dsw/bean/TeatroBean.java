@@ -45,10 +45,12 @@ public class TeatroBean implements Serializable {
 
     public String salva() {
         TeatroDAO dao = new TeatroDAO();
-        if (teatro.getCnpj() == 0) {
+        if (teatro.getCnpj() == 0  && dao.verifica(teatro.getEmail(), teatro.getSenha())) {
             dao.save(teatro);
         } else {
-            dao.update(teatro);
+            if (dao.verifica(teatro.getEmail(), teatro.getSenha())){
+                dao.update(teatro);
+            }
         }
         return "index.xhtml";
     }

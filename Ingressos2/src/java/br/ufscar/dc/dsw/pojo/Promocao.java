@@ -7,6 +7,8 @@ package br.ufscar.dc.dsw.pojo;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 
@@ -14,16 +16,20 @@ import javax.persistence.IdClass;
  *
  * @author Windows
  */
-@Entity @IdClass(PromocaoKey.class)
+@Entity
 public class Promocao implements Serializable {
-    @Id private String endereco;
-    private int cnpj;
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+    private String endereco;
+    private String cnpj;
     private String nome;
     private float preco;
     @Id private String dia;
     @Id private String hora;
 
-    public Promocao(String endereco, int cnpj, String nome, float preco, String dia, String hora) {
+    public Promocao(Long id, String endereco, String cnpj, String nome, float preco, String dia, String hora) {
+        this.id = id;
         this.endereco = endereco;
         this.cnpj = cnpj;
         this.nome = nome;
@@ -34,20 +40,16 @@ public class Promocao implements Serializable {
 
     public Promocao() {
     }
-
-    public String[] get() {
-        String []vetor  = new String[3];
-        vetor [0] = endereco;
-        vetor [1] = dia;
-        vetor [2] = hora;
-        return vetor;
+    
+    public Long getId(){
+        return id;
     }
     
     public String getEndereco() {
         return endereco;
     }
 
-    public int getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
@@ -70,8 +72,12 @@ public class Promocao implements Serializable {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+    
+    public void setId(Long id){
+        this.id = id;
+    }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
     
