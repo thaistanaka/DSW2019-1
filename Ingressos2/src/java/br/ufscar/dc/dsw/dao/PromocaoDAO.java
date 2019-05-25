@@ -64,11 +64,15 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         String s = "select a from Promocao a where a.teatro = :nome";
         TeatroDAO dao = new TeatroDAO();
         TypedQuery<Promocao> q = em.createQuery(s, Promocao.class);
-        int cnpj;
-        cnpj = Integer.parseInt(st);
-        Teatro teatro = dao.get(cnpj);
-        q.setParameter("nome", teatro);
-        return q.getResultList();
+        try{
+            int cnpj = Integer.parseInt(st);
+            Teatro teatro = dao.get(cnpj);
+            q.setParameter("nome", teatro);
+            return q.getResultList();
+        }
+        catch(NumberFormatException e){
+            return null;
+        }
     }
     
     public List<Promocao> listarTodasPromocoesDeUmSite(String endereco) throws SQLException {
