@@ -6,6 +6,8 @@
 package br.ufscar.dc.dsw.dao;
 
 import br.ufscar.dc.dsw.pojo.Promocao;
+import br.ufscar.dc.dsw.pojo.Site;
+import br.ufscar.dc.dsw.pojo.Teatro;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,18 +62,22 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         
         EntityManager em = this.getEntityManager();
         String s = "select a from Promocao a where a.teatro = :nome";
-        
+        TeatroDAO dao = new TeatroDAO();
         TypedQuery<Promocao> q = em.createQuery(s, Promocao.class);
-        q.setParameter("nome", st);
+        int cnpj;
+        cnpj = Integer.parseInt(st);
+        Teatro teatro = dao.get(cnpj);
+        q.setParameter("nome", teatro);
         return q.getResultList();
     }
     
     public List<Promocao> listarTodasPromocoesDeUmSite(String endereco) throws SQLException {
         EntityManager em = this.getEntityManager();
         String s = "select a from Promocao a where a.site = :nome";
-        
-        TypedQuery<Promocao> q = em.createQuery(s,Promocao.class);
-        q.setParameter("nome", endereco);
+        SiteDAO dao = new SiteDAO();
+        TypedQuery<Promocao> q = em.createQuery(s, Promocao.class);
+        Site site = dao.get(endereco);
+        q.setParameter("nome", site);
         return q.getResultList();
     }
     

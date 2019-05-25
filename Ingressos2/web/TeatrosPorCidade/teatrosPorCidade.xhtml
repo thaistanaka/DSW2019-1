@@ -13,8 +13,7 @@
             <h:outputLabel for="name" class="control-label col-sm-4">#{msg['theater.city']}</h:outputLabel>
             <h:inputText id="cidade" value="#{teatroBean.teatro.cidade}" class="form-control"></h:inputText>
             <h:commandButton id="submit" value='#{msg["enter"]}' action="#{teatroBean.teatrosCidade}" class='btn btn-primary'>
-            <f:param name="cidade" value="Cidade" /></h:commandButton>
-            
+            <f:param name="cidade" value="#{teatroBean.teatro.cidade}" /></h:commandButton>
             <div class="col-sm-2">  
                 <h:commandButton action="/index" value="#{msg['return']}"/> 
             </div>

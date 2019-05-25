@@ -14,7 +14,7 @@
            <h:outputLabel for="name" class="control-label col-sm-4">#{msg["page.cnpj"]}</h:outputLabel>
            <h:inputText id="cnpj" value="#{promocaoBean.promocao.teatro.cnpj}" class="form-control"></h:inputText>
            <h:commandButton id="submit" value='#{msg["enter"]}' action="#{promocaoBean.promocoesPorTeatro}" class='btn btn-primary'>
-           <f:param name="cnpj" value="Cnpj" /></h:commandButton>
+           <f:param name="cnpj" value="#{promocaoBean.promocao.teatro.cnpj}" /></h:commandButton>
            <div class="col-sm-2">  
                 <h:commandButton action="/index" value="#{msg['return']}"/> 
            </div>
