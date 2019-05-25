@@ -14,7 +14,7 @@
         <h:form>
                 <h:dataTable id="teatros"
                              summary="#{msg['sale.in.theater']}"
-                             value="#{teatroBean.listaTeatrosCidade(teatroBean.teatro.nome)}"
+                             value="#{teatroBean.listaTeatrosCidade()}"
                              var="teatro">
                     <h:column>
                         <f:facet name="header">
@@ -42,7 +42,7 @@
                     </h:column>
                 </h:dataTable>
                 <div class="col-sm-2">  
-                    <h:button outcome="Ingressos2/faces/index.xhtml" value="#{msg['return']}"/> 
+                    <h:commandButton action="teatrosPorCidade" value="#{msg['return']}"/>
                 </div>
         </h:form>
     </h:body>

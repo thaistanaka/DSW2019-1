@@ -18,7 +18,7 @@ import javax.faces.context.FacesContext;
  *
  * @author Windows
  */
-@ManagedBean
+@ManagedBean(name = "teatroBean")
 @SessionScoped
 public class TeatroBean implements Serializable {
 
@@ -34,7 +34,7 @@ public class TeatroBean implements Serializable {
 
     public String cadastra() {
         teatro = new Teatro();
-        return "form.xhtml";
+        return "/Ingressos2/faces/Teatro/formulario.xhtml";
     }
 
     public String edita(int cnpj) {
@@ -74,7 +74,7 @@ public class TeatroBean implements Serializable {
     
     public String login() {
         TeatroDAO dao = new TeatroDAO();
-        if (dao.verifica(teatro.getEmail(), teatro.getSenha())) {
+        if (!dao.verifica(teatro.getEmail(), teatro.getSenha())) {
             return "Usuario/TeatroUser/pageTeatro.xhtml";
         } else {
             return "loginTeatro.xhtml";
@@ -82,7 +82,7 @@ public class TeatroBean implements Serializable {
     }
     
     public String teatrosCidade() throws SQLException {
-        return "listaTeatrosPorCidade.html";
+        return "listaTeatrosPorCidade.xhtml";
     }
     
     public List<Teatro> listaTeatrosCidade() throws SQLException {

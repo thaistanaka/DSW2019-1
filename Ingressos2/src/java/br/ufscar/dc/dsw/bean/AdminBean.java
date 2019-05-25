@@ -4,7 +4,7 @@ import br.ufscar.dc.dsw.pojo.Admin;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@ManagedBean
+@ManagedBean(name = "adminBean")
 @SessionScoped
 public class AdminBean {
        private Admin admin = new Admin();

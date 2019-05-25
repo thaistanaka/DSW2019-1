@@ -12,12 +12,13 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
  * @author Windows
  */
-@ManagedBean
+@ManagedBean(name = "promocaoBean")
 @SessionScoped
 public class PromocaoBean implements Serializable {
 
@@ -51,8 +52,13 @@ public class PromocaoBean implements Serializable {
         return dao.getAll();
     }
     
-    public List<Promocao> getPromocoes(String cnpj) throws SQLException {
+    public String promocoesPorTeatro() throws SQLException {
+        return "listaPromocoesDeTeatro";
+    }
+    
+    public List<Promocao> listaPromocaoTeatro() throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
+        String cnpj = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("cnpj");
         return dao.listarTodasPromocoesDeUmTeatro(cnpj);
     }
 

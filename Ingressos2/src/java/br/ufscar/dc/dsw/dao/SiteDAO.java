@@ -6,6 +6,7 @@
 package br.ufscar.dc.dsw.dao;
 
 import br.ufscar.dc.dsw.pojo.Site;
+import br.ufscar.dc.dsw.pojo.Teatro;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -64,13 +65,17 @@ public class SiteDAO extends GenericDAO<Site>{
         em.close();
         return site;
     }
-
+    
     public boolean verifica(String email, String senha) {
         EntityManager em = this.getEntityManager();
-        String s1 = "select s from Site s where s.email = :nomeS1 and s.senha = :nomeS2";
+        String s1 = "select s from Site s where s.email = :nome1 and s.senha = :senha1";
+        String s2 = "select t from Teatro t where t.email = :nome2 and t.senha = :senha2";
         TypedQuery<Site> q1 = em.createQuery(s1, Site.class);
-        q1.setParameter("nomeS1", email);
-        q1.setParameter("nomeS2", senha);
-        return q1.getResultList()!= null ;
+        q1.setParameter("nome1", email);
+        q1.setParameter("senha1", senha);
+        TypedQuery<Teatro> q2 = em.createQuery(s2, Teatro.class);
+        q2.setParameter("nome2", email);
+        q2.setParameter("senha2", senha);
+        return !(q1.getResultList() != null || q2.getResultList() != null);
     }
 }

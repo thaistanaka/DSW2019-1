@@ -17,7 +17,7 @@ import javax.faces.bean.SessionScoped;
  *
  * @author Windows
  */
-@ManagedBean
+@ManagedBean(name = "siteBean")
 @SessionScoped
 public class SiteBean implements Serializable {
 
@@ -32,7 +32,7 @@ public class SiteBean implements Serializable {
 
     public String cadastra() {
         site = new Site();
-        return "form.xhtml";
+        return "formulario.xhtml?faces-redirect=true";
     }
 
     public String edita(String endereco) {
@@ -43,10 +43,12 @@ public class SiteBean implements Serializable {
 
     public String salva() {
         SiteDAO dao = new SiteDAO();
-        if (site.getEndereco() == null) {
+        if (site.getEndereco() == null && dao.verifica(site.getEmail(), site.getSenha())) {
             dao.save(site);
         } else {
-            dao.update(site);
+            if(dao.verifica(site.getEmail(), site.getSenha())){
+                dao.update(site);
+            }
         }
         return "index.xhtml";
     }
@@ -72,7 +74,7 @@ public class SiteBean implements Serializable {
 
     public String login() {
         SiteDAO dao = new SiteDAO();
-        if (dao.verifica(site.getEmail(), site.getSenha())) {
+        if (!dao.verifica(site.getEmail(), site.getSenha())) {
             return "Usuario/SiteUser/pageSite.xhtml";
         } else {
             return "loginSite.xhtml";
