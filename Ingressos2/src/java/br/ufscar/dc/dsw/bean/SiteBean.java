@@ -50,7 +50,7 @@ public class SiteBean implements Serializable {
                 dao.update(site);
             }
         }
-        return "index.xhtml";
+        return "/Usuario/AdminUser/siteCRUD.xhtml";
     }
 
     public String delete(Site site) {

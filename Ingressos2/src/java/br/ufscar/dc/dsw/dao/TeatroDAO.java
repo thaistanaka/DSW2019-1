@@ -60,7 +60,7 @@ public class TeatroDAO extends GenericDAO<Teatro>{
         results.stream().map((result) -> {
             Teatro teatro = new Teatro();
             teatro.setEmail(result[1].toString());
-            teatro.setCnpj(Integer.parseInt(result[0].toString()));
+            teatro.setCnpj(Long.parseLong(result[0].toString()));
             teatro.setNome(result[2].toString());
             teatro.setCidade(result[3].toString());
             return teatro;

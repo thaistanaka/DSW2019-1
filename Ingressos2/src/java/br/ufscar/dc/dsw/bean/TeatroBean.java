@@ -45,24 +45,20 @@ public class TeatroBean implements Serializable {
 
     public String salva() {
         TeatroDAO dao = new TeatroDAO();
-        if (teatro.getCnpj() == 0  && dao.verifica(teatro.getEmail(), teatro.getSenha())) {
+        if (teatro.getCnpj() == null  && dao.verifica(teatro.getEmail(), teatro.getSenha())) {
             dao.save(teatro);
         } else {
             if (dao.verifica(teatro.getEmail(), teatro.getSenha())){
                 dao.update(teatro);
             }
         }
-        return "index.xhtml";
+        return "/Usuario/AdminUser/teatroCRUD.xhtml";
     }
 
     public String delete(Teatro teatro) {
         TeatroDAO dao = new TeatroDAO();
         dao.delete(teatro);
         return "index.xhtml";
-    }
-
-    public String volta() {
-        return "/index.xhtml?faces-redirect=true";
     }
 
     public List<Teatro> getTeatros() throws SQLException {

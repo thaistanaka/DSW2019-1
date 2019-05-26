@@ -19,11 +19,11 @@ public class Teatro implements Serializable{
     private String email;
     private String senha;
     @Id
-    private int cnpj;
+    private Long cnpj;
     private String nome;
     private String cidade;    
 
-    public Teatro(String email, String senha, int cnpj, String nome, String cidade) {
+    public Teatro(String email, String senha, Long cnpj, String nome, String cidade) {
         this.email = email;
         this.senha = senha;
         this.cnpj = cnpj;
@@ -31,7 +31,7 @@ public class Teatro implements Serializable{
         this.cidade = cidade;
     }
     
-    public Teatro(String cidade, int cnpj, String email, String nome) {
+    public Teatro(String cidade, Long cnpj, String email, String nome) {
         this.email = email;
         this.cnpj = cnpj;
         this.nome = nome;
@@ -49,7 +49,7 @@ public class Teatro implements Serializable{
         return senha;
     }
 
-    public int getCnpj() {
+    public Long getCnpj() {
         return cnpj;
     }
 
@@ -69,7 +69,7 @@ public class Teatro implements Serializable{
         this.senha = senha;
     }
 
-    public void setCnpj(int cnpj) {
+    public void setCnpj(Long cnpj) {
         this.cnpj = cnpj;
     }
 

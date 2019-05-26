@@ -29,7 +29,6 @@ public class TeatroConverter implements Converter{
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
        Teatro teatro = (Teatro) o;
-       int cnpj = teatro.getCnpj();
-       return Integer.toString(cnpj);
+       return teatro.getCnpj().toString();
     }
 }
