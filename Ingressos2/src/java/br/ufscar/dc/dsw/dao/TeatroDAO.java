@@ -8,7 +8,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import org.eclipse.persistence.sessions.Session;
 
 public class TeatroDAO extends GenericDAO<Teatro>{
 
@@ -62,9 +61,9 @@ public class TeatroDAO extends GenericDAO<Teatro>{
     public List<Teatro> listarTeatrosPorCidade(String st) throws SQLException {
         EntityManager em = this.getEntityManager();        
         try {
-           List<Teatro> teatro = (List<Teatro>) (Teatro) em.createQuery("select a from Teatro a where a.cidade = :nome")
+           List<Teatro> teatros = (List<Teatro>) em.createQuery("select a from Teatro a where a.cidade = :nome")
                    .setParameter("nome", st).getResultList();
-           return teatro;
+           return teatros;
         } catch (NoResultException e) {
             return null;
         }

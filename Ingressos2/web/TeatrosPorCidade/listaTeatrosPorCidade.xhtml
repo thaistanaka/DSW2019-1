@@ -14,7 +14,7 @@
         <h:form>
                 <h:dataTable id="teatros"
                              summary="#{msg['sale.in.theater']}"
-                             value="#{teatroBean.listaTeatrosCidade()}"
+                             value="#{teatroBean.listaTeatrosCidade(teatroBean.teatro.cidade)}"
                              var="teatro">
                     <h:column>
                         <f:facet name="header">

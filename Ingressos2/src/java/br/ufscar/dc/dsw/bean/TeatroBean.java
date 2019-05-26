@@ -83,9 +83,8 @@ public class TeatroBean implements Serializable {
         return "listaTeatrosPorCidade.xhtml";
     }
     
-    public List<Teatro> listaTeatrosCidade() throws SQLException {
+    public List<Teatro> listaTeatrosCidade(String nome) throws SQLException {
         TeatroDAO dao = new TeatroDAO();
-        String nome = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("cidade");
         return dao.listarTeatrosPorCidade(nome);
     }
     

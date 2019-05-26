@@ -64,15 +64,13 @@ public class PromocaoBean implements Serializable {
         return "listaPromocoesDoTeatro.xhtml";
     }
     
-    public List<Promocao> listaPromocaoTeatro() throws SQLException {
+    public List<Promocao> listaPromocaoTeatro(String teatro) throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
-        String teatro = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("cnpj");
         return dao.listarTodasPromocoesDeUmTeatro(teatro);
     }
     
-    public List<Promocao> listaPromocaoSite () throws SQLException {
+    public List<Promocao> listaPromocaoSite (String site) throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
-        String site = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("endereco");
         return dao.listarTodasPromocoesDeUmSite(site);
     }
 
