@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
@@ -84,15 +85,18 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         return q.getResultList();
     }
     
-    public boolean Verifica(String endereco,int cnpj,String hora, String dia) throws SQLException{
+    public Promocao verifica(String endereco,int cnpj,String hora, String dia) throws SQLException{
         EntityManager em = this.getEntityManager();
-        String s = "select * from Promocao where ((endereco_site = :nome1 and dia = :nome4) and hora = :nome3) or (cnpj_teatro = :nome2 and (hora = :nome3 and dia = :nome4))";
-        TypedQuery<Promocao> q = em.createQuery(s, Promocao.class);
-        q.setParameter("nome1", endereco);
-        q.setParameter("nome2", cnpj);
-        q.setParameter("nome3", hora);
-        q.setParameter("nome4", dia);
-        return q.getResultList() == null;
+        try {
+            Promocao promocao = (Promocao) em.createQuery("select p from Promocao p where ((endereco_site = :nome1 and dia = :nome4) and hora = :nome3) or (cnpj_teatro = :nome2 and (hora = :nome3 and dia = :nome4))")
+                   .setParameter("nome1", endereco)
+                   .setParameter("nome2", cnpj)
+                   .setParameter("nome3", hora)
+                   .setParameter("nome4", dia).getSingleResult();
+           return promocao;
+        } catch(NoResultException e) {
+           return null;
+        }
     }
     
     @Override
