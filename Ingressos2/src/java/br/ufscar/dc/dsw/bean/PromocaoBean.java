@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 /**
  *
@@ -31,30 +30,22 @@ public class PromocaoBean implements Serializable {
         promocao.setTeatro(new Teatro());
         promocao.setSite(new Site());
     }
-
-    public String lista() {
-        return "promocao/index.xhtml";
-    }
     
     public String cadastra() {
         promocao = new Promocao();
-        return "promocao/formulario.xhtml";
+        return "/Promocao/formulario.xhtml?faces-redirect=true";
     }
 
     public String salva() {
         PromocaoDAO dao = new PromocaoDAO();
-        if (promocao.getId() == null) {
+        if (dao.get(promocao.getId()) == null) {
             dao.save(promocao);
         } else {
             dao.update(promocao);
         }
-        return "index.xhtml";
+        return "/Usuario/TeatroUser/teatroUser.xhtml?faces-redirect=true";
     }
 
-    public String volta() {
-        return "/index.xhtml?faces-redirect=true";
-    }
-    
     public List<Promocao> getPromocoes() throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
         return dao.getAll();
