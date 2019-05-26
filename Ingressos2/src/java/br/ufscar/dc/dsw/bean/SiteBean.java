@@ -68,10 +68,12 @@ public class SiteBean implements Serializable {
 
     public String login() {
         SiteDAO dao = new SiteDAO();
-        if (!dao.verifica(site.getEmail(), site.getSenha())){
+        site = dao.verifica(site.getEmail(), site.getSenha());
+        if (site != null){
                 return "Usuario/SiteUser/pageSite.xhtml";
             }
         else {
+            site = new Site();
             return "loginSite.xhtml";
         }
 

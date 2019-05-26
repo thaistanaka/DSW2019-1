@@ -14,7 +14,7 @@
         <h:form>
                 <h:dataTable id="promocoes"
                              summary="#{msg['sale.list']}"
-                             value="#{promocaoBean.promocoes}"
+                             value="#{promocaoBean.listaPromocaoSite()}"
                              var="promocao">
                     <h:column>
                         <f:facet name="header">
@@ -54,7 +54,7 @@
                     </h:column>
                 </h:dataTable>
                 <div class="col-sm-2">  
-                     <h:commandButton action="pageSite?faces-redirect=true" value="#{msg['return']}"/> 
+                     <h:commandButton action="pageSite.xhtml?faces-redirect=true" value="#{msg['return']}"/> 
                 </div>
         </h:form>
     </h:body>

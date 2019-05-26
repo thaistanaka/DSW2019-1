@@ -18,7 +18,8 @@
         <div><h:outputLabel for='password' class="control-label col-sm-4">#{msg['user.password']}</h:outputLabel>
         <h:inputSecret id='password' value="#{siteBean.site.senha}" class="form-control" required="true"></h:inputSecret></div>
 
-        <h:commandButton id="submit" value="#{msg['enter']}" action="#{siteBean.login}"/>
+        <h:commandButton id="submit" value="#{msg['enter']}" action="#{siteBean.login}">
+            <f:param name="endereco" value="#{siteBean.site.endereco}"/></h:commandButton>
         </h:form>
         <h:button outcome="index" value="#{msg['return']}"/>
     </h:body>

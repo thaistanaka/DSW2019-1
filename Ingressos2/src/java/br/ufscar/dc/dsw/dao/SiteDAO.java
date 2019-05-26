@@ -9,8 +9,8 @@ import br.ufscar.dc.dsw.pojo.Site;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 /**
  *
@@ -65,13 +65,15 @@ public class SiteDAO extends GenericDAO<Site>{
         return site;
     }
     
-    public boolean verifica(String email, String senha) {
+    public Site verifica(String email, String senha) {
         EntityManager em = this.getEntityManager();
-        String s1 = "select s from Site s where s.email = :nome1 and s.senha = :senha1";
-        TypedQuery<Site> q1 = em.createQuery(s1, Site.class);
-        q1.setParameter("nome1", email);
-        q1.setParameter("senha1", senha);
-        return q1.getResultList() == null;
-        
+        try {
+           Site site = (Site) em.createQuery("select t from Site t where t.email = :nome2 and t.senha = :senha2")
+                   .setParameter("nome2", email)
+                   .setParameter("senha2", senha).getSingleResult();
+           return site;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }

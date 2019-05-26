@@ -70,9 +70,11 @@ public class TeatroBean implements Serializable {
     
     public String login() {
         TeatroDAO dao = new TeatroDAO();
-        if(!dao.verifica(teatro.getEmail(), teatro.getSenha())){
+        teatro = dao.verifica(teatro.getEmail(), teatro.getSenha());
+        if(teatro != null){
                 return "Usuario/TeatroUser/pageTeatro.xhtml";
         } else {
+            teatro = new Teatro();
             return "loginTeatro.xhtml";
         }
     }

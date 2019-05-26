@@ -69,6 +69,12 @@ public class PromocaoBean implements Serializable {
         String teatro = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("cnpj");
         return dao.listarTodasPromocoesDeUmTeatro(teatro);
     }
+    
+    public List<Promocao> listaPromocaoSite () throws SQLException {
+        PromocaoDAO dao = new PromocaoDAO();
+        String site = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("endereco");
+        return dao.listarTodasPromocoesDeUmSite(site);
+    }
 
     public Promocao getPromocao() {
         return promocao;

@@ -2,12 +2,13 @@ package br.ufscar.dc.dsw.dao;
 
 import br.ufscar.dc.dsw.pojo.Teatro;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import org.eclipse.persistence.sessions.Session;
 
 public class TeatroDAO extends GenericDAO<Teatro>{
 
@@ -74,14 +75,16 @@ public class TeatroDAO extends GenericDAO<Teatro>{
         return teatro;
     }
 
-    public boolean verifica(String email, String senha) {
+    public Teatro verifica(String email, String senha) {
         EntityManager em = this.getEntityManager();
-        String s2 = "select t from Teatro t where t.email = :nome2 and t.senha = :senha2";
-        TypedQuery<Teatro> q2 = em.createQuery(s2, Teatro.class);
-        q2.setParameter("nome2", email);
-        q2.setParameter("senha2", senha);
-        return q2.getResultList() == null;
-        
+        try {
+           Teatro teatro = (Teatro) em.createQuery("select t from Teatro t where t.email = :nome2 and t.senha = :senha2")
+                   .setParameter("nome2", email)
+                   .setParameter("senha2", senha).getSingleResult();
+           return teatro;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
 }
