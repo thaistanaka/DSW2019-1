@@ -60,12 +60,14 @@ public class TeatroDAO extends GenericDAO<Teatro>{
     }
     
     public List<Teatro> listarTeatrosPorCidade(String st) throws SQLException {
-        EntityManager em = this.getEntityManager();
-        String s = "select a from Teatro a where a.cidade = :nome";
-        
-        TypedQuery<Teatro> q = em.createQuery(s, Teatro.class);
-        q.setParameter("nome", st);
-        return q.getResultList();
+        EntityManager em = this.getEntityManager();        
+        try {
+           List<Teatro> teatro = (List<Teatro>) (Teatro) em.createQuery("select a from Teatro a where a.cidade = :nome")
+                   .setParameter("nome", st).getResultList();
+           return teatro;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     public Teatro get(Long cnpj) {
