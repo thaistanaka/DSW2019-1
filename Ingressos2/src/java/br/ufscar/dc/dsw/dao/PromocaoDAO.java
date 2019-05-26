@@ -9,7 +9,6 @@ import br.ufscar.dc.dsw.pojo.Promocao;
 import br.ufscar.dc.dsw.pojo.Site;
 import br.ufscar.dc.dsw.pojo.Teatro;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;

@@ -11,10 +11,10 @@
         <h1>#{msg["theater.login"]}</h1>
         <h:form>
         <div><h:outputLabel for='email' class="control-label col-sm-4">#{msg["page.email"]}</h:outputLabel>
-            <h:inputText id='email' value='#{teatroBean.teatro.email}' class="form-control"></h:inputText></div>
+            <h:inputText id='email' value='#{teatroBean.teatro.email}' class="form-control" required="true"></h:inputText></div>
 
         <div><h:outputLabel for='password' class="control-label col-sm-4">#{msg["user.password"]}</h:outputLabel>
-            <h:inputSecret id='password' value='#{teatroBean.teatro.senha}' class="form-control"></h:inputSecret></div>
+            <h:inputSecret id='password' value='#{teatroBean.teatro.senha}' class="form-control" required="true"></h:inputSecret></div>
 
         <h:commandButton id="submit" value='#{msg["enter"]}' action="#{teatroBean.login}" class='btn btn-primary'></h:commandButton>
         </h:form>
