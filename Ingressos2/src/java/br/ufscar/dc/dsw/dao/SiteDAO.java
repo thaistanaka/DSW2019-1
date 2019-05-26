@@ -71,12 +71,7 @@ public class SiteDAO extends GenericDAO<Site>{
         TypedQuery<Site> q1 = em.createQuery(s1, Site.class);
         q1.setParameter("nome1", email);
         q1.setParameter("senha1", senha);
-        if (q1.getResultList() == null){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return q1.getResultList() == null;
         
     }
 }

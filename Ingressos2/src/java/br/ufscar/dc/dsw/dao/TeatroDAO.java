@@ -51,28 +51,14 @@ public class TeatroDAO extends GenericDAO<Teatro>{
     }
         
     public List<Teatro> listarTodosTeatros() throws SQLException {
-        List<Teatro> ret = new ArrayList<>();
         EntityManager em = this.getEntityManager();
-        String s = "select a.cnpj, a.email, a.nome, a.cidade from Teatro a";
-        TypedQuery<Object[]> q = em.createQuery(s, Object[].class);
-        List<Object[]> results = q.getResultList();
+        String s = "select a from Teatro a";
+        TypedQuery<Teatro> q = em.createQuery(s, Teatro.class);
         
-        results.stream().map((result) -> {
-            Teatro teatro = new Teatro();
-            teatro.setEmail(result[1].toString());
-            teatro.setCnpj(Long.parseLong(result[0].toString()));
-            teatro.setNome(result[2].toString());
-            teatro.setCidade(result[3].toString());
-            return teatro;
-        }).forEachOrdered((teatro) -> {
-            ret.add(teatro);
-        });
-        
-        return ret;
+        return q.getResultList();
     }
     
     public List<Teatro> listarTeatrosPorCidade(String st) throws SQLException {
-        List<Teatro> ret = new ArrayList<>();
         EntityManager em = this.getEntityManager();
         String s = "select a from Teatro a where a.cidade = :nome";
         
@@ -94,12 +80,7 @@ public class TeatroDAO extends GenericDAO<Teatro>{
         TypedQuery<Teatro> q2 = em.createQuery(s2, Teatro.class);
         q2.setParameter("nome2", email);
         q2.setParameter("senha2", senha);
-        if (q2.getResultList() == null){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return q2.getResultList() == null;
         
     }
 
