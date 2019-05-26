@@ -21,7 +21,7 @@ public class TeatroConverter implements Converter{
 
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
-        int cnpj = Integer.parseInt(string);
+        Long cnpj = Long.parseLong(string);
         TeatroDAO dao = new TeatroDAO();
         return dao.get(cnpj);
     }

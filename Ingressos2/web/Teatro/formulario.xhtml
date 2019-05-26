@@ -45,7 +45,7 @@
                 <h:outputLabel for="cnpj" class="control-label col-sm-4">#{msg['page.cnpj']}</h:outputLabel>  
                 <div class="col-sm-4">  
                     <h:inputText id="cnpj" value="#{teatroBean.teatro.cnpj}" class="form-control"   
-                                   validatorMessage="#{msg['page.cnpj']}">
+                                   validatorMessage="#{msg['page.cnpj']}" a:type="Number" a:min="1">
                         <f:validateRequired/>
                         
                     </h:inputText>

@@ -40,13 +40,19 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">
+                            <h:outputText value="#{msg['page.password']}" />
+                        </f:facet>
+                        <h:outputText id="senha" value="#{site.senha}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
                             <h:outputText value="#{msg['page.phone']}" />
                         </f:facet>
                         <h:outputText id="telefone" value="#{site.telefone}" />
                     </h:column>
                     <h:column>  
                     <f:facet name="header"></f:facet>  
-                    <h:commandButton action = "#{siteBean.edita(site)}" value="#{msg['edit']}" class="btn btn-primary">  
+                    <h:commandButton action = "#{siteBean.edita(site.endereco)}" value="#{msg['edit']}" class="btn btn-primary">  
                     </h:commandButton>  
                 </h:column>  
                 <h:column>  
@@ -58,7 +64,7 @@
                 </h:column>
                 </h:dataTable>
                 <div class="col-sm-2">  
-                    <h:commandButton action="pageAdmin" value="#{msg['return']}"/> 
+                    <h:commandButton action="pageAdmin?faces-redirect=true" value="#{msg['return']}"/> 
                 </div>
         </h:form>
     </h:body>

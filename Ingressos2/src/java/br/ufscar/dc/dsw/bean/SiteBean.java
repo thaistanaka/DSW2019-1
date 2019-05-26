@@ -27,7 +27,7 @@ public class SiteBean implements Serializable {
         site = new Site();
     }
     public String lista() {
-        return "site/index.xhtml";
+        return "siteCRUD.xhtml";
     }
 
     public String cadastra() {
@@ -38,29 +38,23 @@ public class SiteBean implements Serializable {
     public String edita(String endereco) {
         SiteDAO dao = new SiteDAO();
         site = dao.get(endereco);
-        return "site/formulario.xhtml";
+        return "/Site/formulario.xhtml?faces-redirect=true";
     }
 
     public String salva() {
         SiteDAO dao = new SiteDAO();
-        if (site.getEndereco() == null && dao.verifica(site.getEmail(), site.getSenha())) {
+        if (dao.get(site.getEndereco()) == null) {
             dao.save(site);
         } else {
-            if(dao.verifica(site.getEmail(), site.getSenha())){
-                dao.update(site);
-            }
+            dao.update(site);
         }
-        return "/Usuario/AdminUser/siteCRUD.xhtml";
+        return "/Usuario/AdminUser/siteCRUD.xhtml?face-redirect=true";
     }
 
     public String delete(Site site) {
         SiteDAO dao = new SiteDAO();
         dao.delete(site);
-        return "index.xhtml";
-    }
-
-    public String volta() {
-        return "/index.xhtml?faces-redirect=true";
+        return "siteCRUD.xhtml?faces-redirect=true";
     }
 
     public List<Site> getSites() throws SQLException {
@@ -82,8 +76,5 @@ public class SiteBean implements Serializable {
         }
 
     }
- 
-    public void setSite(Site site) {
-        this.site = site;
-    }
+
 }

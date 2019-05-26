@@ -10,8 +10,8 @@
     <h:body>
         <p>#{msg["admin.welcome"]}</p>
         <h:form>
-        <h:commandLink action="teatroCRUD.xhtml">#{msg["mod.theater.data"]}</h:commandLink><br/>
-        <h:commandLink action="siteCRUD.xhtml">#{msg["mod.site.data"]}</h:commandLink><br/>
+            <h:commandLink action="#{teatroBean.lista()}">#{msg["mod.theater.data"]}</h:commandLink><br/>
+            <h:commandLink action="#{siteBean.lista()}">#{msg["mod.site.data"]}</h:commandLink><br/>
         <h:outputLink value="/Ingressos2/faces/loginAdmin.xhtml">#{msg["return"]}</h:outputLink>
         </h:form>
     </h:body>

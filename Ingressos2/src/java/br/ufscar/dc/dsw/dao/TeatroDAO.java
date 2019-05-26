@@ -81,7 +81,7 @@ public class TeatroDAO extends GenericDAO<Teatro>{
         return q.getResultList();
     }
 
-    public Teatro get(int cnpj) {
+    public Teatro get(Long cnpj) {
         EntityManager em = this.getEntityManager();
         Teatro teatro = em.find(Teatro.class, cnpj);
         em.close();

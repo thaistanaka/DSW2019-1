@@ -33,6 +33,12 @@
                     </h:column>
                     <h:column>
                         <f:facet name="header">
+                            <h:outputText value="#{msg['page.password']}" />
+                        </f:facet>
+                        <h:outputText id="senha" value="#{teatro.senha}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
                             <h:outputText value="#{msg['page.email']}" />
                         </f:facet>
                         <h:outputText id="email" value="#{teatro.email}" />
@@ -45,7 +51,7 @@
                     </h:column>
                     <h:column>  
                     <f:facet name="header"></f:facet>  
-                    <h:commandButton action = "#{teatroBean.edita(teatro)}" value="#{msg['edit']}" class="btn btn-primary">  
+                    <h:commandButton action = "#{teatroBean.edita(teatro.cnpj)}" value="#{msg['edit']}" class="btn btn-primary">  
                     </h:commandButton>  
                 </h:column>  
                 <h:column>  
@@ -57,7 +63,7 @@
                 </h:column>
                 </h:dataTable>
                 <div class="col-sm-2">  
-                   <h:commandButton action="pageAdmin" value="#{msg['return']}"/> 
+                   <h:commandButton action="pageAdmin?faces-redirect=true" value="#{msg['return']}"/> 
                 </div>
         </h:form>
     </h:body>

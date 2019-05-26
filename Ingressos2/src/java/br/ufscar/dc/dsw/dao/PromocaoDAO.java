@@ -64,7 +64,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         TeatroDAO dao = new TeatroDAO();
         TypedQuery<Promocao> q = em.createQuery(s, Promocao.class);
         try{
-            int cnpj = Integer.parseInt(st);
+            Long cnpj = Long.parseLong(st);
             Teatro teatro = dao.get(cnpj);
             q.setParameter("nome", teatro);
             return q.getResultList();

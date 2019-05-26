@@ -29,7 +29,7 @@ public class TeatroBean implements Serializable {
     }
 
     public String lista() {
-        return "teatro/index.xhtml";
+        return "teatroCRUD.xhtml";
     }
 
     public String cadastra() {
@@ -37,28 +37,26 @@ public class TeatroBean implements Serializable {
         return "/Teatro/formulario.xhtml?faces-redirect=true";
     }
 
-    public String edita(int cnpj) {
+    public String edita(Long cnpj) {
         TeatroDAO dao = new TeatroDAO();
         teatro = dao.get(cnpj);
-        return "teatro/formulario.xhtml";
+        return "/Teatro/formulario.xhtml?faces-redirect=true";
     }
 
     public String salva() {
         TeatroDAO dao = new TeatroDAO();
-        if (teatro.getCnpj() == null  && dao.verifica(teatro.getEmail(), teatro.getSenha())) {
+        if (dao.get(teatro.getCnpj()) == null) {
             dao.save(teatro);
         } else {
-            if (dao.verifica(teatro.getEmail(), teatro.getSenha())){
-                dao.update(teatro);
-            }
+            dao.update(teatro);
         }
-        return "/Usuario/AdminUser/teatroCRUD.xhtml";
+        return "/Usuario/AdminUser/teatroCRUD.xhtml?faces-redirect=true";
     }
 
     public String delete(Teatro teatro) {
         TeatroDAO dao = new TeatroDAO();
         dao.delete(teatro);
-        return "index.xhtml";
+        return "teatroCRUD.xhtml?faces-redirect=true";
     }
 
     public List<Teatro> getTeatros() throws SQLException {
