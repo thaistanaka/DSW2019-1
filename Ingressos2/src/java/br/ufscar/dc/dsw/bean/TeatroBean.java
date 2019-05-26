@@ -34,7 +34,7 @@ public class TeatroBean implements Serializable {
 
     public String cadastra() {
         teatro = new Teatro();
-        return "/Ingressos2/faces/Teatro/formulario.xhtml";
+        return "/Teatro/formulario.xhtml?faces-redirect=true";
     }
 
     public String edita(int cnpj) {

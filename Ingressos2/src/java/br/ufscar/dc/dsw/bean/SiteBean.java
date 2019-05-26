@@ -32,7 +32,7 @@ public class SiteBean implements Serializable {
 
     public String cadastra() {
         site = new Site();
-        return "formulario.xhtml?faces-redirect=true";
+        return "/Site/formulario.xhtml?faces-redirect=true";
     }
 
     public String edita(String endereco) {

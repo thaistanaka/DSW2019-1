@@ -9,12 +9,12 @@
     </h:head>
     <h:body>
         <h1>#{msg['manager.theater']}</h1>
-        <h2>
-            <h:commandButton action="#{teatroBean.cadastra()}" value="#{msg['theater.add']}"/>
-        </h2>
         <hr/>
         <br/>
         <h:form>
+                <h2>
+            <h:commandButton action="#{teatroBean.cadastra()}" value="#{msg['theater.add']}"/>
+        </h2>
                 <h:dataTable id="teatros"
                              summary="#{msg['theater.list']}"
                              value="#{teatroBean.getTeatros()}"

@@ -24,7 +24,7 @@
                 <h:outputLabel for="email" class="control-label col-sm-4">#{msg['page.email']}</h:outputLabel>  
                 <div class="col-sm-4">  
                     <h:inputText id="email" value="#{teatroBean.teatro.email}" class="form-control"   
-                                 validatorMessage="#{msg['book.title.required.message']}">
+                                 validatorMessage="#{msg['page.email']}">
                         <f:validateRequired/>
                     </h:inputText>
                     <h:message for="email"/>
@@ -34,10 +34,10 @@
             <div class="form-group">  
                 <h:outputLabel for="senha" class="control-label col-sm-4">#{msg['user.password']}</h:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputText id="senha" value="#{teatroBean.teatro.senha}" class="form-control"   
-                                 validatorMessage="#{msg['book.author.required.message']}">
+                    <h:inputSecret id="senha" value="#{teatroBean.teatro.senha}" class="form-control"   
+                                 validatorMessage="#{msg['user.password']}">
                         <f:validateRequired/>
-                    </h:inputText>
+                    </h:inputSecret>
                     <h:message for="senha"/>
                 </div>  
             </div>  
@@ -45,7 +45,7 @@
                 <h:outputLabel for="cnpj" class="control-label col-sm-4">#{msg['page.cnpj']}</h:outputLabel>  
                 <div class="col-sm-4">  
                     <h:inputText id="cnpj" value="#{teatroBean.teatro.cnpj}" class="form-control"   
-                                   validatorMessage="#{msg['book.year.required.message']}">
+                                   validatorMessage="#{msg['page.cnpj']}">
                         <f:validateRequired/>
                         
                     </h:inputText>
@@ -56,7 +56,7 @@
                 <h:outputLabel for="nome" class="control-label col-sm-4">#{msg['page.name']}</h:outputLabel>  
                 <div class="col-sm-4">  
                     <h:inputText id="nome" value="#{teatroBean.teatro.nome}" class="form-control"   
-                                 validatorMessage="#{msg['book.price.required.message']}">
+                                 validatorMessage="#{msg['page.name']}">
                         <f:validateRequired/>
                     </h:inputText>
                     <h:message for="nome"/>
@@ -66,9 +66,10 @@
             <div class="form-group">  
                 <h:outputLabel for="cidade" class="control-label col-sm-4">#{msg['page.city']}</h:outputLabel>  
                 <div class="col-sm-4">
-                    <h:selectOneMenu id="cidade" value="#{teatroBean.teatro.cidade}">
-                        <f:selectItems value="#{siteBean.sites}"/>
-                    </h:selectOneMenu>
+                    <h:inputText id="cidade" value="#{teatroBean.teatro.cidade}" class="form-control"   
+                                 validatorMessage="#{msg['page.city']}">
+                        <f:validateRequired/>
+                    </h:inputText>
                     <h:message for="cidade"/>
                 </div>  
             </div>
@@ -80,12 +81,12 @@
                               class="btn btn-primary" style="width: 80px;">
                          </h:commandButton>  
                     </div>  
-                    <br/>
-                    <div class="col-sm-2">  
-                        <h:link outcome="index" value="#{msg['return']}" class="btn btn-success" />  
-                    </div>  
+                    <br/> 
                 </div>  
-            </div>  
+            </div> 
+            <div class="col-sm-2">
+                <h:commandButton action="/Usuario/AdminUser/teatroCRUD.xhtml?faces-redirect=true" value="#{msg['return']}"/> 
+            </div> 
         </h:form>  
     </h:body>  
 </html>
