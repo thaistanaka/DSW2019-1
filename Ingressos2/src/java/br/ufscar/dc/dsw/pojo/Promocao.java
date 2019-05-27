@@ -33,16 +33,6 @@ public class Promocao implements Serializable {
     @ManyToOne
     private Teatro teatro;
 
-    public Promocao(Long id, Site site, Teatro teatro, String nome, float preco, String dia, String hora) {
-        this.id = id;
-        this.site = site;
-        this.teatro = teatro;
-        this.nome = nome;
-        this.preco = preco;
-        this.dia = dia;
-        this.hora = hora;
-    }
-
     public Promocao() {
     }
     
