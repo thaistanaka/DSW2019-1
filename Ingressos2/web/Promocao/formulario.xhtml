@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  
       xmlns:h="http://xmlns.jcp.org/jsf/html"  
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">  
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">  
     <h:head>  
         <title>#{msg['sale']}</title>
         <link rel="stylesheet"
@@ -93,10 +94,11 @@
                     </div>  
                     <br/> 
                 </div>  
-            </div>  
-            <div class="col-sm-2">  
-                <h:commandButton action="/Usuario/TeatroUser/teatroUser.xhtml?faces-redirect=true" value="#{msg['return']}"/> 
-            </div>
+            </div> 
         </h:form>  
+         
+            <div class="col-sm-2">  
+                <p:button outcome="/Usuario/TeatroUser/teatroUser.xhtml?faces-redirect=true" value="#{msg['return']}"> </p:button>
+            </div>
     </h:body>  
 </html>
