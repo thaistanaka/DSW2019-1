@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>#{msg['page.title']}</title>
         <h:outputStylesheet library="css" name="estilo.css"/>
@@ -12,38 +13,38 @@
         <hr/>
         <br/>
         <h:form>
-                <h:dataTable id="teatros"
-                             summary="#{msg['theater.list']}"
-                             value="#{teatroBean.getTeatros()}"
-                             var="teatro">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['page.cnpj']}" />
-                        </f:facet>
-                        <h:outputText id="cnpj" value="#{teatro.cnpj}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['page.name']}" />
-                        </f:facet>
-                        <h:outputText id="nome" value="#{teatro.nome}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['page.email']}" />
-                        </f:facet>
-                        <h:outputText id="email" value="#{teatro.email}" />
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['page.city']}" />
-                        </f:facet>
-                        <h:outputText id="cidade" value="#{teatro.cidade}" />
-                    </h:column>
-                </h:dataTable>
-                <div class="col-sm-2">  
-                    <h:commandButton action="/index" value="#{msg['return']}"/> 
-                </div>
+            <p:dataTable id="teatros"
+                         summary="#{msg['theater.list']}"
+                         value="#{teatroBean.getTeatros()}"
+                         var="teatro">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.cnpj']}" />
+                    </f:facet>
+                    <h:outputText id="cnpj" value="#{teatro.cnpj}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.name']}" />
+                    </f:facet>
+                    <h:outputText id="nome" value="#{teatro.nome}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.email']}" />
+                    </f:facet>
+                    <h:outputText id="email" value="#{teatro.email}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.city']}" />
+                    </f:facet>
+                    <h:outputText id="cidade" value="#{teatro.cidade}" />
+                </p:column>
+            </p:dataTable>
+            <div class="col-sm-2">  
+                <p:commandButton action="/index" value="#{msg['return']}"/> 
+            </div>
         </h:form>
     </h:body>
 </html>
