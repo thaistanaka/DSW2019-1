@@ -31,7 +31,7 @@ public class SiteDAO extends GenericDAO<Site>{
     public void delete(Site site) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        site = em.getReference(Site.class, site.getEndereco());
+        site = em.getReference(Site.class, site.getId());
         tx.begin();
         em.remove(site);
         tx.commit();
@@ -58,10 +58,17 @@ public class SiteDAO extends GenericDAO<Site>{
         em.close();
     }
     
-    public Site get(String endereco) {
+    public Site get(Long id) {
         EntityManager em = this.getEntityManager();
-        Site site = em.find(Site.class, endereco);
+        Site site = em.find(Site.class, id);
         em.close();
+        return site;
+    }
+    
+    public Site getEndereco(String endereco) {
+        EntityManager em = this.getEntityManager();
+        Site site = (Site) em.createQuery("select t from Site t where t.endereco = :nome")
+                   .setParameter("nome", endereco).getSingleResult();
         return site;
     }
     

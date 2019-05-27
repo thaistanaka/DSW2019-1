@@ -34,7 +34,7 @@ public class TeatroDAO extends GenericDAO<Teatro>{
     public void delete(Teatro teatro) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        teatro = em.getReference(Teatro.class, teatro.getCnpj());
+        teatro = em.getReference(Teatro.class, teatro.getId());
         tx.begin();
         em.remove(teatro);
         tx.commit();
@@ -69,9 +69,24 @@ public class TeatroDAO extends GenericDAO<Teatro>{
         }
     }
 
-    public Teatro get(Long cnpj) {
+    public Teatro getCnpj(String cnpj) {
         EntityManager em = this.getEntityManager();
-        Teatro teatro = em.find(Teatro.class, cnpj);
+        Teatro teatro = (Teatro) em.createQuery("select t from Teatro t where t.cnpj = :nome")
+                   .setParameter("nome", cnpj).getSingleResult();
+        return teatro;
+    }
+    
+    public Teatro getCnpjId(String cnpj, Long id) {
+        EntityManager em = this.getEntityManager();
+        Teatro teatro = (Teatro) em.createQuery("select t from Teatro t where t.cnpj = :nome and t.id != :id")
+                   .setParameter("nome", cnpj)
+                   .setParameter("id", id).getSingleResult();
+        return teatro;
+    }
+    
+    public Teatro get(Long id) {
+        EntityManager em = this.getEntityManager();
+        Teatro teatro = em.find(Teatro.class, id);
         em.close();
         return teatro;
     }
@@ -82,6 +97,19 @@ public class TeatroDAO extends GenericDAO<Teatro>{
            Teatro teatro = (Teatro) em.createQuery("select t from Teatro t where t.email = :nome2 and t.senha = :senha2")
                    .setParameter("nome2", email)
                    .setParameter("senha2", senha).getSingleResult();
+           return teatro;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+    public Teatro verificaId(String email, String senha, Long id) {
+        EntityManager em = this.getEntityManager();
+        try {
+           Teatro teatro = (Teatro) em.createQuery("select t from Teatro t where t.email = :nome2 and t.senha = :senha2 and t.id != :id")
+                   .setParameter("nome2", email)
+                   .setParameter("senha2", senha)
+                   .setParameter("id", id).getSingleResult();
            return teatro;
         } catch (NoResultException e) {
             return null;
