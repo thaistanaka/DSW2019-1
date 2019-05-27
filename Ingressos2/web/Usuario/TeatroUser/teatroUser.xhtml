@@ -12,9 +12,9 @@
         <hr/>
         <br/>
         <h:form>
-                <h:commandButton id="submit" value="#{msg['enter']}" action="#{promocaoBean.cadastra}"/>
+            <h:commandButton id="submit" value="#{msg['sale.add']}" action="#{promocaoBean.cadastra}"/>
                 <div class="col-sm-2">
-                     <h:commandButton action="pageTeatro?faces-redirect=true" value="#{msg['return']}"/> 
+                     <h:commandButton action="/loginTeatro.xhtml?faces-redirect=true" value="#{msg['return']}"/> 
                 </div>
         </h:form>
     </h:body>

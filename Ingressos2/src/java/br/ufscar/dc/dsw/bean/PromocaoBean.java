@@ -24,11 +24,15 @@ import javax.faces.bean.SessionScoped;
 public class PromocaoBean implements Serializable {
 
     private Promocao promocao;
+    private Teatro teatro;
+    private Site site;
     
     public PromocaoBean(){
         promocao = new Promocao();
-        promocao.setTeatro(new Teatro());
-        promocao.setSite(new Site());
+        teatro = new Teatro();
+        site = new Site();
+        promocao.setTeatro(teatro);
+        promocao.setSite(site);
     }
     
     public String cadastra() {

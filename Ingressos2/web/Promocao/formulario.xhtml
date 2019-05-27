@@ -91,12 +91,12 @@
                               class="btn btn-primary" style="width: 80px;">
                          </h:commandButton>  
                     </div>  
-                    <br/>
-                    <div class="col-sm-2">  
-                        <h:link outcome="index" value="#{msg['return']}" class="btn btn-success" />  
-                    </div>  
+                    <br/> 
                 </div>  
             </div>  
+            <div class="col-sm-2">  
+                <h:commandButton action="/Usuario/TeatroUser/teatroUser.xhtml?faces-redirect=true" value="#{msg['return']}"/> 
+            </div>
         </h:form>  
     </h:body>  
 </html>

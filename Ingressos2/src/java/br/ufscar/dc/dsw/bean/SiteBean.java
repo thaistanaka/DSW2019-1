@@ -70,7 +70,7 @@ public class SiteBean implements Serializable {
         SiteDAO dao = new SiteDAO();
         site = dao.verifica(site.getEmail(), site.getSenha());
         if (site != null){
-                return "Usuario/SiteUser/pageSite.xhtml";
+                return "Usuario/SiteUser/siteUser.xhtml";
             }
         else {
             site = new Site();
