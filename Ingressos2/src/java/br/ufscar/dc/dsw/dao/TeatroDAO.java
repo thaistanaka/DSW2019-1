@@ -9,7 +9,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-public class TeatroDAO extends GenericDAO<Teatro>{
+public class TeatroDAO extends GenericDAO<Teatro> {
 
     @Override
     public void save(Teatro teatro) {
@@ -20,7 +20,7 @@ public class TeatroDAO extends GenericDAO<Teatro>{
         tx.commit();
         em.close();
     }
-    
+
     @Override
     public List<Teatro> getAll() {
         EntityManager em = this.getEntityManager();
@@ -39,7 +39,7 @@ public class TeatroDAO extends GenericDAO<Teatro>{
         em.remove(teatro);
         tx.commit();
     }
-    
+
     @Override
     public void update(Teatro teatro) {
         EntityManager em = this.getEntityManager();
@@ -49,21 +49,21 @@ public class TeatroDAO extends GenericDAO<Teatro>{
         tx.commit();
         em.close();
     }
-        
+
     public List<Teatro> listarTodosTeatros() throws SQLException {
         EntityManager em = this.getEntityManager();
         String s = "select a from Teatro a";
         TypedQuery<Teatro> q = em.createQuery(s, Teatro.class);
-        
+
         return q.getResultList();
     }
-    
+
     public List<Teatro> listarTeatrosPorCidade(String st) throws SQLException {
-        EntityManager em = this.getEntityManager();        
+        EntityManager em = this.getEntityManager();
         try {
-           List<Teatro> teatros = (List<Teatro>) em.createQuery("select a from Teatro a where a.cidade = :nome")
-                   .setParameter("nome", st).getResultList();
-           return teatros;
+            List<Teatro> teatros = (List<Teatro>) em.createQuery("select a from Teatro a where a.cidade = :nome")
+                    .setParameter("nome", st).getResultList();
+            return teatros;
         } catch (NoResultException e) {
             return null;
         }
@@ -75,21 +75,26 @@ public class TeatroDAO extends GenericDAO<Teatro>{
         em.close();
         return teatro;
     }
-    
+
     public Teatro getCnpj(String cnpj) {
         EntityManager em = this.getEntityManager();
-        Teatro teatro = (Teatro) em.createQuery("select t from Teatro t where t.cnpj = :nome")
-                   .setParameter("nome", cnpj).getSingleResult();
-        return teatro;
+        try {
+
+            Teatro teatro = (Teatro) em.createQuery("select t from Teatro t where t.cnpj = :nome")
+                    .setParameter("nome", cnpj).getSingleResult();
+            return teatro;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     public Teatro verifica(String email, String senha) {
         EntityManager em = this.getEntityManager();
         try {
-           Teatro teatro = (Teatro) em.createQuery("select t from Teatro t where t.email = :nome2 and t.senha = :senha2")
-                   .setParameter("nome2", email)
-                   .setParameter("senha2", senha).getSingleResult();
-           return teatro;
+            Teatro teatro = (Teatro) em.createQuery("select t from Teatro t where t.email = :nome2 and t.senha = :senha2")
+                    .setParameter("nome2", email)
+                    .setParameter("senha2", senha).getSingleResult();
+            return teatro;
         } catch (NoResultException e) {
             return null;
         }

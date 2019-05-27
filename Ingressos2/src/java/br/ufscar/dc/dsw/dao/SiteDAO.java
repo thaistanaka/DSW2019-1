@@ -66,10 +66,14 @@ public class SiteDAO extends GenericDAO<Site>{
     }
     
     public Site getEndereco(String endereco) {
+        try{
         EntityManager em = this.getEntityManager();
         Site site = (Site) em.createQuery("select t from Site t where t.endereco = :nome")
                    .setParameter("nome", endereco).getSingleResult();
         return site;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     
     public Site verifica(String email, String senha) {
