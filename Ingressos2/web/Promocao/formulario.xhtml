@@ -31,7 +31,16 @@
                     <h:message for="endereco"/>
                 </div>  
             </div>  
-                        
+            <div class="form-group">  
+                <h:outputLabel for="cnpj" class="control-label col-sm-4">#{msg['page.cnpj']}</h:outputLabel>  
+                <div class="col-sm-4">  
+                    <h:inputText id="cnpj" value="#{teatroBean.teatro}" class="form-control"   
+                                 validatorMessage="#{msg['page.cnpj']}" disabled="true">
+                        <f:converter converterId="TeatroConverter" />
+                    </h:inputText>
+                    <h:message for="nome"/>
+                </div>  
+            </div>            
             <div class="form-group">  
                 <h:outputLabel for="nome" class="control-label col-sm-4">#{msg['page.name']}</h:outputLabel>  
                 <div class="col-sm-4">  
