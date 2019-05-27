@@ -24,8 +24,8 @@ import javax.faces.bean.SessionScoped;
 public class PromocaoBean implements Serializable {
 
     private Promocao promocao;
-    private Teatro teatro;
-    private Site site;
+    private final Teatro teatro;
+    private final Site site;
     
     public PromocaoBean(){
         promocao = new Promocao();
@@ -40,13 +40,12 @@ public class PromocaoBean implements Serializable {
         return "/Promocao/formulario.xhtml?faces-redirect=true";
     }
 
-    public String salva() {
+    public String salva() throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
-        if (dao.get(promocao.getId()) == null) {
+        if (dao.get(promocao.getId()) == null && dao.verifica(promocao.getSite(), promocao.getTeatro(), 
+                promocao.getHora(), promocao.getDia()) == null) {
             dao.save(promocao);
-        } else {
-            dao.update(promocao);
-        }
+        } 
         return "/Usuario/TeatroUser/teatroUser.xhtml?faces-redirect=true";
     }
 

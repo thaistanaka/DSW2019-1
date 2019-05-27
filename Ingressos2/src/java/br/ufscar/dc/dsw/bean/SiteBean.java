@@ -43,10 +43,12 @@ public class SiteBean implements Serializable {
 
     public String salva() {
         SiteDAO dao = new SiteDAO();
-        if (dao.get(site.getEndereco()) == null) {
+        if (dao.get(site.getEndereco()) == null && dao.verifica(site.getEmail(), site.getSenha()) == null) {
             dao.save(site);
         } else {
-            dao.update(site);
+            if (dao.verifica(site.getEmail(), site.getSenha()) == null){
+                dao.update(site);
+            }
         }
         return "/Usuario/AdminUser/siteCRUD.xhtml?face-redirect=true";
     }

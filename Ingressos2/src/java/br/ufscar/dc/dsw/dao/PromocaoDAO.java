@@ -85,10 +85,10 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         return q.getResultList();
     }
     
-    public Promocao verifica(String endereco,int cnpj,String hora, String dia) throws SQLException{
+    public Promocao verifica(Site endereco,Teatro cnpj,String hora, String dia) throws SQLException{
         EntityManager em = this.getEntityManager();
         try {
-            Promocao promocao = (Promocao) em.createQuery("select p from Promocao p where ((endereco_site = :nome1 and dia = :nome4) and hora = :nome3) or (cnpj_teatro = :nome2 and (hora = :nome3 and dia = :nome4))")
+            Promocao promocao = (Promocao) em.createQuery("select p from Promocao p where ((site = :nome1 and dia = :nome4) and hora = :nome3) or (teatro = :nome2 and (hora = :nome3 and dia = :nome4))")
                    .setParameter("nome1", endereco)
                    .setParameter("nome2", cnpj)
                    .setParameter("nome3", hora)

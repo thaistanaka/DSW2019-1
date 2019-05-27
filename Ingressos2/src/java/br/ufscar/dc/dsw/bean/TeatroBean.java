@@ -44,10 +44,12 @@ public class TeatroBean implements Serializable {
 
     public String salva() {
         TeatroDAO dao = new TeatroDAO();
-        if (dao.get(teatro.getCnpj()) == null) {
+        if (dao.get(teatro.getCnpj()) == null && dao.verifica(teatro.getEmail(), teatro.getSenha()) == null) {
             dao.save(teatro);
         } else {
-            dao.update(teatro);
+            if (dao.verifica(teatro.getEmail(), teatro.getSenha()) == null){
+                dao.update(teatro);
+            }
         }
         return "/Usuario/AdminUser/teatroCRUD.xhtml?faces-redirect=true";
     }

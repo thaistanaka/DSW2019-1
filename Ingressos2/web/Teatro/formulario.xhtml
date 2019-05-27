@@ -24,7 +24,7 @@
                 <h:outputLabel for="email" class="control-label col-sm-4">#{msg['page.email']}</h:outputLabel>  
                 <div class="col-sm-4">  
                     <h:inputText id="email" value="#{teatroBean.teatro.email}" class="form-control"   
-                                 validatorMessage="#{msg['page.email']}">
+                                 validatorMessage="#{msg['page.email']}" required="true">
                         <f:validateRequired/>
                     </h:inputText>
                     <h:message for="email"/>
@@ -34,10 +34,10 @@
             <div class="form-group">  
                 <h:outputLabel for="senha" class="control-label col-sm-4">#{msg['user.password']}</h:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputSecret id="senha" value="#{teatroBean.teatro.senha}" class="form-control"   
-                                 validatorMessage="#{msg['user.password']}">
+                    <h:inputText id="senha" value="#{teatroBean.teatro.senha}" class="form-control"   
+                                 validatorMessage="#{msg['user.password']}" required="true">
                         <f:validateRequired/>
-                    </h:inputSecret>
+                    </h:inputText>
                     <h:message for="senha"/>
                 </div>  
             </div>  
@@ -45,7 +45,7 @@
                 <h:outputLabel for="cnpj" class="control-label col-sm-4">#{msg['page.cnpj']}</h:outputLabel>  
                 <div class="col-sm-4">  
                     <h:inputText id="cnpj" value="#{teatroBean.teatro.cnpj}" class="form-control"   
-                                   validatorMessage="#{msg['page.cnpj']}" a:type="Number" a:min="1">
+                                   validatorMessage="#{msg['page.cnpj']}" a:type="Number" a:min="1" required="true">
                         <f:validateRequired/>
                         
                     </h:inputText>

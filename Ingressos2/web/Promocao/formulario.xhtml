@@ -67,7 +67,7 @@
                 <h:outputLabel for="dia" class="control-label col-sm-4">#{msg['page.day']}</h:outputLabel>  
                 <div class="col-sm-4">
                     <h:inputText id="dia" value="#{promocaoBean.promocao.dia}" class="form-control"   
-                                 validatorMessage="#{msg['page.day']}">
+                                 validatorMessage="#{msg['page.day']}" required="true">
                         <f:validateRequired/>
                     </h:inputText>
                     <h:message for="dia"/>
@@ -77,7 +77,7 @@
                 <h:outputLabel for="hora" class="control-label col-sm-4">#{msg['page.hour']}</h:outputLabel>  
                 <div class="col-sm-4">
                     <h:inputText id="hora" value="#{promocaoBean.promocao.hora}" class="form-control"   
-                                 validatorMessage="#{msg['page.hour']}">
+                                 validatorMessage="#{msg['page.hour']}" required="true">
                         <f:validateRequired/>
                     </h:inputText>
                     <h:message for="hora"/>
