@@ -8,13 +8,13 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class AdminBean {
        private Admin admin = new Admin();
-    //Verifica se o login inserido está correto
+    
     public String login(){
         if("admin".equals(admin.getNome()) && "admin".equals(admin.getSenha())){
             return "Usuario/AdminUser/pageAdmin.xhtml";
-        }//Leva a página do administrador
+        }
         else
-            return "loginAdmin.xhtml";//Volta para a mesma página           
+            return "loginAdmin.xhtml";              
     }
  
     public Admin getAdmin() {

@@ -22,7 +22,7 @@ import javax.persistence.TypedQuery;
  */
 public class PromocaoDAO extends GenericDAO<Promocao>{
     
-    @Override//Retorna todas as promoçoes do banco de dados
+    @Override
     public List<Promocao> getAll() {
         EntityManager em = this.getEntityManager();
         Query q = em.createQuery("select e from Promocao e", Promocao.class);
@@ -31,7 +31,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         return promocoes;
     }
     
-    @Override//Remove uma promoção do banco de dados
+    @Override
     public void delete(Promocao promocao) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -41,7 +41,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         tx.commit();
     }
 
-    @Override//Atualiza uma promoção do banco de dados com modificações feitas
+    @Override
     public void update(Promocao promocao) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -50,14 +50,14 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         tx.commit();
         em.close();
     }
-    //Retorna uma promoção identificada pelo id
+
     public Promocao get(Long id) {
         EntityManager em = this.getEntityManager();
         Promocao promocao = em.find(Promocao.class, id);
         em.close();
         return promocao;
     }
-    //Retorna todas as promoções de um teatro
+    
     public List<Promocao> listarTodasPromocoesDeUmTeatro(String st) throws SQLException {
         
         EntityManager em = this.getEntityManager();
@@ -74,7 +74,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
             return null;
         }
     }
-    //Retorna todas as promoções de um site
+    
     public List<Promocao> listarTodasPromocoesDeUmSite(String endereco) throws SQLException {
         EntityManager em = this.getEntityManager();
         String s = "select a from Promocao a where a.site = :nome";
@@ -84,7 +84,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         q.setParameter("nome", site);
         return q.getResultList();
     }
-    //Verifica se há alguma promoção igual aos dados inseridos
+    
     public Promocao verifica(Site endereco,Teatro cnpj,String hora, String dia) throws SQLException{
         EntityManager em = this.getEntityManager();
         try {
@@ -99,7 +99,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         }
     }
     
-    @Override//Guarda no banco de dados uma promoção
+    @Override
     public void save(Promocao promocao) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();

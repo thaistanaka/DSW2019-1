@@ -11,7 +11,7 @@ import javax.persistence.Id;
 
 @Entity
 public class Admin implements Serializable{
-    @Id//Classe que representa o admin
+    @Id
     private String nome;
     private String senha;
     

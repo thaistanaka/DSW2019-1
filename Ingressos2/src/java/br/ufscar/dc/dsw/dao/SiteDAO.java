@@ -18,7 +18,7 @@ import javax.persistence.Query;
  */
 public class SiteDAO extends GenericDAO<Site>{
 
-    @Override//Retorna todos os sites do banco de dados
+    @Override
     public List<Site> getAll() {
         EntityManager em = this.getEntityManager();
         Query q = em.createQuery("select e from Site e", Site.class);
@@ -27,7 +27,7 @@ public class SiteDAO extends GenericDAO<Site>{
         return sites;
     }
     
-    @Override//Deleta um site do banco de dados
+    @Override
     public void delete(Site site) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -37,7 +37,7 @@ public class SiteDAO extends GenericDAO<Site>{
         tx.commit();
     }
 
-    @Override//Atualiza um site do banco de dados com modificações feitas
+    @Override
     public void update(Site site) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -48,7 +48,7 @@ public class SiteDAO extends GenericDAO<Site>{
     }
 
     
-    @Override//Guarda no banco de dados um site
+    @Override
     public void save(Site site) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -57,14 +57,14 @@ public class SiteDAO extends GenericDAO<Site>{
         tx.commit();
         em.close();
     }
-    //Retorna uma promoção identificada pelo endereco
+    
     public Site get(String endereco) {
         EntityManager em = this.getEntityManager();
         Site site = em.find(Site.class, endereco);
         em.close();
         return site;
     }
-    //Verifica se o email e a senha coincidem com algum site já cadastrado
+    
     public Site verifica(String email, String senha) {
         EntityManager em = this.getEntityManager();
         try {

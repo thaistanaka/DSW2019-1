@@ -15,7 +15,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Site implements Serializable{ //do trabalho
-    //Classe que representa um site
+
     private String email;
     private String senha;
     @Id

@@ -20,13 +20,13 @@ import javax.faces.convert.FacesConverter;
 @FacesConverter("SiteConverter")
 public class SiteConverter implements Converter{
 
-    @Override//Converte uma string para objeto
+    @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
         SiteDAO dao = new SiteDAO();
         return dao.get(string);
     }
 
-    @Override//Converte um objeto pára string
+    @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
        Site site = (Site) o;
        return site.getEndereco();

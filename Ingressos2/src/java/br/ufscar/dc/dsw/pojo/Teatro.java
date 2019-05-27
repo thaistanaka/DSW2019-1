@@ -15,7 +15,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Teatro implements Serializable{
-    //Classe que representa um teatro
+
     private String email;
     private String senha;
     @Id
