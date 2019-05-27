@@ -35,18 +35,18 @@ public class SiteBean implements Serializable {
         return "/Site/formulario.xhtml?faces-redirect=true";
     }
 
-    public String edita(Long id) {
+    public String edita(String endereco) {
         SiteDAO dao = new SiteDAO();
-        site = dao.get(id);
+        site = dao.get(endereco);
         return "/Site/formulario.xhtml?faces-redirect=true";
     }
 
     public String salva() {
         SiteDAO dao = new SiteDAO();
-        if ((site.getId() == null && dao.getEndereco(site.getEndereco()) == null) && dao.verifica(site.getEmail(), site.getSenha()) == null) {
+        if (dao.get(site.getEndereco()) == null && dao.verifica(site.getEmail(), site.getSenha()) == null) {
             dao.save(site);
         } else {
-            if(site.getId() != null){
+            if (dao.verifica(site.getEmail(), site.getSenha()) == null){
                 dao.update(site);
             }
         }

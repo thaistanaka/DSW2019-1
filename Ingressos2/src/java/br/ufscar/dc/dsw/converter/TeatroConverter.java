@@ -21,15 +21,14 @@ public class TeatroConverter implements Converter{
 
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
-        Long id = Long.parseLong(string);
+        Long cnpj = Long.parseLong(string);
         TeatroDAO dao = new TeatroDAO();
-        Teatro teatro = dao.get(id); 
-        return teatro;
+        return dao.get(cnpj);
     }
 
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
        Teatro teatro = (Teatro) o;
-       return teatro.getId().toString();
+       return teatro.getCnpj().toString();
     }
 }

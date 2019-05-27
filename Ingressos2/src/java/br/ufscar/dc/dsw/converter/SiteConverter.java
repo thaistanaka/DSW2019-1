@@ -22,15 +22,14 @@ public class SiteConverter implements Converter{
 
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
-        Long id = Long.parseLong(string);
         SiteDAO dao = new SiteDAO();
-        return dao.get(id);
+        return dao.get(string);
     }
 
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
        Site site = (Site) o;
-       return site.getId().toString();
+       return site.getEndereco();
     }
     
 }

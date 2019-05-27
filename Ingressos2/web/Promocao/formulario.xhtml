@@ -23,13 +23,24 @@
             <div class="form-group">  
                 <h:outputLabel for="endereco" class="control-label col-sm-4">#{msg['page.adress']}</h:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:selectOneMenu id="endereco" value="#{promocaoBean.promocao.site}">
+                    <h:selectOneMenu id="endereco" value="#{promocaoBean.promocao.site.endereco}">
                         <f:selectItems value="#{siteBean.sites}"/>
                         <f:converter converterId="SiteConverter" />
                     </h:selectOneMenu>
                     <h:message for="endereco"/>
                 </div>  
-            </div>    
+            </div>  
+                        
+            <div class="form-group">  
+                <h:outputLabel for="cnpj" class="control-label col-sm-4">#{msg['page.cnpj']}</h:outputLabel>  
+                <div class="col-sm-4">  
+                    <h:selectOneMenu id="cnpj" value="#{promocaoBean.promocao.teatro.cnpj}">
+                        <f:selectItems value="#{teatroBean.teatros}"/>
+                        <f:converter converterId="TeatroConverter" />
+                    </h:selectOneMenu>
+                    <h:message for="cnpj"/>
+                </div>  
+            </div>  
             <div class="form-group">  
                 <h:outputLabel for="nome" class="control-label col-sm-4">#{msg['page.name']}</h:outputLabel>  
                 <div class="col-sm-4">  
