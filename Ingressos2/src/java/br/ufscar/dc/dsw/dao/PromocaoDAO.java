@@ -65,8 +65,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
             String s = "select a from Promocao a where a.teatro = :nome";
             TeatroDAO dao = new TeatroDAO();
             TypedQuery<Promocao> q = em.createQuery(s, Promocao.class);
-            Long cnpj = Long.parseLong(st);
-            Teatro teatro = dao.get(cnpj);
+            Teatro teatro = dao.getCnpj(st);
             q.setParameter("nome", teatro);
             return q.getResultList();
         }
@@ -80,7 +79,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         String s = "select a from Promocao a where a.site = :nome";
         SiteDAO dao = new SiteDAO();
         TypedQuery<Promocao> q = em.createQuery(s, Promocao.class);
-        Site site = dao.get(endereco);
+        Site site = dao.getEndereco(endereco);
         q.setParameter("nome", site);
         return q.getResultList();
     }

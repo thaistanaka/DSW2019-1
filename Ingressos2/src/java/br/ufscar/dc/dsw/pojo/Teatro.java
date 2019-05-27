@@ -7,6 +7,8 @@ package br.ufscar.dc.dsw.pojo;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -15,28 +17,14 @@ import javax.persistence.Id;
  */
 @Entity
 public class Teatro implements Serializable{
-
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
     private String email;
     private String senha;
-    @Id
-    private Long cnpj;
+    private String cnpj;
     private String nome;
     private String cidade;    
-
-    public Teatro(String email, String senha, Long cnpj, String nome, String cidade) {
-        this.email = email;
-        this.senha = senha;
-        this.cnpj = cnpj;
-        this.nome = nome;
-        this.cidade = cidade;
-    }
-    
-    public Teatro(String cidade, Long cnpj, String email, String nome) {
-        this.email = email;
-        this.cnpj = cnpj;
-        this.nome = nome;
-        this.cidade = cidade;
-    }
 
     public Teatro() {
     }
@@ -49,7 +37,7 @@ public class Teatro implements Serializable{
         return senha;
     }
 
-    public Long getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
@@ -69,7 +57,7 @@ public class Teatro implements Serializable{
         this.senha = senha;
     }
 
-    public void setCnpj(Long cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
@@ -79,6 +67,18 @@ public class Teatro implements Serializable{
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+    
+    public Long getId() {
+        return id;
+    }
+    
+    public String toString(){
+        return cnpj;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

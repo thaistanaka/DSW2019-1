@@ -38,7 +38,7 @@ public class PromocaoBean implements Serializable {
 
     public String salva() throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
-        if (dao.get(promocao.getId()) == null && dao.verifica(promocao.getSite(), promocao.getTeatro(), 
+        if (promocao.getId() == null && dao.verifica(promocao.getSite(), promocao.getTeatro(), 
                 promocao.getHora(), promocao.getDia()) == null) {
             dao.save(promocao);
         } 

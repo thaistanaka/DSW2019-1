@@ -7,6 +7,8 @@ package br.ufscar.dc.dsw.pojo;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -15,23 +17,28 @@ import javax.persistence.Id;
  */
 @Entity
 public class Site implements Serializable{ //do trabalho
-
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
     private String email;
     private String senha;
-    @Id
     private String endereco;
     private String nome;
     private int telefone;
-
-    public Site(String email, String nome, String endereco, String senha,  int telefone) {
-        this.email = email;
-        this.senha = senha;
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.nome = nome;
-}
     
     public Site(){
+    }
+    
+    public Long getId() {
+        return id;
+    }
+    
+    public String toString(){
+        return endereco;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getEmail() {

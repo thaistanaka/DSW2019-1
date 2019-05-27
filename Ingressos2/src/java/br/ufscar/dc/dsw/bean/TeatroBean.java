@@ -36,18 +36,19 @@ public class TeatroBean implements Serializable {
         return "/Teatro/formulario.xhtml?faces-redirect=true";
     }
 
-    public String edita(Long cnpj) {
+    public String edita(Long id) {
         TeatroDAO dao = new TeatroDAO();
-        teatro = dao.get(cnpj);
+        teatro = dao.get(id);
         return "/Teatro/formulario.xhtml?faces-redirect=true";
     }
 
     public String salva() {
         TeatroDAO dao = new TeatroDAO();
-        if (dao.get(teatro.getCnpj()) == null && dao.verifica(teatro.getEmail(), teatro.getSenha()) == null) {
+        if ((teatro.getId() == null && dao.getCnpj(teatro.getCnpj()) == null)
+                && dao.verifica(teatro.getEmail(), teatro.getSenha()) == null) {
             dao.save(teatro);
         } else {
-            if (dao.verifica(teatro.getEmail(), teatro.getSenha()) == null){
+            if(teatro.getId() != null){
                 dao.update(teatro);
             }
         }
