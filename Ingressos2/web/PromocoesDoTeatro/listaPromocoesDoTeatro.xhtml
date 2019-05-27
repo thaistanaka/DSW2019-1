@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>#{msg['page.title']}</title>
         <h:outputStylesheet library="css" name="estilo.css"/>
@@ -13,51 +12,51 @@
         <hr/>
         <br/>
         <h:form>
-            <p:dataTable id="promocoes"
+            <h:dataTable id="promocoes"
                          summary="#{msg['sale.in.theater']}"
                          value="#{promocaoBean.listaPromocaoTeatro(promocaoBean.promocao.teatro.cnpj)}"
                          var="promocao">
-                <p:column>
+                <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{msg['page.adress']}" />
                     </f:facet>
                     <h:outputText id="endereco" value="#{promocao.site.endereco}" />
-                </p:column>
-                <p:column>
+                </h:column>
+                <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{msg['page.cnpj']}" />
                     </f:facet>
                     <h:outputText id="cnpj" value="#{promocao.teatro.cnpj}" />
-                </p:column>
-                <p:column>
+                </h:column>
+                <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{msg['page.name']}" />
                     </f:facet>
                     <h:outputText id="nome" value="#{promocao.nome}" />
-                </p:column>
-                <p:column>
+                </h:column>
+                <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{msg['page.price']}" />
                     </f:facet>
                     <h:outputText id="preco" value="#{promocao.preco}" />
-                </p:column>
-                <p:column>
+                </h:column>
+                <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{msg['page.day']}" />
                     </f:facet>
                     <h:outputText id="dia" value="#{promocao.dia}" />
-                </p:column>
-                <p:column>
+                </h:column>
+                <h:column>
                     <f:facet name="header">
                         <h:outputText value="#{msg['page.hour']}" />
                     </f:facet>
-                    <h:outputText id="hora" value="#{promocao.hora}"/>
-                </p:column>
-            </p:dataTable>
-
+                    <h:outputText id="hora" value="#{promocao.hora}" />
+                </h:column>
+            </h:dataTable>
+            
             <div class="col-sm-2">  
-                <p:commandButton action="promocoesDeTeatro" value="#{msg['return']}"/> 
-            </div>
+                <h:commandButton action="promocoesDeTeatro" value="#{msg['return']}"/> 
+           </div>
         </h:form>
     </h:body>
 </html>

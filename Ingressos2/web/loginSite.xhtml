@@ -4,8 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"  
       xmlns:h="http://xmlns.jcp.org/jsf/html"  
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>#{msg['page.title']}</title>
         <h:outputStylesheet name="/css/estilo.css"/>
@@ -14,14 +13,13 @@
         <h1>#{msg["site.login"]}</h1>
         <h:form>
         <div><h:outputLabel for='email' class="control-label col-sm-4">#{msg['page.email']}</h:outputLabel>
-            <p:inputText id='email' value="#{siteBean.site.email}" class="form-control" required="true"></p:inputText></div>
-<br/>
+            <h:inputText id='email' value="#{siteBean.site.email}" class="form-control" required="true"></h:inputText></div>
+
         <div><h:outputLabel for='password' class="control-label col-sm-4">#{msg['user.password']}</h:outputLabel>
-        <p:password id='password' value="#{siteBean.site.senha}" class="form-control" required="true"></p:password></div>
-<br/>
-        <p:commandButton id="submit" value="#{msg['enter']}" action="#{siteBean.login}" style="margin-left:40px"></p:commandButton>
+        <h:inputSecret id='password' value="#{siteBean.site.senha}" class="form-control" required="true"></h:inputSecret></div>
+
+        <h:commandButton id="submit" value="#{msg['enter']}" action="#{siteBean.login}"></h:commandButton>
         </h:form>
-        <br/>
-        <p:button outcome="index" value="#{msg['return']}" style="margin-left:80px"/>
+        <h:button outcome="index" value="#{msg['return']}"/>
     </h:body>
 </html>

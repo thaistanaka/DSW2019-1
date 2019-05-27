@@ -3,8 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
     <h:head>
         <title>#{msg['page.title']}</title>
         <h:outputStylesheet library="css" name="estilo.css"/>
@@ -15,58 +14,57 @@
         <br/>
         <h:form>
                 <h2>
-                    <p:commandButton action="#{siteBean.cadastra}" value="#{msg['site.add']}"/>
+                    <h:commandButton action="#{siteBean.cadastra}" value="#{msg['site.add']}"/>
                 </h2>
-                <p:dataTable id="sites"
+                <h:dataTable id="sites"
                              summary="#{msg['site.list']}"
                              value="#{siteBean.getSites()}"
                              var="site">
-                    <p:column>
+                    <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg['page.email']}" />
                         </f:facet>
                         <h:outputText id="email" value="#{site.email}" />
-                    </p:column>
-                    <p:column>
+                    </h:column>
+                    <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg['page.adress']}" />
                         </f:facet>
                         <h:outputText id="endereco" value="#{site.endereco}" />
-                    </p:column>
-                    <p:column>
+                    </h:column>
+                    <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg['page.name']}" />
                         </f:facet>
                         <h:outputText id="nome" value="#{site.nome}" />
-                    </p:column>
-                    <p:column>
+                    </h:column>
+                    <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg['page.password']}" />
                         </f:facet>
                         <h:outputText id="senha" value="#{site.senha}" />
-                    </p:column>
-                    <p:column>
+                    </h:column>
+                    <h:column>
                         <f:facet name="header">
                             <h:outputText value="#{msg['page.phone']}" />
                         </f:facet>
                         <h:outputText id="telefone" value="#{site.telefone}" />
-                    </p:column>
-                    <p:column>  
+                    </h:column>
+                    <h:column>  
                     <f:facet name="header"></f:facet>  
-                    <p:commandButton action = "#{siteBean.edita(site.endereco)}" value="#{msg['edit']}" class="btn btn-primary">  
-                    </p:commandButton>  
-                </p:column>  
-                <p:column>  
+                    <h:commandButton action = "#{siteBean.edita(site.endereco)}" value="#{msg['edit']}" class="btn btn-primary">  
+                    </h:commandButton>  
+                </h:column>  
+                <h:column>  
                     <f:facet name="header"></f:facet>  
-                    <p:commandButton action = "#{siteBean.delete(site)}" value="#{msg['remove']}" 
+                    <h:commandButton action = "#{siteBean.delete(site)}" value="#{msg['remove']}" 
                                      onclick="return confirm('#{msg['confirm']}');"
                                      class="btn btn-danger">  
-                    </p:commandButton>  
-                </p:column>
-                </p:dataTable>
+                    </h:commandButton>  
+                </h:column>
+                </h:dataTable>
                 <div class="col-sm-2">  
-                    <br/>
-                    <p:commandButton action="pageAdmin?faces-redirect=true" value="#{msg['return']}"/> 
+                    <h:commandButton action="pageAdmin?faces-redirect=true" value="#{msg['return']}"/> 
                 </div>
         </h:form>
     </h:body>

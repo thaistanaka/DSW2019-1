@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>#{msg['page.title']}</title>
         <h:outputStylesheet name="/css/estilo.css"/>
@@ -12,11 +11,11 @@
         <h1>#{msg["theater.city"]}</h1>
         <h:form id="form" class="form-horizontal">
             <h:outputLabel for="name" class="control-label col-sm-4">#{msg['theater.city']}</h:outputLabel>
-            <p:inputText id="cidade" value="#{teatroBean.teatro.cidade}" class="form-control"></p:inputText>
-            <p:commandButton id="submit" value='#{msg["enter"]}' action="#{teatroBean.teatrosCidade}" class='btn btn-primary'>
-            </p:commandButton>
+            <h:inputText id="cidade" value="#{teatroBean.teatro.cidade}" class="form-control"></h:inputText>
+            <h:commandButton id="submit" value='#{msg["enter"]}' action="#{teatroBean.teatrosCidade}" class='btn btn-primary'>
+            </h:commandButton>
             <div class="col-sm-2">  
-                <p:commandButton action="/index" value="#{msg['return']}"/> 
+                <h:commandButton action="/index" value="#{msg['return']}"/> 
             </div>
         </h:form>  
     </h:body>

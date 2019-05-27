@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>#{msg['page.title']}</title>
         <h:outputStylesheet library="css" name="estilo.css"/>
@@ -13,7 +12,7 @@
         <hr/>
         <br/>
         <h:form>
-            <p:commandButton id="submit" value="#{msg['sale.add']}" action="#{promocaoBean.cadastra}"/>
+            <h:commandButton id="submit" value="#{msg['sale.add']}" action="#{promocaoBean.cadastra}"/>
                 <div class="col-sm-2">
                      <h:commandButton action="/loginTeatro.xhtml?faces-redirect=true" value="#{msg['return']}"/> 
                 </div>
