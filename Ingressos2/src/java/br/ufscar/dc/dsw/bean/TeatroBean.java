@@ -68,7 +68,7 @@ public class TeatroBean implements Serializable {
     public Teatro getTeatro() {
         return teatro;
     }
-    
+    //Permite o login de um teatro usando seu email e senha
     public String login() {
         TeatroDAO dao = new TeatroDAO();
         teatro = dao.verifica(teatro.getEmail(), teatro.getSenha());
@@ -79,11 +79,11 @@ public class TeatroBean implements Serializable {
             return "loginTeatro.xhtml";
         }
     }
-    
+    //Leva para a lista contendo todos os teatros por cidade
     public String teatrosCidade() throws SQLException {
         return "listaTeatrosPorCidade.xhtml";
     }
-    
+    //Retorna todos os teatros da cidade especificadaa 
     public List<Teatro> listaTeatrosCidade(String nome) throws SQLException {
         TeatroDAO dao = new TeatroDAO();
         return dao.listarTeatrosPorCidade(nome);

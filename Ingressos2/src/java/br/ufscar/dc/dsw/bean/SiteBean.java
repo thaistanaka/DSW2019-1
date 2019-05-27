@@ -26,21 +26,22 @@ public class SiteBean implements Serializable {
     public SiteBean() {
         site = new Site();
     }
+    //Leva para o site de administração de sites
     public String lista() {
         return "siteCRUD.xhtml";
     }
-
+    //Leva para o formulário de site
     public String cadastra() {
         site = new Site();
         return "/Site/formulario.xhtml?faces-redirect=true";
     }
-
+    //Leva para o formulário de edição de site
     public String edita(String endereco) {
         SiteDAO dao = new SiteDAO();
         site = dao.get(endereco);
         return "/Site/formulario.xhtml?faces-redirect=true";
     }
-
+    //Salva o site criado se não houver outro com o mesmo endereço 
     public String salva() {
         SiteDAO dao = new SiteDAO();
         if (dao.get(site.getEndereco()) == null && dao.verifica(site.getEmail(), site.getSenha()) == null) {
@@ -52,13 +53,13 @@ public class SiteBean implements Serializable {
         }
         return "/Usuario/AdminUser/siteCRUD.xhtml?face-redirect=true";
     }
-
+    //Remove um site do banco de dados
     public String delete(Site site) {
         SiteDAO dao = new SiteDAO();
         dao.delete(site);
         return "siteCRUD.xhtml?faces-redirect=true";
     }
-
+    //Retorna todos os sites do banco de dados
     public List<Site> getSites() throws SQLException {
         SiteDAO dao = new SiteDAO();
         return dao.getAll();
@@ -67,7 +68,7 @@ public class SiteBean implements Serializable {
     public Site getSite() {
         return site;
     }
-
+    //Permite o login de um site usando seu email e senha
     public String login() {
         SiteDAO dao = new SiteDAO();
         site = dao.verifica(site.getEmail(), site.getSenha());
