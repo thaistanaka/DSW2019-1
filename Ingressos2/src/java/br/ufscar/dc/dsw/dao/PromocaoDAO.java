@@ -61,10 +61,10 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
     public List<Promocao> listarTodasPromocoesDeUmTeatro(String st) throws SQLException {
         
         EntityManager em = this.getEntityManager();
-        String s = "select a from Promocao a where a.teatro = :nome";
-        TeatroDAO dao = new TeatroDAO();
-        TypedQuery<Promocao> q = em.createQuery(s, Promocao.class);
         try{
+            String s = "select a from Promocao a where a.teatro = :nome";
+            TeatroDAO dao = new TeatroDAO();
+            TypedQuery<Promocao> q = em.createQuery(s, Promocao.class);
             Long cnpj = Long.parseLong(st);
             Teatro teatro = dao.get(cnpj);
             q.setParameter("nome", teatro);

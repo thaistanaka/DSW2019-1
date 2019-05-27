@@ -24,15 +24,11 @@ import javax.faces.bean.SessionScoped;
 public class PromocaoBean implements Serializable {
 
     private Promocao promocao;
-    private final Teatro teatro;
-    private final Site site;
     
     public PromocaoBean(){
         promocao = new Promocao();
-        teatro = new Teatro();
-        site = new Site();
-        promocao.setTeatro(teatro);
-        promocao.setSite(site);
+        promocao.setTeatro(new Teatro());
+        promocao.setSite(new Site());
     }
     
     public String cadastra() {
@@ -55,12 +51,13 @@ public class PromocaoBean implements Serializable {
     }
     
     public String promocoesPorTeatro() throws SQLException {
-        return "listaPromocoesDoTeatro.xhtml";
+        return "listaPromocoesDoTeatro.xhtml?faces-redirect=true";
     }
     
     public List<Promocao> listaPromocaoTeatro(String teatro) throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
-        return dao.listarTodasPromocoesDeUmTeatro(teatro);
+        List<Promocao> promocoes = dao.listarTodasPromocoesDeUmTeatro(teatro);
+        return promocoes;
     }
     
     public List<Promocao> listaPromocaoSite (String site) throws SQLException {
