@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 
 public class TeatroDAO extends GenericDAO<Teatro> {
 
-    @Override
+    @Override//Guarda um teatro do banco de dados
     public void save(Teatro teatro) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -21,7 +21,7 @@ public class TeatroDAO extends GenericDAO<Teatro> {
         em.close();
     }
 
-    @Override
+    @Override//Lista todos os teatros do banco de dados
     public List<Teatro> getAll() {
         EntityManager em = this.getEntityManager();
         Query q = em.createQuery("select e from Teatro e", Teatro.class);
@@ -30,7 +30,7 @@ public class TeatroDAO extends GenericDAO<Teatro> {
         return teatros;
     }
 
-    @Override
+    @Override//Deleta um teatro do banco de dados
     public void delete(Teatro teatro) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -40,7 +40,7 @@ public class TeatroDAO extends GenericDAO<Teatro> {
         tx.commit();
     }
 
-    @Override
+    @Override//Atualiza um teatro do banco de dados com modificações feitas
     public void update(Teatro teatro) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -49,7 +49,7 @@ public class TeatroDAO extends GenericDAO<Teatro> {
         tx.commit();
         em.close();
     }
-
+    //Retorna uma lista com todos os teatros do banco de dados
     public List<Teatro> listarTodosTeatros() throws SQLException {
         EntityManager em = this.getEntityManager();
         String s = "select a from Teatro a";
@@ -57,7 +57,7 @@ public class TeatroDAO extends GenericDAO<Teatro> {
 
         return q.getResultList();
     }
-
+    //Retorna uma lista com todos os teatros de uma cidade st 
     public List<Teatro> listarTeatrosPorCidade(String st) throws SQLException {
         EntityManager em = this.getEntityManager();
         try {
@@ -68,14 +68,14 @@ public class TeatroDAO extends GenericDAO<Teatro> {
             return null;
         }
     }
-
+    //Retorna uma promoção identificada pelo cnpj
     public Teatro get(Long id) {
         EntityManager em = this.getEntityManager();
         Teatro teatro = em.find(Teatro.class, id);
         em.close();
         return teatro;
     }
-
+    //Verifica se o email e a senha coincidem com algum teatro já cadastrado
     public Teatro getCnpj(String cnpj) {
         EntityManager em = this.getEntityManager();
         try {

@@ -18,7 +18,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Site implements Serializable{ //do trabalho
-    @Id
+    @Id//Classe que representa um site
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String email;

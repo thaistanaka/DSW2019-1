@@ -24,18 +24,18 @@ import javax.faces.bean.SessionScoped;
 public class PromocaoBean implements Serializable {
 
     private Promocao promocao;
-    
+    //Construtor
     public PromocaoBean(){
         promocao = new Promocao();
         promocao.setTeatro(new Teatro());
         promocao.setSite(new Site());
     }
-    
+    //Leva para a página de cadastro de promoção
     public String cadastra() {
         promocao = new Promocao();
         return "/Promocao/formulario.xhtml?faces-redirect=true";
     }
-
+    //Guarda a promoção criada no banco de dados se não houver outro com o mesmo id
     public String salva() throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
         if (promocao.getId() == null && dao.verifica(promocao.getSite(), promocao.getTeatro(), 
@@ -44,22 +44,22 @@ public class PromocaoBean implements Serializable {
         } 
         return "/Usuario/TeatroUser/teatroUser.xhtml?faces-redirect=true";
     }
-
+    //Retorna todas as promoções existentes
     public List<Promocao> getPromocoes() throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
         return dao.getAll();
     }
-    
+    //Leva para a página de lista de promoções por teatro
     public String promocoesPorTeatro() throws SQLException {
         return "listaPromocoesDoTeatro.xhtml?faces-redirect=true";
     }
-    
+    //Lista todas as promoções de um teatro
     public List<Promocao> listaPromocaoTeatro(String teatro) throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
         List<Promocao> promocoes = dao.listarTodasPromocoesDeUmTeatro(teatro);
         return promocoes;
     }
-    
+    //Lista todas as promoções de um site
     public List<Promocao> listaPromocaoSite (String site) throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
         return dao.listarTodasPromocoesDeUmSite(site);

@@ -6,7 +6,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public abstract class GenericDAO<T> {
-
+    //Classe abstrata usada como base para os outros DAO
     private final EntityManagerFactory emf;
     public GenericDAO() {
         emf = Persistence.createEntityManagerFactory("IngressosPU");

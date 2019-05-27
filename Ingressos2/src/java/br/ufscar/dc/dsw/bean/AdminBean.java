@@ -7,14 +7,14 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "adminBean")
 @SessionScoped
 public class AdminBean {
-       private Admin admin = new Admin();
-    
+    private Admin admin = new Admin();
+    //Verifica se o login inserido está correto
     public String login(){
         if("admin".equals(admin.getNome()) && "admin".equals(admin.getSenha())){
-            return "Usuario/AdminUser/pageAdmin.xhtml";
+            return "Usuario/AdminUser/pageAdmin.xhtml";//Leva a página do administrador
         }
         else
-            return "loginAdmin.xhtml";              
+            return "loginAdmin.xhtml";//Volta para a mesma página   
     }
  
     public Admin getAdmin() {

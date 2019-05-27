@@ -17,7 +17,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class Teatro implements Serializable{
-    @Id
+    @Id//Classe que representa um teatro
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String email;

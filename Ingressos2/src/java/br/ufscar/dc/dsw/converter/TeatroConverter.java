@@ -19,14 +19,14 @@ import javax.faces.convert.FacesConverter;
 @FacesConverter("TeatroConverter")
 public class TeatroConverter implements Converter{
 
-    @Override
+    @Override//Converte uma string para objeto
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
         Long id = Long.parseLong(string);
         TeatroDAO dao = new TeatroDAO();
         return dao.get(id);
     }
 
-    @Override
+    @Override//Converte um objeto para string
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
        Teatro teatro = (Teatro) o;
        return teatro.getId().toString();
