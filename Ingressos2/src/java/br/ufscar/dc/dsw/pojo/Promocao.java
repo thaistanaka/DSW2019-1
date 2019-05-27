@@ -19,7 +19,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Promocao implements Serializable {
     
-    @Id
+    @Id//Classe que representa uma promoção
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String nome;
