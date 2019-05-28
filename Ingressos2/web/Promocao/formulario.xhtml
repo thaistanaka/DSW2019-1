@@ -22,63 +22,62 @@
             </div>  
             <hr/>  
             <div class="form-group">  
-                <h:outputLabel for="endereco" class="control-label col-sm-4">#{msg['page.adress']}</h:outputLabel>  
+                <p:outputLabel for="endereco" class="control-label col-sm-4">#{msg['page.adress']}</p:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:selectOneMenu id="endereco" value="#{promocaoBean.promocao.site}">
+                    <p:selectOneMenu id="endereco" value="#{promocaoBean.promocao.site}">
                         <f:selectItems value="#{siteBean.sites}"/>
                         <f:converter converterId="SiteConverter" />
-                    </h:selectOneMenu>
-                    <h:message for="endereco"/>
+                    </p:selectOneMenu>
+                    <p:message for="endereco"/>
                 </div>  
             </div>  
             <div class="form-group">  
-                <h:outputLabel for="cnpj" class="control-label col-sm-4">#{msg['page.cnpj']}</h:outputLabel>  
+                <p:outputLabel for="cnpj" class="control-label col-sm-4">#{msg['page.cnpj']}</p:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputText id="cnpj" value="#{teatroBean.teatro}" class="form-control"   
+                    <p:inputText id="cnpj" value="#{teatroBean.teatro}" class="form-control"   
                                  validatorMessage="#{msg['page.cnpj']}" disabled="true">
                         <f:converter converterId="TeatroConverter" />
-                    </h:inputText>
-                    <h:message for="nome"/>
+                    </p:inputText>
+                    <p:message for="nome"/>
                 </div>  
             </div>            
             <div class="form-group">  
-                <h:outputLabel for="nome" class="control-label col-sm-4">#{msg['page.name']}</h:outputLabel>  
+                <p:outputLabel for="nome" class="control-label col-sm-4">#{msg['page.name']}</p:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputText id="nome" value="#{promocaoBean.promocao.nome}" class="form-control"   
+                    <p:inputText id="nome" value="#{promocaoBean.promocao.nome}" class="form-control"   
                                  validatorMessage="#{msg['page.name']}">
                         <f:validateRequired/>
-                    </h:inputText>
-                    <h:message for="nome"/>
+                    </p:inputText>
+                    <p:message for="nome"/>
                 </div>  
             </div>
             <div class="form-group">  
-                <h:outputLabel for="preco" class="control-label col-sm-4">#{msg['page.price']}</h:outputLabel>  
+                <p:outputLabel for="preco" class="control-label col-sm-4">#{msg['page.price']}</p:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputText id="preco" value="#{promocaoBean.promocao.preco}" class="form-control"   
+                    <p:inputText id="preco" value="#{promocaoBean.promocao.preco}" class="form-control"   
                                  validatorMessage="#{msg['page.price']}"
                                  a:type="Number" a:step="any" a:min="0.01">
                         <f:validateRequired/>
-                    </h:inputText>
-                    <h:message for="preco"/>
+                    </p:inputText>
+                    <p:message for="preco"/>
                 </div>  
 
             </div>
             <div class="form-group">  
 
-                <h:outputLabel for="dia" class="control-label col-sm-4">#{msg['page.day']}</h:outputLabel>  
+                <p:outputLabel for="dia" class="control-label col-sm-4">#{msg['page.day']}</p:outputLabel>  
                 <div class="col-sm-4">
                     <p:inputMask id="dia" value="#{promocaoBean.promocao.dia}" mask="99/99/9999"/>
-                    <h:message for="dia"/>
+
+                    <p:message for="dia"/>
                 </div>  
             </div>
             <div class="form-group">  
-                <h:outputLabel for="hora" class="control-label col-sm-4">#{msg['page.hour']}</h:outputLabel>  
+                <p:outputLabel for="hora" class="control-label col-sm-4">#{msg['page.hour']}</p:outputLabel>  
                 <div class="col-sm-4">
-                    <h:inputText id="hora" value="#{promocaoBean.promocao.hora}" class="form-control"   
-                                 validatorMessage="#{msg['page.hour']}" required="true">
-                        <f:validateRequired/>
-                    </h:inputText>
-                    <h:message for="hora"/>
+                    
+                    <p:inputMask id="hora" value="#{promocaoBean.promocao.hora}" mask="99:99"/>
+                    <p:message for="hora"/>
                 </div>  
             </div>
             <div class="form-group">  
