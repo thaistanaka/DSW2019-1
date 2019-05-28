@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
 /**
@@ -37,11 +38,11 @@ public class PromocaoBean implements Serializable {
         return "/Promocao/formulario.xhtml?faces-redirect=true";
     }
     //Guarda a promoção criada no banco de dados se não houver outro com o mesmo id
-    public String salva() throws SQLException {
+    public String salva(Teatro teatro) throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
         if (promocao.getId() == null && dao.verifica(promocao.getSite(), promocao.getTeatro(), 
                 promocao.getHora(), promocao.getDia()) == null) {
-          promocao.setTeatro();
+            promocao.setTeatro(teatro);
             dao.save(promocao);
         } 
         return "/Usuario/TeatroUser/teatroUser.xhtml?faces-redirect=true";

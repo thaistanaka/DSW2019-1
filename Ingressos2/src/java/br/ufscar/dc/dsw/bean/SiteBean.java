@@ -5,7 +5,9 @@
  */
 package br.ufscar.dc.dsw.bean;
 
+import br.ufscar.dc.dsw.dao.PromocaoDAO;
 import br.ufscar.dc.dsw.dao.SiteDAO;
+import br.ufscar.dc.dsw.pojo.Promocao;
 import br.ufscar.dc.dsw.pojo.Site;
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -55,7 +57,12 @@ public class SiteBean implements Serializable {
         return "/Usuario/AdminUser/siteCRUD.xhtml?face-redirect=true";
     }
     //Remove um site do banco de dados
-    public String delete(Site site) {
+    public String delete(Site site) throws SQLException {
+        PromocaoDAO daoP = new PromocaoDAO();
+        List<Promocao> promos = daoP.listarTodasPromocoesDeUmSite(site.getEndereco());
+        for(Promocao promocao: promos){
+            daoP.delete(promocao);
+        }
         SiteDAO dao = new SiteDAO();
         dao.delete(site);
         return "siteCRUD.xhtml?faces-redirect=true";
@@ -72,8 +79,7 @@ public class SiteBean implements Serializable {
     //Permite o login de um site usando seu email e senha
     public String login() {
         SiteDAO dao = new SiteDAO();
-        site = dao.verifica(site.getEmail(), site.getSenha());
-        if (site != null){
+        if (dao.verifica(site.getEmail(), site.getSenha()) != null){
                 return "Usuario/SiteUser/siteUser.xhtml";
             }
         else {

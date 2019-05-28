@@ -30,7 +30,7 @@ public class SiteConverter implements Converter{
     @Override//Converte um objeto para string
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
        Site site = (Site) o;
-       return site.getId().toString();
+       return site.getEndereco();
     }
     
 }

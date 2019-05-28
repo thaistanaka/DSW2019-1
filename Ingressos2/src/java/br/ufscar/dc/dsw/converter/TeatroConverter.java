@@ -29,6 +29,6 @@ public class TeatroConverter implements Converter{
     @Override//Converte um objeto para string
     public String getAsString(FacesContext fc, UIComponent uic, Object o) {
        Teatro teatro = (Teatro) o;
-       return teatro.getId().toString();
+       return teatro.getCnpj();
     }
 }

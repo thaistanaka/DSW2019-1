@@ -5,7 +5,9 @@
  */
 package br.ufscar.dc.dsw.bean;
 
+import br.ufscar.dc.dsw.dao.PromocaoDAO;
 import br.ufscar.dc.dsw.dao.TeatroDAO;
+import br.ufscar.dc.dsw.pojo.Promocao;
 import br.ufscar.dc.dsw.pojo.Teatro;
 import java.io.Serializable;
 import java.sql.SQLException;
@@ -55,7 +57,12 @@ public class TeatroBean implements Serializable {
         return "/Usuario/AdminUser/teatroCRUD.xhtml?faces-redirect=true";
     }
     //Remove um teatro do banco de dados
-    public String delete(Teatro teatro) {
+    public String delete(Teatro teatro) throws SQLException {
+        PromocaoDAO daoP = new PromocaoDAO();
+        List<Promocao> promos = daoP.listarTodasPromocoesDeUmTeatro(teatro.getCnpj());
+        for(Promocao promocao: promos){
+            daoP.delete(promocao);
+        }
         TeatroDAO dao = new TeatroDAO();
         dao.delete(teatro);
         return "teatroCRUD.xhtml?faces-redirect=true";
@@ -72,8 +79,7 @@ public class TeatroBean implements Serializable {
     //Permite o login de um teatro usando seu email e senha
     public String login() {
         TeatroDAO dao = new TeatroDAO();
-        teatro = dao.verifica(teatro.getEmail(), teatro.getSenha());
-        if(teatro != null){
+        if(dao.verifica(teatro.getEmail(), teatro.getSenha()) != null){
                 return "Usuario/TeatroUser/teatroUser.xhtml";
         } else {
             teatro = new Teatro();
