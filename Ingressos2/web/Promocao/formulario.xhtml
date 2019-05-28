@@ -29,17 +29,16 @@
                         <f:converter converterId="SiteConverter" />
                     </p:selectOneMenu>
                     <p:message for="endereco"/>
-                </div>  
-            </div>  
+                </div>
+            </div>
             <div class="form-group">  
                 <p:outputLabel for="cnpj" class="control-label col-sm-4">#{msg['page.cnpj']}</p:outputLabel>  
-                <div class="col-sm-4">  
-                    <p:inputText id="cnpj" value="#{teatroBean.teatro}" class="form-control"   
-                                 validatorMessage="#{msg['page.cnpj']}" disabled="true">
-                        <f:converter converterId="TeatroConverter" />
-                    </p:inputText>
-                    <p:message for="nome"/>
-                </div>  
+                <div class="col-sm-4">
+
+                    <p:inputMask id="cnpj" value="#{teatroBean.teatro}" mask="99.999.999/9999-99" required="true"/>
+                    <p:message for="cnpj"/>
+                </div> 
+
             </div>            
             <div class="form-group">  
                 <p:outputLabel for="nome" class="control-label col-sm-4">#{msg['page.name']}</p:outputLabel>  
@@ -75,7 +74,7 @@
             <div class="form-group">  
                 <p:outputLabel for="hora" class="control-label col-sm-4">#{msg['page.hour']}</p:outputLabel>  
                 <div class="col-sm-4">
-                    
+
                     <p:inputMask id="hora" value="#{promocaoBean.promocao.hora}" mask="99:99" required="true"/>
                     <p:message for="hora"/>
                 </div>  

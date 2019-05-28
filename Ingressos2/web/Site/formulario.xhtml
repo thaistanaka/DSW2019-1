@@ -24,71 +24,69 @@
             <div class="form-group">  
                 <h:outputLabel for="email" class="control-label col-sm-4">#{msg['page.email']}</h:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputText id="email" value="#{siteBean.site.email}" class="form-control"   
+                    <p:inputText id="email" value="#{siteBean.site.email}" class="form-control"   
                                  validatorMessage="#{msg['page.email']}" required="true">
                         <f:validateRequired/>
-                    </h:inputText>
+                    </p:inputText>
                     <h:message for="email"/>
                 </div>  
             </div>  
-                        
+
             <div class="form-group">  
                 <h:outputLabel for="senha" class="control-label col-sm-4">#{msg['user.password']}</h:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputText id="senha" value="#{siteBean.site.senha}" class="form-control"   
+                    <p:inputText id="senha" value="#{siteBean.site.senha}" class="form-control"   
                                  validatorMessage="#{msg['user.password']}" required="true">
                         <f:validateRequired/>
-                    </h:inputText>
+                    </p:inputText>
                     <h:message for="senha"/>
                 </div>  
             </div>  
             <div class="form-group">  
                 <h:outputLabel for="nome" class="control-label col-sm-4">#{msg['page.name']}</h:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputText id="nome" value="#{siteBean.site.nome}" class="form-control"   
-                                   validatorMessage="#{msg['page.name']}">
+                    <p:inputText id="nome" value="#{siteBean.site.nome}" class="form-control"   
+                                 validatorMessage="#{msg['page.name']}">
                         <f:validateRequired/>
-                        
-                    </h:inputText>
+
+                    </p:inputText>
                     <h:message for="nome"/>
                 </div>  
             </div>
             <div class="form-group">  
                 <h:outputLabel for="endereco" class="control-label col-sm-4">#{msg['page.adress']}</h:outputLabel>  
                 <div class="col-sm-4">  
-                    <h:inputText id="endereco" value="#{siteBean.site.endereco}" class="form-control"   
+                    <p:inputText id="endereco" value="#{siteBean.site.endereco}" class="form-control"   
                                  validatorMessage="#{msg['page.adress']}" required="true">
                         <f:validateRequired/>
-                    </h:inputText>
+                    </p:inputText>
                     <h:message for="endereco"/>
                 </div>  
-            
             </div>
             <div class="form-group">  
+
                 <h:outputLabel for="telefone" class="control-label col-sm-4">#{msg['page.phone']}</h:outputLabel>  
                 <div class="col-sm-4">
-                    <h:inputText id="telefone" value="#{siteBean.site.telefone}" class="form-control"   
-                                 validatorMessage="#{msg['page.phone']}">
-                        <f:validateRequired/>
-                    </h:inputText>
-                    <h:message for="telefone"/>
-                </div>  
-            </div>
+                    <p:inputMask id="telefone" value="#{siteBean.site.telefone}" mask="(99)9999-9999" required="true"/>
+
+                    <p:message for="telefone"/>
+                </div> 
+            </div> 
             <div class="form-group">  
                 <div class="col-sm-4"></div>  
                 <div class="col-sm-4">  
                     <div class="col-sm-2">
                         <h:commandButton value="#{msg['save']}" action="#{siteBean.salva()}"
-                              class="btn btn-primary" style="width: 80px;">
-                         </h:commandButton>  
+                                         class="btn btn-primary" style="width: 80px;">
+                        </h:commandButton>  
                     </div>  
                     <br/> 
                 </div>  
             </div>
         </h:form>  
-        
-            <div class="col-sm-2">  
-                <p:button outcome="/Usuario/AdminUser/siteCRUD.xhtml?faces-redirect=true" value="#{msg['return']}"></p:button> 
-            </div> 
+
+        <div class="col-sm-2">  
+            <p:button outcome="/Usuario/AdminUser/siteCRUD.xhtml?faces-redirect=true" value="#{msg['return']}"></p:button> 
+        </div> 
     </h:body>  
 </html>
