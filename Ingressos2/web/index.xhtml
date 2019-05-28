@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
 <html xmlns="http://www.w3.org/1999/xhtml"  
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>#{msg['page.title']}</title>
         <h:outputStylesheet name="/css/estilo.css"/>
@@ -11,12 +12,12 @@
         <h1>#{msg['index.name']}</h1>
         <p>#{msg['index.explanation']}</p>
     <h:form>
-        <h:commandLink action="loginAdmin">#{msg['acess.admin']}</h:commandLink><br/>
-        <h:commandLink action="loginTeatro">#{msg['acess.theater']}</h:commandLink><br/>
-        <h:commandLink action="loginSite">#{msg['acess.site']}</h:commandLink><br/>
-        <h:commandLink action="TeatrosPorCidade/teatrosPorCidade">#{msg['theater.city']}</h:commandLink><br/>
-        <h:commandLink action="Teatro/listaTeatros">#{msg['theaters']}</h:commandLink><br/>
-        <h:commandLink action="PromocoesDoTeatro/promocoesDeTeatro">#{msg['theater.sale']}</h:commandLink><br/>
+        <p:commandLink action="loginAdmin">#{msg['acess.admin']}</p:commandLink><br/>
+        <p:commandLink action="loginTeatro">#{msg['acess.theater']}</p:commandLink><br/>
+        <p:commandLink action="loginSite">#{msg['acess.site']}</p:commandLink><br/>
+        <p:commandLink action="TeatrosPorCidade/teatrosPorCidade">#{msg['theater.city']}</p:commandLink><br/>
+        <p:commandLink action="Teatro/listaTeatros">#{msg['theaters']}</p:commandLink><br/>
+        <p:commandLink action="PromocoesDoTeatro/promocoesDeTeatro">#{msg['theater.sale']}</p:commandLink><br/>
     </h:form>
     
     </h:body>

@@ -2,23 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/src/java/br/ufscar/dc/dsw/dao/SiteDAO.java</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/src/java/br/ufscar/dc/dsw/bean/PromocaoBean.java</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/web/TeatrosPorCidade/listaTeatrosPorCidade.xhtml</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/src/java/br/ufscar/dc/dsw/bean/TeatroBean.java</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/web/Site/formulario.xhtml</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/web/Usuario/TeatroUser/teatroUser.xhtml</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/src/java/br/ufscar/dc/dsw/dao/PromocaoDAO.java</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/src/java/br/ufscar/dc/dsw/bean/SiteBean.java</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/web/TeatrosPorCidade/teatrosPorCidade.xhtml</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/web/loginTeatro.xhtml</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/src/java/br/ufscar/dc/dsw/dao/TeatroDAO.java</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/web/loginSite.xhtml</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/web/Teatro/formulario.xhtml</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/web/Usuario/AdminUser/siteCRUD.xhtml</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/web/Usuario/AdminUser/teatroCRUD.xhtml</file>
-            <file>file:/C:/Users/Windows/Documents/GitHub/DSW2019-1/Ingressos2/web/Promocao/formulario.xhtml</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
