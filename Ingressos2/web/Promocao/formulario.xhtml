@@ -35,7 +35,7 @@
                 <p:outputLabel for="cnpj" class="control-label col-sm-4">#{msg['page.cnpj']}</p:outputLabel>  
                 <div class="col-sm-4">
 
-                    <p:inputMask id="cnpj" value="#{teatroBean.teatro}" mask="99.999.999/9999-99" required="true"/>
+                    <p:inputMask id="cnpj" value="#{teatroBean.teatro.cnpj}" mask="99.999.999/9999-99" required="true"/>
                     <p:message for="cnpj"/>
                 </div> 
 
