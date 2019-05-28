@@ -33,16 +33,16 @@ public class PromocaoBean implements Serializable {
         promocao.setSite(new Site());
     }
     //Leva para a página de cadastro de promoção
-    public String cadastra() {
+    public String cadastra(Teatro teatro) {
         promocao = new Promocao();
+        promocao.setTeatro(teatro);
         return "/Promocao/formulario.xhtml?faces-redirect=true";
     }
     //Guarda a promoção criada no banco de dados se não houver outro com o mesmo id
-    public String salva(Teatro teatro) throws SQLException {
+    public String salva() throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
         if (promocao.getId() == null && dao.verifica(promocao.getSite(), promocao.getTeatro(), 
                 promocao.getHora(), promocao.getDia()) == null) {
-            promocao.setTeatro(teatro);
             dao.save(promocao);
         } 
         return "/Usuario/TeatroUser/teatroUser.xhtml?faces-redirect=true";

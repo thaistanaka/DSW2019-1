@@ -43,14 +43,19 @@ public class SiteBean implements Serializable {
         site = dao.get(id);
         return "/Site/formulario.xhtml?faces-redirect=true";
     }
+    
+    public String logout(){
+        return "/loginSite.xhtml?faces-redirect=true";
+    }
     //Salva o site criado se não houver outro com o mesmo endereço 
     public String salva() {
         SiteDAO dao = new SiteDAO();
+        List<Site> sites = dao.getEnderecoList(site.getEndereco());
          if ((site.getId() == null && dao.getEndereco(site.getEndereco()) == null) &&
                  dao.verifica(site.getEmail(), site.getSenha()) == null) {
             dao.save(site);
         } else {
-            if(site.getId() != null){
+            if(site.getId() != null && ((sites.size() == 1 && dao.getEnderecoId(site.getEndereco(), site.getId()) != null) || sites.isEmpty())){
                 dao.update(site);
             }
         }
@@ -76,14 +81,18 @@ public class SiteBean implements Serializable {
     public Site getSite() {
         return site;
     }
+
+    public void setSite(Site site) {
+        this.site = site;
+    }
+    
     //Permite o login de um site usando seu email e senha
     public String login() {
         SiteDAO dao = new SiteDAO();
         if (dao.verifica(site.getEmail(), site.getSenha()) != null){
-                return "Usuario/SiteUser/siteUser.xhtml";
+                return "Usuario/SiteUser/siteUser.xhtml?faces-redirect=true";
             }
         else {
-            site = new Site();
             return "loginSite.xhtml";
         }
 

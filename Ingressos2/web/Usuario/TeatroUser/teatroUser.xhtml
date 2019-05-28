@@ -13,10 +13,10 @@
         <hr/>
         <br/>
         <h:form>
-            <p:commandButton id="submit" value="#{msg['sale.add']}" action="#{promocaoBean.cadastra}"/>
+            <p:commandButton id="submit" value="#{msg['sale.add']}" action="#{promocaoBean.cadastra(teatroBean.teatro)}"/>
             <br/>
                 <div align="center" class="col-sm-2">
-                     <p:commandButton action="/loginTeatro.xhtml?faces-redirect=true" value="#{msg['return']}"/> 
+                    <p:commandButton action="#{teatroBean.logout()}" value="#{msg['return']}"/> 
                 </div>
         </h:form>
     </h:body>

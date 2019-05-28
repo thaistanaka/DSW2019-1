@@ -56,7 +56,7 @@
                 </p:dataTable>
             <br/>
                 <div align="center" class="col-sm-2">  
-                     <p:commandButton action="/loginSite.xhtml?faces-redirect=true" value="#{msg['return']}"/> 
+                    <p:commandButton action="#{siteBean.logout()}" value="#{msg['return']}"/> 
                 </div>
         </h:form>
     </h:body>

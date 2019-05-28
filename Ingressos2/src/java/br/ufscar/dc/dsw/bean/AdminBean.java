@@ -11,10 +11,14 @@ public class AdminBean {
     //Verifica se o login inserido está correto
     public String login(){
         if("admin".equals(admin.getNome()) && "admin".equals(admin.getSenha())){
-            return "Usuario/AdminUser/pageAdmin.xhtml";//Leva a página do administrador
+            return "Usuario/AdminUser/pageAdmin.xhtml?faces-redirect=true";//Leva a página do administrador
         }
         else
             return "loginAdmin.xhtml";//Volta para a mesma página   
+    }
+    
+    public String logout(){
+        return "/loginAdmin.xhtml?faces-redirect=true";
     }
  
     public Admin getAdmin() {

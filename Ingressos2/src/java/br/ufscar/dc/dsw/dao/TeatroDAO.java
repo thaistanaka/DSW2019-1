@@ -87,6 +87,31 @@ public class TeatroDAO extends GenericDAO<Teatro> {
             return null;
         }
     }
+    
+    public Teatro getCnpjId(String cnpj, Long id) {
+        EntityManager em = this.getEntityManager();
+        try {
+
+            Teatro teatro = (Teatro) em.createQuery("select t from Teatro t where t.cnpj = :nome and t.id = :id1")
+                    .setParameter("nome", cnpj)
+                    .setParameter("id1", id).getSingleResult();
+            return teatro;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+    public List<Teatro> getCnpjList(String cnpj) {
+        EntityManager em = this.getEntityManager();
+        try {
+
+            List<Teatro> teatro = (List<Teatro>) em.createQuery("select t from Teatro t where t.cnpj = :nome")
+                    .setParameter("nome", cnpj).getResultList();
+            return teatro;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 
     public Teatro verifica(String email, String senha) {
         EntityManager em = this.getEntityManager();

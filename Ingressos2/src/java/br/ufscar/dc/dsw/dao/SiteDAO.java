@@ -75,6 +75,29 @@ public class SiteDAO extends GenericDAO<Site>{
             return null;
         }
     }
+    
+    public List<Site> getEnderecoList(String endereco) {
+        try{
+        EntityManager em = this.getEntityManager();
+        List<Site> site = (List<Site>) em.createQuery("select t from Site t where t.endereco = :nome")
+                   .setParameter("nome", endereco).getResultList();
+        return site;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+    public Site getEnderecoId(String endereco, Long id) {
+        try{
+        EntityManager em = this.getEntityManager();
+        Site site = (Site) em.createQuery("select t from Site t where t.endereco = :nome and t.id = :id1")
+                   .setParameter("nome", endereco)
+                .setParameter("id1", id).getSingleResult();
+        return site;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
     //Verifica se o email e a senha coincidem com algum site já cadastrado
     public Site verifica(String email, String senha) {
         EntityManager em = this.getEntityManager();

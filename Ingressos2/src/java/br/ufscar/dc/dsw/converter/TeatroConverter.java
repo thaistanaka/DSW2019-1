@@ -21,9 +21,8 @@ public class TeatroConverter implements Converter{
 
     @Override//Converte uma string para objeto
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
-        Long id = Long.parseLong(string);
         TeatroDAO dao = new TeatroDAO();
-        return dao.get(id);
+        return dao.getCnpj(string);
     }
 
     @Override//Converte um objeto para string

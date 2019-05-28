@@ -67,7 +67,7 @@
 
                 <p:outputLabel for="dia" class="control-label col-sm-4">#{msg['page.day']}</p:outputLabel>  
                 <div class="col-sm-4">
-                    <p:inputMask id="dia" value="#{promocaoBean.promocao.dia}" mask="99/99/9999"/>
+                    <p:inputMask id="dia" value="#{promocaoBean.promocao.dia}" mask="99/99/9999" required="true"/>
 
                     <p:message for="dia"/>
                 </div>  
@@ -76,7 +76,7 @@
                 <p:outputLabel for="hora" class="control-label col-sm-4">#{msg['page.hour']}</p:outputLabel>  
                 <div class="col-sm-4">
                     
-                    <p:inputMask id="hora" value="#{promocaoBean.promocao.hora}" mask="99:99"/>
+                    <p:inputMask id="hora" value="#{promocaoBean.promocao.hora}" mask="99:99" required="true"/>
                     <p:message for="hora"/>
                 </div>  
             </div>
@@ -84,7 +84,7 @@
                 <div class="col-sm-4"></div>  
                 <div class="col-sm-4">  
                     <div class="col-sm-2">
-                        <h:commandButton value="#{msg['save']}" action="#{promocaoBean.salva(teatroBean.teatro)}"
+                        <h:commandButton value="#{msg['save']}" action="#{promocaoBean.salva()}"
                                          class="btn btn-primary" style="width: 80px;">
                         </h:commandButton>  
                     </div>  

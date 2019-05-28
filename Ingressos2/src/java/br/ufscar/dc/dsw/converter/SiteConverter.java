@@ -22,9 +22,8 @@ public class SiteConverter implements Converter{
 
     @Override//Converte uma string para objeto
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
-        Long id = Long.parseLong(string);
         SiteDAO dao = new SiteDAO();
-        return dao.get(id);
+        return dao.getEndereco(string);
     }
 
     @Override//Converte um objeto para string

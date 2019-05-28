@@ -13,7 +13,7 @@
         <h:form>
             <p:commandLink action="#{teatroBean.lista()}">#{msg["mod.theater.data"]}</p:commandLink><br/>
             <p:commandLink action="#{siteBean.lista()}">#{msg["mod.site.data"]}</p:commandLink><br/>
-        <h:outputLink value="/Ingressos2/faces/loginAdmin.xhtml">#{msg["return"]}</h:outputLink>
+            <p:commandLink action="#{adminBean.logout()}">#{msg["return"]}</p:commandLink><br/>
         </h:form>
     </h:body>
 </html>

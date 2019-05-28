@@ -37,6 +37,10 @@ public class TeatroBean implements Serializable {
         teatro = new Teatro();
         return "/Teatro/formulario.xhtml?faces-redirect=true";
     }
+    
+    public String logout(){
+        return "/loginTeatro.xhtml?faces-redirect=true";
+    }
     //Leva para o formulário de edição de teatro
     public String edita(Long id) {
         TeatroDAO dao = new TeatroDAO();
@@ -46,11 +50,12 @@ public class TeatroBean implements Serializable {
     //Salva o teatro criado se não houver outro com o mesmo cnpj 
     public String salva() {
         TeatroDAO dao = new TeatroDAO();
+        List<Teatro> teatros = dao.getCnpjList(teatro.getCnpj());
         if ((teatro.getId() == null && dao.getCnpj(teatro.getCnpj()) == null)
                 && dao.verifica(teatro.getEmail(), teatro.getSenha()) == null) {
             dao.save(teatro);
         } else {
-            if(teatro.getId() != null){
+            if(teatro.getId() != null && ((teatros.size() == 1 &&  dao.getCnpjId(teatro.getCnpj(), teatro.getId()) != null) || teatros.isEmpty())){
                 dao.update(teatro);
             }
         }
@@ -76,13 +81,17 @@ public class TeatroBean implements Serializable {
     public Teatro getTeatro() {
         return teatro;
     }
+
+    public void setTeatro(Teatro teatro) {
+        this.teatro = teatro;
+    }
+    
     //Permite o login de um teatro usando seu email e senha
     public String login() {
         TeatroDAO dao = new TeatroDAO();
         if(dao.verifica(teatro.getEmail(), teatro.getSenha()) != null){
-                return "Usuario/TeatroUser/teatroUser.xhtml";
+            return "Usuario/TeatroUser/teatroUser.xhtml?faces-redirect=true";
         } else {
-            teatro = new Teatro();
             return "loginTeatro.xhtml";
         }
     }
