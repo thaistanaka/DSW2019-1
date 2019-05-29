@@ -6,32 +6,37 @@ p {
     font-size: x-large;
     font-family: courier;
     font-weight: bold;
-    color: #00A099;
+    color: #404040;
 }
 
 h1 {
     font-size: xx-large;
-    font-family: serif;
-    color: #990096;
+    font-family: courier;
+    font-weight: bold;
+    color: #151515;
 }
 
 .link {
+    font-family: courier;
+    font-weight: bold;
     font-size: larger;
-    color: #6E0099;
+    color: #0000ff;
 }
 
 div {
     font-size: x-large;
-    font-family: freemono,monospace;
-    color: #6E0099;
+    font-family: courier;
+    font-weight: bold;
+    color: #000000;
     
 }
 
 .ui-button-text {
     font-size: large;
-    font-family: freemono,monospace;
+    font-family: courier;
+    font-weight: bold;
     color: #ffffff;
-    background-color: #6E0099;
+    background-color: #333333;
 }
 
 .btn {
@@ -49,11 +54,11 @@ table {
 }
 
 td {
-    font-size: larger;
-    font-family: courier;
+    font-size: large;
+    font-family: serif;
     font-weight: bolder; 
-    color: #990096;
-    background-color: #0099FA;
+    color: #151515;
+    background-color: #dcdcdc;
 }
 
 .header {
