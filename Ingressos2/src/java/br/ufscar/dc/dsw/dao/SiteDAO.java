@@ -99,13 +99,25 @@ public class SiteDAO extends GenericDAO<Site>{
         }
     }
     //Verifica se o email e a senha coincidem com algum site já cadastrado
-    public Site verifica(String email, String senha) {
+    public List<Site> verifica(String email, String senha) {
         EntityManager em = this.getEntityManager();
         try {
-           Site site = (Site) em.createQuery("select t from Site t where t.email = :nome2 and t.senha = :senha2")
+           List<Site> site = (List<Site>) em.createQuery("select t from Site t where t.email = :nome2 and t.senha = :senha2")
                    .setParameter("nome2", email)
-                   .setParameter("senha2", senha).getSingleResult();
+                   .setParameter("senha2", senha).getResultList();
            return site;
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
+    public String pegaEndereco(String email, String senha) {
+        EntityManager em = this.getEntityManager();
+        try {
+            Site site = (Site) em.createQuery("select s from Site s where s.email = :nome and s.senha = :senha")
+                    .setParameter("nome", email)
+                    .setParameter("senha", senha).getSingleResult();
+            return site.getEndereco();
         } catch (NoResultException e) {
             return null;
         }
