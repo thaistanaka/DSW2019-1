@@ -113,12 +113,12 @@ public class TeatroDAO extends GenericDAO<Teatro> {
         }
     }
 
-    public List<Teatro> verifica(String email, String senha) {
+    public Teatro verifica(String email, String senha) {
         EntityManager em = this.getEntityManager();
         try {
-            List<Teatro> teatro = (List<Teatro>) em.createQuery("select t from Teatro t where t.email = :nome2 and t.senha = :senha2")
+            Teatro teatro = (Teatro) em.createQuery("select t from Teatro t where t.email = :nome2 and t.senha = :senha2")
                     .setParameter("nome2", email)
-                    .setParameter("senha2", senha).getResultList();
+                    .setParameter("senha2", senha).getSingleResult();
             return teatro;
         } catch (NoResultException e) {
             return null;

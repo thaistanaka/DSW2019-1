@@ -42,7 +42,7 @@ public class PromocaoBean implements Serializable {
     public String salva() throws SQLException {
         PromocaoDAO dao = new PromocaoDAO();
         if (promocao.getId() == null && dao.verifica(promocao.getSite(), promocao.getTeatro(), 
-                promocao.getHora(), promocao.getDia()) == null) {
+                promocao.getHora(), promocao.getDia()).isEmpty()) {
             dao.save(promocao);
         } 
         return "/Usuario/TeatroUser/teatroUser.xhtml?faces-redirect=true";
