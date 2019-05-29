@@ -84,14 +84,14 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
         return q.getResultList();
     }
     //Verifica se há alguma promoção igual aos dados inseridos
-    public List<Promocao> verifica(Site endereco,Teatro cnpj,String hora, String dia) throws SQLException{
+    public Promocao verifica(Site endereco,Teatro cnpj,String hora, String dia) throws SQLException{
         EntityManager em = this.getEntityManager();
         try {
-            List<Promocao> promocao = (List<Promocao>) em.createQuery("select p from Promocao p where ((p.site = :nome1 and p.dia = :nome4) and p.hora = :nome3) or (p.teatro = :nome2 and (p.hora = :nome3 and p.dia = :nome4))")
+            Promocao promocao = (Promocao) em.createQuery("select p from Promocao p where ((p.site = :nome1 and p.dia = :nome4) and p.hora = :nome3) or (p.teatro = :nome2 and (p.hora = :nome3 and p.dia = :nome4))")
                    .setParameter("nome1", endereco)
                    .setParameter("nome2", cnpj)
                    .setParameter("nome3", hora)
-                   .setParameter("nome4", dia).getResultList();
+                   .setParameter("nome4", dia).getSingleResult();
            return promocao;
         } catch(NoResultException e) {
            return null;

@@ -105,7 +105,7 @@ public class TeatroBean implements Serializable {
         return dao.listarTeatrosPorCidade(nome);
     }
  
-    public Teatro loginCNPJ(){
+    public String loginCNPJ(){
         TeatroDAO dao = new TeatroDAO();
         return dao.pegaCNPJ(teatro.getEmail(), teatro.getSenha());
     }

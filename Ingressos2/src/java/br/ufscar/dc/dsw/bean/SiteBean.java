@@ -97,10 +97,5 @@ public class SiteBean implements Serializable {
         }
 
     }
-    //Obtem o endereco usando o email e senha
-    public String loginEndereco(){
-        SiteDAO dao = new SiteDAO();
-        return dao.pegaEndereco(site.getEmail(), site.getSenha());
-    }
 
 }

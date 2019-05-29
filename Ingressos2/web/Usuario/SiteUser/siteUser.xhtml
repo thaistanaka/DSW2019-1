@@ -15,7 +15,7 @@
         <h:form >
             <p:dataTable id="promocoes"
                          summary="#{msg['sale.list']}"
-                         value="#{promocaoBean.listaPromocaoSite(siteBean.loginEndereco())}"
+                         value="#{promocaoBean.listaPromocaoSite(siteBean.site.endereco)}"
                          var="promocao">
                 <p:column>
                     <f:facet name="header">
