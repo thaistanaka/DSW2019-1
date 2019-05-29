@@ -24,7 +24,7 @@
             <div class="form-group">  
                 <p:outputLabel for="endereco" class="control-label col-sm-4">#{msg['page.adress']}</p:outputLabel>  
                 <div class="col-sm-4">  
-                    <p:selectOneMenu id="endereco" value="#{promocaoBean.promocao.site}">
+                    <p:selectOneMenu id="endereco" value="#{promocaoBean.promocao.site}" required="true">
                         <f:selectItems value="#{siteBean.sites}"/>
                         <f:converter converterId="SiteConverter" />
                     </p:selectOneMenu>
