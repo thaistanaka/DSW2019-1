@@ -11,13 +11,12 @@
     <h:body>
         <h1>#{msg["theater.city"]}</h1>
         <h:form id="form" class="form-horizontal">
-            <h:outputLabel for="name" class="control-label col-sm-4">#{msg['theater.city']}</h:outputLabel>
+            <div><h:outputLabel for="name" class="control-label col-sm-4">#{msg['theater.city']} </h:outputLabel>
             <p:inputText id="cidade" value="#{teatroBean.teatro.cidade}" class="form-control"></p:inputText>
-            <p:commandButton id="submit" value='#{msg["enter"]}' action="#{teatroBean.teatrosCidade}" class='btn btn-primary'>
-            </p:commandButton>
-            <div class="col-sm-2">  
-                <p:commandButton action="/index" value="#{msg['return']}"/> 
-            </div>
-        </h:form>  
+            &nbsp;<p:commandButton id="submit" value='#{msg["enter"]}' action="#{teatroBean.teatrosCidade}" class='btn'  >
+            </p:commandButton></div>
+        </h:form> 
+        <br/>
+        <p:commandButton id="return" action="/index" value="#{msg['return']}"/> 
     </h:body>
 </html>

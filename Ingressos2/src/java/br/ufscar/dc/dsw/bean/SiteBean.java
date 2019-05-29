@@ -55,7 +55,7 @@ public class SiteBean implements Serializable {
                  dao.verifica(site.getEmail(), site.getSenha()) == null) {
             dao.save(site);
         } else {
-            if(site.getId() != null && ((sites.size() == 1 && dao.getEnderecoId(site.getEndereco(), site.getId()) != null) || sites.isEmpty())){
+            if(site.getId() != null && (sites.size() == 1 && (dao.getEnderecoId(site.getEndereco(), site.getId()) != null))){
                 dao.update(site);
             }
         }

@@ -13,38 +13,39 @@
         <hr/>
         <br/>
         <h:form>
-                <p:dataTable id="teatros"
-                             summary="#{msg['sale.in.theater']}"
-                             value="#{teatroBean.listaTeatrosCidade(teatroBean.teatro.cidade)}"
-                             var="teatro">
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['page.cnpj']}" />
-                        </f:facet>
-                        <h:outputText id="cnpj" value="#{teatro.cnpj}" />
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['page.name']}" />
-                        </f:facet>
-                        <h:outputText id="nome" value="#{teatro.nome}" />
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['page.email']}" />
-                        </f:facet>
-                        <h:outputText id="email" value="#{teatro.email}" />
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['page.city']}" />
-                        </f:facet>
-                        <h:outputText id="cidade" value="#{teatro.cidade}" />
-                    </p:column>
-                </p:dataTable>
-                <div class="col-sm-2">  
-                    <p:commandButton action="teatrosPorCidade" value="#{msg['return']}"/>
-                </div>
+            <p:dataTable id="teatros"
+                         summary="#{msg['sale.in.theater']}"
+                         value="#{teatroBean.listaTeatrosCidade(teatroBean.teatro.cidade)}"
+                         var="teatro">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.cnpj']}" class="header"/>
+                    </f:facet>
+                    <h:outputText id="cnpj" value="#{teatro.cnpj}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.name']}" class="header"/>
+                    </f:facet>
+                    <h:outputText id="nome" value="#{teatro.nome}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.email']}" class="header"/>
+                    </f:facet>
+                    <h:outputText id="email" value="#{teatro.email}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.city']}" class="header"/>
+                    </f:facet>
+                    <h:outputText id="cidade" value="#{teatro.cidade}" />
+                </p:column>
+            </p:dataTable>
         </h:form>
+        <br/>
+        <div>  
+            <p:commandButton action="teatrosPorCidade" value="#{msg['return']}"/>
+        </div>
     </h:body>
 </html>

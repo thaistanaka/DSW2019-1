@@ -1,46 +1,64 @@
 body {
-    background-color: cornflowerblue;
-}
-
-h1, h2 {
-    color:crimson;
-    text-align: center;
-}
-
-div {
-    font-weight: bold;
-    margin-left: 40px;
-    font-size: x-large;
-    color: firebrick;
-}
-
-a {
-    margin-top: 30px;
-    margin-left: 40px;
-    font-size: x-large;
-}
-
-table {
-    background-color: beige;
-}
-
-input {
-    font-weight: bold;
-    background-color: thistle;
-    margin-top: 20px;
-    font-size: large;
-    margin-left: 25px;
+    background-color: #00E699;
 }
 
 p {
-    margin-top: 30px;
-    margin-left: 30px;
     font-size: x-large;
+    font-family: courier;
+    font-weight: bold;
+    color: #00A099;
 }
 
-form {
-    font-weight: bold;
-    margin-left: 40px;
+h1 {
+    font-size: xx-large;
+    font-family: serif;
+    color: #990096;
+}
+
+.link {
+    font-size: larger;
+    color: #6E0099;
+}
+
+div {
     font-size: x-large;
-    color: firebrick;
+    font-family: freemono,monospace;
+    color: #6E0099;
+    
+}
+
+.ui-button-text {
+    font-size: large;
+    font-family: freemono,monospace;
+    color: #ffffff;
+    background-color: #6E0099;
+}
+
+.btn {
+    font-size: large;
+    font-family: freemono,monospace;
+    color: #ffffff;
+    background-color: #6E0099;
+}
+
+table {
+    font-size: large;
+    font-family: georgia, serif;
+    text-align: center;
+    border: #990096;
+}
+
+td {
+    font-size: larger;
+    font-family: courier;
+    font-weight: bolder; 
+    color: #990096;
+    background-color: #0099FA;
+}
+
+.header {
+    font-size: large;
+    font-family: georgia, serif;
+    text-align: center;
+    color: black;
 }

@@ -19,32 +19,33 @@
                          var="teatro">
                 <p:column>
                     <f:facet name="header">
-                        <h:outputText value="#{msg['page.cnpj']}" />
+                        <h:outputText value="#{msg['page.cnpj']}" class="header"/>
                     </f:facet>
                     <h:outputText id="cnpj" value="#{teatro.cnpj}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        <h:outputText value="#{msg['page.name']}" />
+                        <h:outputText value="#{msg['page.name']}" class="header"/>
                     </f:facet>
                     <h:outputText id="nome" value="#{teatro.nome}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        <h:outputText value="#{msg['page.email']}" />
+                        <h:outputText value="#{msg['page.email']}" class="header"/>
                     </f:facet>
                     <h:outputText id="email" value="#{teatro.email}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        <h:outputText value="#{msg['page.city']}" />
+                        <h:outputText value="#{msg['page.city']}" class="header"/>
                     </f:facet>
                     <h:outputText id="cidade" value="#{teatro.cidade}" />
                 </p:column>
             </p:dataTable>
-            <div class="col-sm-2">  
+        </h:form>
+        <br/>
+        <div>  
                 <p:commandButton action="/index" value="#{msg['return']}"/> 
             </div>
-        </h:form>
     </h:body>
 </html>

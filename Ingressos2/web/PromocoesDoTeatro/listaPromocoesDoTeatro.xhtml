@@ -19,45 +19,45 @@
                          var="promocao">
                 <p:column>
                     <f:facet name="header">
-                        <h:outputText value="#{msg['page.adress']}" />
+                        <h:outputText value="#{msg['page.adress']}"  class="header"/>
                     </f:facet>
                     <h:outputText id="endereco" value="#{promocao.site.endereco}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        <h:outputText value="#{msg['page.cnpj']}" />
+                        <h:outputText value="#{msg['page.cnpj']}" class="header"/>
                     </f:facet>
                     <h:outputText id="cnpj" value="#{promocao.teatro.cnpj}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        <h:outputText value="#{msg['page.name']}" />
+                        <h:outputText value="#{msg['page.name']}" class="header"/>
                     </f:facet>
                     <h:outputText id="nome" value="#{promocao.nome}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        <h:outputText value="#{msg['page.price']}" />
+                        <h:outputText value="#{msg['page.price']}" class="header"/>
                     </f:facet>
                     <h:outputText id="preco" value="#{promocao.preco}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        <h:outputText value="#{msg['page.day']}" />
+                        <h:outputText value="#{msg['page.day']}" class="header" />
                     </f:facet>
                     <h:outputText id="dia" value="#{promocao.dia}" />
                 </p:column>
                 <p:column>
                     <f:facet name="header">
-                        <h:outputText value="#{msg['page.hour']}" />
+                        <h:outputText value="#{msg['page.hour']}" class="header"/>
                     </f:facet>
                     <h:outputText id="hora" value="#{promocao.hora}"/>
                 </p:column>
             </p:dataTable>
-
-            <div class="col-sm-2">  
-                <p:commandButton action="promocoesDeTeatro" value="#{msg['return']}"/> 
-            </div>
         </h:form>
+        <br/>
+        <div>  
+                <p:commandButton action="promocoesDeTeatro" value="#{msg['return']}"/> 
+        </div>
     </h:body>
 </html>

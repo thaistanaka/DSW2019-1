@@ -11,9 +11,9 @@
     <h:body>
         <p>#{msg["admin.welcome"]}</p>
         <h:form>
-            <p:commandLink action="#{teatroBean.lista()}">#{msg["mod.theater.data"]}</p:commandLink><br/>
-            <p:commandLink action="#{siteBean.lista()}">#{msg["mod.site.data"]}</p:commandLink><br/>
-            <p:commandLink action="#{adminBean.logout()}">#{msg["return"]}</p:commandLink><br/>
+            <p:commandLink class="link" action="#{teatroBean.lista()}">#{msg["mod.theater.data"]}</p:commandLink><br/>
+            <p:commandLink class="link" action="#{siteBean.lista()}">#{msg["mod.site.data"]}</p:commandLink><br/>
+            <p:commandLink class="link" action="#{adminBean.logout()}">#{msg["return"]}</p:commandLink><br/>
         </h:form>
     </h:body>
 </html>

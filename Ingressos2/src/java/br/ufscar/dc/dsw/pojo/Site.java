@@ -25,7 +25,7 @@ public class Site implements Serializable{ //do trabalho
     private String senha;
     private String endereco;
     private String nome;
-    private int telefone;
+    private String telefone;
     
     public Site(){
     }
@@ -58,7 +58,7 @@ public class Site implements Serializable{ //do trabalho
         return nome;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
@@ -78,7 +78,7 @@ public class Site implements Serializable{ //do trabalho
         this.nome = nome;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 

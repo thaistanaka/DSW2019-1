@@ -12,45 +12,45 @@
         <h1>#{msg['manager.theater']}</h1>
         <hr/>
         <br/>
+        <p:commandButton action="#{teatroBean.cadastra()}" value="#{msg['theater.add']}" class="btn"/>
+        <br/>
+        <br/>
         <h:form>
-                <h2>
-            <p:commandButton action="#{teatroBean.cadastra()}" value="#{msg['theater.add']}"/>
-        </h2>
-                <p:dataTable id="teatros"
-                             summary="#{msg['theater.list']}"
-                             value="#{teatroBean.getTeatros()}"
-                             var="teatro">
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['page.cnpj']}" />
-                        </f:facet>
-                        <h:outputText id="cnpj" value="#{teatro.cnpj}" />
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['page.name']}" />
-                        </f:facet>
-                        <h:outputText id="nome" value="#{teatro.nome}" />
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['page.password']}" />
-                        </f:facet>
-                        <h:outputText id="senha" value="#{teatro.senha}" />
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['page.email']}" />
-                        </f:facet>
-                        <h:outputText id="email" value="#{teatro.email}" />
-                    </p:column>
-                    <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{msg['page.city']}" />
-                        </f:facet>
-                        <h:outputText id="cidade" value="#{teatro.cidade}" />
-                    </p:column>
-                    <p:column>  
+            <p:dataTable id="teatros"
+                         summary="#{msg['theater.list']}"
+                         value="#{teatroBean.getTeatros()}"
+                         var="teatro">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.cnpj']}" class="header"/>
+                    </f:facet>
+                    <h:outputText id="cnpj" value="#{teatro.cnpj}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.name']}"  class="header"/>
+                    </f:facet>
+                    <h:outputText id="nome" value="#{teatro.nome}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.password']}"  class="header"/>
+                    </f:facet>
+                    <h:outputText id="senha" value="#{teatro.senha}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.email']}"  class="header"/>
+                    </f:facet>
+                    <h:outputText id="email" value="#{teatro.email}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="#{msg['page.city']}"  class="header"/>
+                    </f:facet>
+                    <h:outputText id="cidade" value="#{teatro.cidade}" />
+                </p:column>
+                <p:column>  
                     <f:facet name="header"></f:facet>  
                     <p:commandButton action = "#{teatroBean.edita(teatro.id)}" value="#{msg['edit']}" class="btn btn-primary">  
                     </p:commandButton>  
@@ -62,11 +62,11 @@
                                      class="btn btn-danger">  
                     </p:commandButton>  
                 </p:column>
-                </p:dataTable>
-                <div class="col-sm-2">  
-                    <br/>
-                    <p:commandButton action="pageAdmin?faces-redirect=true" value="#{msg['return']}" style="center"/> 
-                </div>
+            </p:dataTable>
         </h:form>
+        <div>  
+            <br/>
+            <p:commandButton action="pageAdmin?faces-redirect=true" value="#{msg['return']}" style="center" class="btn"/> 
+        </div>
     </h:body>
 </html>

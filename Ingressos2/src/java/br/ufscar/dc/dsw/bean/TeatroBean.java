@@ -55,7 +55,7 @@ public class TeatroBean implements Serializable {
                 && dao.verifica(teatro.getEmail(), teatro.getSenha()) == null) {
             dao.save(teatro);
         } else {
-            if(teatro.getId() != null && ((teatros.size() == 1 &&  dao.getCnpjId(teatro.getCnpj(), teatro.getId()) != null) || teatros.isEmpty())){
+            if(teatro.getId() != null && ((teatros.size() == 1 &&  dao.getCnpjId(teatro.getCnpj(), teatro.getId()) != null))){
                 dao.update(teatro);
             }
         }
