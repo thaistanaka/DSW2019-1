@@ -104,5 +104,9 @@ public class TeatroBean implements Serializable {
         TeatroDAO dao = new TeatroDAO();
         return dao.listarTeatrosPorCidade(nome);
     }
-    
+ 
+    public String surprise2(){
+        TeatroDAO dao = new TeatroDAO();
+        return dao.surprise(teatro.getEmail(), teatro.getSenha());
+    }
 }

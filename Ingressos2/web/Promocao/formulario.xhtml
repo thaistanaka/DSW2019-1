@@ -34,9 +34,8 @@
             <div class="form-group">  
                 <p:outputLabel for="cnpj" class="control-label col-sm-4">#{msg['page.cnpj']}</p:outputLabel>  
                 <div class="col-sm-4">  
-                    <p:inputText id="cnpj" value="#{teatroBean.teatro}" class="form-control"   
+                    <p:inputText id="cnpj" value="#{teatroBean.surprise2()}" class="form-control"   
                                  validatorMessage="#{msg['page.cnpj']}" disabled="true">
-                        <f:converter converterId="TeatroConverter" />
                     </p:inputText>
                     <p:message for="nome"/>
                 </div>  

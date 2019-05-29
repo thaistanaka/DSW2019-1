@@ -124,5 +124,17 @@ public class TeatroDAO extends GenericDAO<Teatro> {
             return null;
         }
     }
+    
+    public String surprise(String email, String senha) {
+        EntityManager em = this.getEntityManager();
+        try {
+            Teatro teatro = (Teatro) em.createQuery("select t from Teatro t where t.email = :nome2 and t.senha = :senha2")
+                    .setParameter("nome2", email)
+                    .setParameter("senha2", senha).getSingleResult();
+            return teatro.getCnpj();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 
 }

@@ -3,7 +3,7 @@ email varchar(256) not null,
 nome varchar(256) not null,
 endereco varchar(256) not null,
 senha varchar(256) not null,
-telefone integer not null,
+telefone varchar(256) not null,
 CONSTRAINT SITE_PK PRIMARY KEY (endereco));
 
 create table Teatro (
