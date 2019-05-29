@@ -34,10 +34,11 @@
             <div class="form-group">  
                 <p:outputLabel for="cnpj" class="control-label col-sm-4">#{msg['page.cnpj']}</p:outputLabel>  
                 <div class="col-sm-4">  
-                    <p:inputText id="cnpj" value="#{teatroBean.loginCNPJ()}" class="form-control"   
-                                 validatorMessage="#{msg['page.cnpj']}" disabled="true">
+                    <p:inputText id="cnpj" value="#{promocaoBean.promocao.teatro=teatroBean.loginCNPJ()}" class="form-control"
+                        validatorMessage="#{msg['page.cnpj']}" disabled="true">
+                        <f:converter converterId="TeatroConverter" />
                     </p:inputText>
-                    <p:message for="nome"/>
+                    <p:message for="cnpj"/>
                 </div>  
 
             </div>            
