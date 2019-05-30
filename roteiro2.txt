@@ -1,0 +1,21 @@
+Desenvolvimento de Software para Web 1
+
+Professor: Delano Medeiros Beder
+
+Alunos:
+Guilherme Vilar Balduino 743546
+Roberto Akio Oizuni Yamamoto 743594
+Thais Oyamada Tanaka 743597
+
+Trabalho 2
+1 - Foi utilizado um JavaDB para armazenar os dados:
+nome: Ingressos2
+usuario: root
+senha: root
+
+2 - Ao executar o trabalho pela primeira vez as tabelas serão
+criadas automaticamente, estando elas vazias.
+
+3-Para acessar o admin:
+usuario: admin
+senha: admin

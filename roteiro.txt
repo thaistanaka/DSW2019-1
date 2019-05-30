@@ -1,4 +1,4 @@
-﻿DSW
+DSW
 Professor: Delano
 
 Alunos:
@@ -6,6 +6,7 @@ Guilherme Vilar Balduino 743546
 Roberto Akio Oizuni Yamamoto 743594
 Thais Oyamada Tanaka 743597
 
+Trabalho 1:
 1- Foi utilizado um JavaDB:
 nome: Ingressos
 usuario: root
