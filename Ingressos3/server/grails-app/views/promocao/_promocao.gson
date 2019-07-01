@@ -1,0 +1,21 @@
+import br.ufscar.dc.dsw.Promocao
+
+model {
+	Promocao promocao
+}
+
+json {
+	id promocao.id
+	site {
+		id promocao.site.id
+		endereco promocao.site.endereco
+	}
+	teatro {
+		id  promocao.teatro.id
+		cnpjT  promocao.teatro.cnpj
+	} 
+    nome promocao.nome
+    preco promocao.preco
+	dia promocao.dia
+	hora promocao.hora
+}

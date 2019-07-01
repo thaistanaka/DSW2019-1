@@ -1,0 +1,14 @@
+import br.ufscar.dc.dsw.Teatro
+
+model {
+	Teatro teatro
+}
+
+json {
+	id teatro.id
+	email teatro.email
+    senha teatro.senha
+    cnpj teatro.cnpj
+    nome teatro.nome
+    cidade teatro.cidade
+}
