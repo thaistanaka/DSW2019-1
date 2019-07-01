@@ -17,6 +17,7 @@ import { SiteEdicaoComponent } from './components/site-edicao/site-edicao.compon
 import { PromocoesComponent } from './components/promocoes/promocoes.component';
 import { PromocaoCadastroComponent } from './components/promocao-cadastro/promocao-cadastro.component';
 import { PromocaoDetalhesComponent } from './components/promocao-detalhes/promocao-detalhes.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { PromocaoDetalhesComponent } from './components/promocao-detalhes/promoc
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
